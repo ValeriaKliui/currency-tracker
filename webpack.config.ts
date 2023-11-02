@@ -22,6 +22,7 @@ export default (env: BuildEnv): Configuration => {
         '@store': resolve(__dirname, 'src', 'store'),
         '@hooks': resolve(__dirname, 'src', 'hooks'),
         '@pages': resolve(__dirname, 'src', 'pages'),
+        '@utils': resolve(__dirname, 'src', 'utils'),
     };
 
     const config: Configuration = buildWebpackConfig({
