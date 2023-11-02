@@ -4,6 +4,7 @@ import type { ActionsAppType, IAppState } from './types';
 
 const initialState: IAppState = {
     currentTheme: ThemeEnum.dark,
+    isModalOpened: false,
 };
 export const appReducer = (
     state = initialState,
@@ -14,6 +15,18 @@ export const appReducer = (
             return {
                 ...state,
                 currentTheme: action.payload.theme,
+            };
+        }
+        case 'APP/OPEN_MODAL': {
+            return {
+                ...state,
+                isModalOpened: true,
+            };
+        }
+        case 'APP/CLOSE_MODAL': {
+            return {
+                ...state,
+                isModalOpened: false,
             };
         }
         default:

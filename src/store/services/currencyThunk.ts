@@ -1,6 +1,10 @@
-import { fetchQuotes, fetchQuotesError } from '@store/actions/currencyActions';
+import {
+    fetchQuotes,
+    fetchQuotesError,
+    setConvertedCurrency,
+} from '@store/actions/currencyActions';
 import { CurrencyAPI } from '@utils/api/api';
-import { type AxiosError, isAxiosError } from 'axios';
+import axios, { type AxiosError, isAxiosError } from 'axios';
 import { type Dispatch } from 'redux';
 
 export const fetchCurrencyThunk = () => async (dispatch: Dispatch) => {
@@ -15,3 +19,24 @@ export const fetchCurrencyThunk = () => async (dispatch: Dispatch) => {
         }
     }
 };
+
+export const fetchConversedCurrThunk =
+    (baseCurrencyCode: string, targetCurrencyCode: string) =>
+    async (dispatch: Dispatch) => {
+        try {
+            const res = await CurrencyAPI.getConversedCurrency(
+                baseCurrencyCode,
+                targetCurrencyCode,
+            );
+            res !== null &&
+                dispatch(
+                    setConvertedCurrency(res.data[targetCurrencyCode].value),
+                );
+        } catch (e) {
+            if (axios.isAxiosError<AxiosError<{ message: string }>>(e)) {
+                const err =
+                    e.response !== null ? e.response?.data.message : e.message;
+                console.log(err);
+            }
+        }
+    };

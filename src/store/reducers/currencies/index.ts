@@ -25,6 +25,24 @@ export const currencyReducer = (
                 error: action.payload,
             };
         }
+        case 'CURRENCY/SET_CONVERTED_CURRENCY': {
+            return {
+                ...state,
+                convertedCurrencyValue: action.payload,
+            };
+        }
+        case 'CURRENCY/SET_BASE_CURRENCY': {
+            return {
+                ...state,
+                baseCurrencyCode: action.payload,
+            };
+        }
+        case 'CURRENCY/SET_TARGET_CURRENCY': {
+            return {
+                ...state,
+                targetCurrencyCode: action.payload,
+            };
+        }
         default:
             return state;
     }

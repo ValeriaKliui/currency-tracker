@@ -1,7 +1,4 @@
-import type {
-    CurrenciesEnum,
-    ThemeEnum,
-} from '@constants/interfaces/interfaces';
+import type { ThemeEnum } from '@constants/interfaces/interfaces';
 
 export const setTheme = (theme: ThemeEnum) => {
     return {
@@ -16,6 +13,14 @@ export const openModal = () => {
         type: 'APP/OPEN_MODAL',
         payload: {
             isModalOpened: true,
+        },
+    } as const;
+};
+export const closeModal = () => {
+    return {
+        type: 'APP/CLOSE_MODAL',
+        payload: {
+            isModalOpened: false,
         },
     } as const;
 };

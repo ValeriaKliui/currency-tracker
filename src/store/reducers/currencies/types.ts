@@ -2,6 +2,9 @@ import { type CurrenciesEnum } from '@constants/interfaces/interfaces';
 import type {
     fetchQuotes,
     fetchQuotesError,
+    setBaseCurrency,
+    setConvertedCurrency,
+    setTargetCurrency,
 } from '@store/actions/currencyActions';
 
 export interface ICurrency {
@@ -37,7 +40,9 @@ export interface ICurrencyState {
     targetCurrencyCode: keyof typeof CurrenciesEnum | null;
     convertedCurrencyValue: number | null;
 }
-
 export type ICurrencyActions =
     | ReturnType<typeof fetchQuotes>
-    | ReturnType<typeof fetchQuotesError>;
+    | ReturnType<typeof fetchQuotesError>
+    | ReturnType<typeof setBaseCurrency>
+    | ReturnType<typeof setTargetCurrency>
+    | ReturnType<typeof setConvertedCurrency>;

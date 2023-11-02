@@ -1,4 +1,4 @@
-import { CurrenciesEnum } from '@constants/interfaces/interfaces';
+import { type CurrenciesEnum } from '@constants/interfaces/interfaces';
 import type { IQuotes } from '@store/reducers/currencies/types';
 
 export const fetchQuotes = (quotes: IQuotes) => {
@@ -19,5 +19,19 @@ export const setBaseCurrency = (
     return {
         type: 'CURRENCY/SET_BASE_CURRENCY',
         payload: baseCurrencyCode,
+    } as const;
+};
+export const setTargetCurrency = (
+    targetCurrencyCode: keyof typeof CurrenciesEnum | null,
+) => {
+    return {
+        type: 'CURRENCY/SET_TARGET_CURRENCY',
+        payload: targetCurrencyCode,
+    } as const;
+};
+export const setConvertedCurrency = (convertedValue: number) => {
+    return {
+        type: 'CURRENCY/SET_CONVERTED_CURRENCY',
+        payload: convertedValue,
     } as const;
 };

@@ -1,9 +1,15 @@
 import type { FC, ReactNode, SVGProps } from 'react';
-import { type rootReducer } from '@store/index';
+import {
+    type ICurrency,
+    type IQuotes,
+    type ITimelineDayData,
+} from '@store/reducers/currencies/types';
+import { type ChartData } from 'chart.js';
 
 export interface IErrorBoundaryProps {
     children?: ReactNode;
 }
+
 export interface IErrorBoundaryState {
     hasError: boolean;
     errorInfo: string | '';
@@ -11,10 +17,12 @@ export interface IErrorBoundaryState {
 export interface IErrorProps {
     text?: string;
 }
+
 export enum ThemeEnum {
     light = 'light',
     dark = 'dark',
 }
+
 export interface ITheme {
     colors: {
         background: string;
@@ -43,18 +51,7 @@ export interface ITheme {
         togglerLabel: string;
     };
 }
-export type RootStoreType = ReturnType<typeof rootReducer>;
 
-export interface IQuotes {
-    meta: { last_updated_at: string };
-    data: Record<
-        string,
-        {
-            code: keyof typeof CurrenciesEnum;
-            value: number;
-        }
-    >;
-}
 export enum CurrenciesEnum {
     USD = 'Commercial Dollar',
     CAD = 'Canadian Dollar',
@@ -66,7 +63,7 @@ export enum CurrenciesEnum {
     BTC = 'Bitcoin',
     LTC = 'Litecoin',
 }
-export interface IStock extends ICurrencyItemProps {}
+
 export interface ICurrencyItemProps {
     currencyName: string;
     value?: string;
@@ -74,14 +71,38 @@ export interface ICurrencyItemProps {
     onClick?: () => void;
     code?: keyof typeof CurrenciesEnum;
 }
+export interface IStock extends ICurrencyItemProps {}
+
 export interface IModalProps {
     children: ReactNode;
     closeModalActions: () => void;
 }
+
+export interface ITimeLine extends IMapDispatchToProps, IMapStateToProps {}
+export interface IMapStateToProps {
+    baseCurrency: keyof typeof CurrenciesEnum | null;
+    targetCurrency: keyof typeof CurrenciesEnum | null;
+    quotes: IQuotes | null;
+    timelineData: ITimelineDayData[];
+}
+
+export interface IMapDispatchToProps {
+    fetchCurrencyThunk: () => void;
+    fetchCurrencyTimeLineThunk: (
+        targetCurrency: keyof typeof CurrenciesEnum,
+    ) => void;
+}
+export interface ITimeLineState {
+    errorCurrency: string | null;
+}
 export interface ISelectProps {
     options: ICurrency[];
 }
-export interface ICurrency {
-    code: keyof typeof CurrenciesEnum;
-    value: number;
+export interface ITimelineBlockProps {
+    timelineData: ITimelineDayData[];
+}
+export interface ITimeLineChart extends ITimelineBlockProps {}
+export interface ITimeLineChartState {
+    labels: string[];
+    datasets: ChartData<'bar'>;
 }

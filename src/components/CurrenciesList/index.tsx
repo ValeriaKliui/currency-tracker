@@ -1,7 +1,8 @@
+import { type FC, useCallback, useEffect } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Error } from '@components/Error';
 import { CURRENCIES_LOGOS, STOCKS } from '@constants/constants/currencies';
-import { CurrenciesEnum, IStock } from '@constants/interfaces/interfaces';
+import { CurrenciesEnum, type IStock } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { openModal } from '@store/actions/appActions';
 import { setBaseCurrency } from '@store/actions/currencyActions';
@@ -9,8 +10,8 @@ import {
     getQuotesError,
     getQuotesSelector,
 } from '@store/selectors/currencySelectors';
-import { fetchCurrencyThunk } from '@store/services/currencyThunk';
-import { FC, useCallback, useEffect } from 'react';
+
+// import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { CurrenciesContainer, EmptyCell, Hr, Title, Wrapper } from './styled';
 
 export const CurrenciesList: FC = () => {
@@ -19,7 +20,7 @@ export const CurrenciesList: FC = () => {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (quotes === null) dispatch(fetchCurrencyThunk());
+        // if (quotes === null) dispatch(fetchCurrencyThunk());
     }, []);
 
     const handleClick = useCallback(
