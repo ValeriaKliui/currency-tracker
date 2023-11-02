@@ -4,16 +4,18 @@ import { Provider } from 'react-redux';
 import { createHashRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
 import { Footer } from '@components/Footer';
+import { Header } from '@components/Header';
 import { Navbar } from '@components/Navbar';
 import { NAVIGATION_ITEMS } from '@constants/constants/navigation';
+import { GlobalStyle } from '@constants/styles/global';
 import { Theme } from '@utils/ThemeProvider';
 
 import { store } from './store';
-import { GlobalStyle } from '@constants/styles/global';
 
 const BasicLayout: FC = () => (
     <ErrorBoundary>
         <Navbar />
+        <Header />
         <Outlet />
         <Footer />
     </ErrorBoundary>

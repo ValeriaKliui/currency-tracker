@@ -6,9 +6,11 @@ import {
 import thunk from 'redux-thunk';
 
 import { appReducer } from './reducers/app';
+import { currencyReducer } from './reducers/currencies';
 
 export const rootReducer = combineReducers({
     app: appReducer,
+    currencies: currencyReducer,
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 

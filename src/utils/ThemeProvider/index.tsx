@@ -1,8 +1,8 @@
 import { type ReactNode } from 'react';
+import { darkTheme, lightTheme } from '@constants/styles/theme';
 import { useAppSelector } from '@hooks/store';
 import { getThemeSelector } from '@store/selectors/appSelector';
 import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from '@constants/styles/theme';
 
 export const Theme = ({ children }: { children: ReactNode }): JSX.Element => {
     const theme = useAppSelector(getThemeSelector);

@@ -1,5 +1,6 @@
-import { css, createGlobalStyle } from 'styled-components';
 import PoppinsRegular from '@assets/fonts/Poppins-Regular.woff';
+import { createGlobalStyle, css } from 'styled-components';
+
 import { scaleAnimation } from './animations';
 
 export const wrapper = css`

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { FC, ReactNode, SVGProps } from 'react';
 import { type rootReducer } from '@store/index';
 
 export interface IErrorBoundaryProps {
@@ -44,3 +44,33 @@ export interface ITheme {
     };
 }
 export type RootStoreType = ReturnType<typeof rootReducer>;
+
+export interface IQuotes {
+    meta: { last_updated_at: string };
+    data: Record<
+        string,
+        {
+            code: keyof typeof CurrenciesEnum;
+            value: number;
+        }
+    >;
+}
+export enum CurrenciesEnum {
+    USD = 'Commercial Dollar',
+    CAD = 'Canadian Dollar',
+    AUD = 'Australian Dollar',
+    EUR = 'Euro',
+    ARS = 'Argentine Peso',
+    JPY = 'Yen',
+    CNY = 'Yuan',
+    BTC = 'Bitcoin',
+    LTC = 'Litecoin',
+}
+export interface IStock extends ICurrencyItemProps {}
+export interface ICurrencyItemProps {
+    currencyName: string;
+    value?: string;
+    icon: FC<SVGProps<SVGElement>>;
+    onClick?: () => void;
+    code?: keyof typeof CurrenciesEnum;
+}
