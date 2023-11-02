@@ -1,12 +1,14 @@
 import { type FC, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createHashRouter, Outlet, RouterProvider } from 'react-router-dom';
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
 import { Footer } from '@components/Footer';
+import { Navbar } from '@components/Navbar';
 import { NAVIGATION_ITEMS } from '@constants/constants/navigation';
 
 const BasicLayout: FC = () => (
     <ErrorBoundary>
+        <Navbar />
         <Outlet />
         <Footer />
     </ErrorBoundary>

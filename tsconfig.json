@@ -17,7 +17,6 @@
             "@store/*": ["./src/store/*"],
             "@hooks/*": ["./src/hooks/*"],
             "@pages/*": ["./src/pages/*"],
-            "@interfaces/*": ["./src/constants/interfaces*"]
         }
     },
     "ts-node": {

@@ -1,5 +1,6 @@
-import { type ITheme, ThemeEnum } from '@interfaces/interfaces';
 import { type DefaultTheme } from 'styled-components';
+
+import { type ITheme, ThemeEnum } from '../interfaces/interfaces';
 
 const colors = {
     black: 'rgb(3, 3, 4)',

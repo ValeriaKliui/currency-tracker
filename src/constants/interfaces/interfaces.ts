@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { type rootReducer } from '@store/index';
 
 export interface IErrorBoundaryProps {
     children?: ReactNode;
@@ -42,3 +43,4 @@ export interface ITheme {
         togglerLabel: string;
     };
 }
+export type RootStoreType = ReturnType<typeof rootReducer>;
