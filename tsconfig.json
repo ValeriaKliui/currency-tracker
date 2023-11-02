@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "outDir": "./build/",
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es5",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "strictNullChecks": true,
+        "paths": {
+            "@assets/*": ["./src/assets/*"],
+            "@constants/*": ["./src/constants/*"],
+            "@components/*": ["./src/components/*"],
+            "@store/*": ["./src/store/*"],
+            "@hooks/*": ["./src/hooks/*"],
+            "@pages/*": ["./src/pages/*"],
+            "@interfaces/*": ["./src/constants/interfaces*"]
+        }
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    }
+}
