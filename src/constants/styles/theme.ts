@@ -43,6 +43,12 @@ export const baseTheme: Theme = {
         togglerLabel: '100px',
         items: '8px',
     },
+    devices: {
+        mobile: '495px',
+        tablet: '768px',
+        laptop: '1024px',
+        bigScreen: '1920px',
+    },
 };
 export const lightTheme: DefaultTheme = {
     ...baseTheme,

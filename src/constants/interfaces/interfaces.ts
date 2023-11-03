@@ -40,6 +40,12 @@ export interface Theme {
         togglerButton: string;
         togglerLabel: string;
     };
+    devices: {
+        mobile: string;
+        tablet: string;
+        laptop: string;
+        bigScreen: string;
+    };
 }
 
 export interface Quotes {

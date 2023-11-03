@@ -2,13 +2,13 @@ import { scaleAnimation } from '@constants/styles/animations';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding: 2rem;
+    padding: 1rem;
     border: 1px solid ${(props) => props.theme.colors.border};
     border-radius: ${(props) => props.theme.radiuses.items};
     background-color: ${(props) => props.theme.colors.backgroundItem};
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     cursor: pointer;
     ${scaleAnimation}
 `;
@@ -17,10 +17,10 @@ export const CurrencyInfo = styled.div`
     flex-direction: column;
 `;
 export const CurrencyName = styled.h3`
-    font-size: ${(props) => props.theme.fontSizes.l};
+    font-size: ${(props) => props.theme.fontSizes.s};
     font-weight: 400;
 `;
-export const CurrencySub = styled.p`
-    font-size: ${(props) => props.theme.fontSizes.m};
+export const CurrencySubText = styled.p`
+    font-size: ${(props) => props.theme.fontSizes.s};
     color: ${(props) => props.theme.colors.subText};
 `;

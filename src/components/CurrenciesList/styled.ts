@@ -14,7 +14,7 @@ export const Title = styled.p`
 export const CurrenciesContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 3em 7em;
+    gap: 3em 5em;
 `;
 export const Hr = styled.hr`
     border: none;

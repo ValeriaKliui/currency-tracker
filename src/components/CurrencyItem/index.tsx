@@ -1,7 +1,12 @@
 import { type FC, memo } from 'react';
 import { type CurrencyItemProps } from '@constants/interfaces/interfaces';
 
-import { Container, CurrencyInfo, CurrencyName, CurrencySub } from './styled';
+import {
+    Container,
+    CurrencyInfo,
+    CurrencyName,
+    CurrencySubText,
+} from './styled';
 
 export const CurrencyItem: FC<CurrencyItemProps> = memo(
     ({ currencyName, value, icon, onClick, code }) => {
@@ -11,8 +16,8 @@ export const CurrencyItem: FC<CurrencyItemProps> = memo(
                 <CurrencyIcon />
                 <CurrencyInfo>
                     <CurrencyName>{currencyName}</CurrencyName>
-                    <CurrencySub>{value}</CurrencySub>
-                    {code !== null && <CurrencySub>{code}</CurrencySub>}
+                    <CurrencySubText>{value}</CurrencySubText>
+                    {code !== null && <CurrencySubText>{code}</CurrencySubText>}
                 </CurrencyInfo>
             </Container>
         );

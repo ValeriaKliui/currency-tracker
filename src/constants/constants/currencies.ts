@@ -22,6 +22,19 @@ export const CURRENCIES_LOGOS = {
     [CurrenciesEnum.LTC]: LTCLogo,
     [CurrenciesEnum.USD]: USDLogo,
 };
+
+export const CURRENCIES_ROUNDING = {
+    [CurrenciesEnum.ARS]: 2,
+    [CurrenciesEnum.AUD]: 2,
+    [CurrenciesEnum.BTC]: 6,
+    [CurrenciesEnum.CAD]: 1,
+    [CurrenciesEnum.CNY]: 2,
+    [CurrenciesEnum.EUR]: 3,
+    [CurrenciesEnum.JPY]: 2,
+    [CurrenciesEnum.LTC]: 4,
+    [CurrenciesEnum.USD]: 2,
+};
+
 export const STOCKS = [
     {
         currencyName: 'BovespaIndex',

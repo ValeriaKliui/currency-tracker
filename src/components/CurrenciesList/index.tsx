@@ -1,7 +1,11 @@
 import { type FC, useCallback, useEffect } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Error } from '@components/Error';
-import { CURRENCIES_LOGOS, STOCKS } from '@constants/constants/currencies';
+import {
+    CURRENCIES_LOGOS,
+    CURRENCIES_ROUNDING,
+    STOCKS,
+} from '@constants/constants/currencies';
 import {
     CurrenciesEnum,
     type CurrencyItemProps,
@@ -16,6 +20,7 @@ import {
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 
 import { CurrenciesContainer, EmptyCell, Hr, Title, Wrapper } from './styled';
+import { roundNumber } from '@utils/roundNumber';
 
 export const CurrenciesList: FC = () => {
     const quotes = useAppSelector(getQuotesSelector);
@@ -33,6 +38,14 @@ export const CurrenciesList: FC = () => {
         },
         [],
     );
+    const toStringRound = (
+        value: number,
+        code: keyof typeof CurrenciesEnum,
+    ) => {
+        return String(
+            roundNumber(value, CURRENCIES_ROUNDING[CurrenciesEnum[code]]),
+        );
+    };
 
     return (
         <Wrapper>
@@ -70,7 +83,7 @@ export const CurrenciesList: FC = () => {
                                         CURRENCIES_LOGOS[CurrenciesEnum[code]]
                                     }
                                     currencyName={CurrenciesEnum[code]}
-                                    value={String(value)}
+                                    value={toStringRound(value, code)}
                                     onClick={handleClick(code)}
                                 />
                             );
