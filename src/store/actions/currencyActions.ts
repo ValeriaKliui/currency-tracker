@@ -1,7 +1,7 @@
 import { type CurrenciesEnum } from '@constants/interfaces/interfaces';
-import type { IQuotes } from '@store/reducers/currencies/types';
+import type { Quotes } from '@store/reducers/currencies/types';
 
-export const fetchQuotes = (quotes: IQuotes) => {
+export const fetchQuotes = (quotes: Quotes) => {
     return {
         type: 'CURRENCY/FETCH_QUOTES',
         payload: quotes,

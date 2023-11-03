@@ -7,11 +7,11 @@ import type {
     setTargetCurrency,
 } from '@store/actions/currencyActions';
 
-export interface ICurrency {
+export interface Currency {
     code: keyof typeof CurrenciesEnum;
     value: number;
 }
-export interface IQuotes {
+export interface Quotes {
     meta: { last_updated_at: string };
     data: Record<
         string,
@@ -33,14 +33,14 @@ export interface ITimelineDayData {
     trades_count: number;
     volume_traded: number;
 }
-export interface ICurrencyState {
-    quotes: IQuotes | null;
+export interface CurrencyState {
+    quotes: Quotes | null;
     error: string | null;
     baseCurrencyCode: keyof typeof CurrenciesEnum | null;
     targetCurrencyCode: keyof typeof CurrenciesEnum | null;
     convertedCurrencyValue: number | null;
 }
-export type ICurrencyActions =
+export type CurrencyActions =
     | ReturnType<typeof fetchQuotes>
     | ReturnType<typeof fetchQuotesError>
     | ReturnType<typeof setBaseCurrency>

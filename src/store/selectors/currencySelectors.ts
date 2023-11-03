@@ -1,10 +1,7 @@
-import type {
-    CurrenciesEnum,
-    IQuotes,
-    RootStoreType,
-} from '@constants/interfaces/interfaces';
+import type { CurrenciesEnum, Quotes } from '@constants/interfaces/interfaces';
+import { type RootStoreType } from '@store/types/interfaces';
 
-export const getQuotesSelector = (state: RootStoreType): IQuotes | null =>
+export const getQuotesSelector = (state: RootStoreType): Quotes | null =>
     state.currencies.quotes;
 export const getQuotesError = (state: RootStoreType): string | null =>
     state.currencies.error;

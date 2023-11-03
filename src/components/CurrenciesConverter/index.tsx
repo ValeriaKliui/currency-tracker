@@ -1,29 +1,29 @@
 import { type FC, useEffect } from 'react';
 import { Select } from '@components/Select';
 import { CurrenciesEnum } from '@constants/interfaces/interfaces';
-import { useAppSelector } from '@hooks/store';
+import { useAppDispatch, useAppSelector } from '@hooks/store';
 import {
     getBaseCurrencySelector,
     getConvertedCurrencyValue,
     getQuotesSelector,
     getTargetCurrencySelector,
 } from '@store/selectors/currencySelectors';
+import { fetchConversedCurrThunk } from '@store/services/currencyThunk';
 
-// import { fetchConversedCurrThunk } from '@store/services/currencyThunk';
 import { CurrContainer } from './styled';
 
 export const CurrenciesConverter: FC = () => {
+    const dispatch = useAppDispatch();
     const baseCurrency = useAppSelector(getBaseCurrencySelector);
     const targetCurrency = useAppSelector(getTargetCurrencySelector);
     const convertedCurrencyValue = useAppSelector(getConvertedCurrencyValue);
-    // const dispatch = useAppDispatch();
     const currencies = useAppSelector(getQuotesSelector);
     const currenciesArray =
         currencies != null ? Object.values(currencies.data) : [];
 
     useEffect(() => {
-        // if (baseCurrency !== null && targetCurrency !== null)
-        //     dispatch(fetchConversedCurrThunk(baseCurrency, targetCurrency));
+        if (baseCurrency !== null && targetCurrency !== null)
+            dispatch(fetchConversedCurrThunk(baseCurrency, targetCurrency));
     }, [targetCurrency]);
 
     return (
@@ -40,7 +40,7 @@ export const CurrenciesConverter: FC = () => {
             <CurrContainer>
                 {convertedCurrencyValue !== null && (
                     <>
-                        <p>1 {baseCurrency} = </p>{' '}
+                        <p>1 {baseCurrency} = </p>
                         <p>
                             {convertedCurrencyValue} {targetCurrency}
                         </p>

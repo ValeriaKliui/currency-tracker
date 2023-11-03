@@ -1,5 +1,6 @@
 import { type FC } from 'react';
 import LogoPic from '@assets/img/logo.svg';
+import { FOOTER_INFO } from '@constants/constants/navigation';
 
 import {
     Blocks,
@@ -31,21 +32,18 @@ export const Footer: FC = () => {
                             of traders worldwide.
                         </p>
                     </div>
-                    <Section>
-                        <SectionTitle>General</SectionTitle>
-                        <SectionLink to="">Market</SectionLink>
-                        <SectionLink to="">Service</SectionLink>
-                    </Section>
-                    <Section>
-                        <SectionTitle>Product</SectionTitle>
-                        <SectionLink to="">Sparks</SectionLink>
-                        <SectionLink to="">Snaps</SectionLink>
-                    </Section>
-                    <Section>
-                        <SectionTitle>Community</SectionTitle>
-                        <SectionLink to="">Ideas</SectionLink>
-                        <SectionLink to="">Streams</SectionLink>
-                    </Section>
+                    {FOOTER_INFO.sections.map(
+                        ({ sectionTitle, sectionLinks }) => (
+                            <Section key={sectionTitle}>
+                                <SectionTitle>{sectionTitle}</SectionTitle>
+                                {sectionLinks.map(({ linkTitle, linkHref }) => (
+                                    <SectionLink key={linkTitle} to={linkHref}>
+                                        {linkTitle}
+                                    </SectionLink>
+                                ))}
+                            </Section>
+                        ),
+                    )}
                 </Container>
                 <Copyright>
                     Startsup © 2023-2024, All Rights Reserved

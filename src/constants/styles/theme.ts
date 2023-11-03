@@ -1,6 +1,6 @@
 import { type DefaultTheme } from 'styled-components';
 
-import { type ITheme, ThemeEnum } from '../interfaces/interfaces';
+import { type Theme, ThemeEnum } from '../interfaces/interfaces';
 
 const colors = {
     black: 'rgb(3, 3, 4)',
@@ -15,7 +15,7 @@ const colors = {
     neon: 'rgba(0,206,44)',
 };
 
-export const baseTheme: ITheme = {
+export const baseTheme: Theme = {
     colors: {
         ...colors,
         background: colors.black,

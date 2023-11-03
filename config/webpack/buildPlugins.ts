@@ -1,3 +1,4 @@
+import Dotenv from 'dotenv-webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 
@@ -12,5 +13,6 @@ export function buildPlugins({
             favicon: paths.favicon,
         }),
         new webpack.ProgressPlugin(),
+        new Dotenv(),
     ];
 }

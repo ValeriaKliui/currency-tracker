@@ -1,7 +1,7 @@
 import { type FC, useState } from 'react';
 import {
     CurrenciesEnum,
-    type ISelectProps,
+    type SelectProps,
 } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { useClickOutside } from '@hooks/useClickOutside';
@@ -15,7 +15,7 @@ import {
     SelectContainer,
 } from './styled';
 
-export const Select: FC<ISelectProps> = ({ options }) => {
+export const Select: FC<SelectProps> = ({ options }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useAppDispatch();
     const targetCurrencyCode = useAppSelector(getTargetCurrencySelector);

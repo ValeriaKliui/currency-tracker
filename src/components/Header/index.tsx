@@ -1,10 +1,7 @@
 import type { FC } from 'react';
 import Logo from '@assets/img/logo.svg';
 import { useAppSelector } from '@hooks/store';
-import {
-    getQuotesError,
-    getQuotesSelector,
-} from '@store/selectors/currencySelectors';
+import { getQuotesSelector } from '@store/selectors/currencySelectors';
 import { convertTimeTo12 } from '@utils/convertTime';
 
 import {
@@ -21,7 +18,6 @@ import {
 
 export const Header: FC = () => {
     const quotes = useAppSelector(getQuotesSelector);
-    const error = useAppSelector(getQuotesError);
     const updateTime =
         quotes !== null && convertTimeTo12(quotes?.meta.last_updated_at);
 
@@ -47,7 +43,7 @@ export const Header: FC = () => {
                 </Wrapper>
             </Gradient>
             <Wrapper>
-                {error === null && (
+                {quotes !== null && (
                     <TitleUpdates>
                         <Circle />
                         <p>Last updated at {updateTime}</p>

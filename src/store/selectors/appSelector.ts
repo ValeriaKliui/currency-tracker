@@ -1,7 +1,5 @@
-import type {
-    RootStoreType,
-    ThemeEnum,
-} from '@constants/interfaces/interfaces';
+import type { ThemeEnum } from '@constants/interfaces/interfaces';
+import { type RootStoreType } from '@store/types/interfaces';
 
 export const getThemeSelector = (state: RootStoreType): ThemeEnum =>
     state.app.currentTheme;

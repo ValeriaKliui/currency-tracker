@@ -1,21 +1,19 @@
 import type { FC, ReactNode, SVGProps } from 'react';
-import { type rootReducer } from '@store/index';
-
-export interface IErrorBoundaryProps {
+export interface ErrorBoundaryProps {
     children?: ReactNode;
 }
-export interface IErrorBoundaryState {
+export interface ErrorBoundaryState {
     hasError: boolean;
     errorInfo: string | '';
 }
-export interface IErrorProps {
+export interface ErrorProps {
     text?: string;
 }
 export enum ThemeEnum {
     light = 'light',
     dark = 'dark',
 }
-export interface ITheme {
+export interface Theme {
     colors: {
         background: string;
         backgroundTransparent: string;
@@ -43,9 +41,8 @@ export interface ITheme {
         togglerLabel: string;
     };
 }
-export type RootStoreType = ReturnType<typeof rootReducer>;
 
-export interface IQuotes {
+export interface Quotes {
     meta: { last_updated_at: string };
     data: Record<
         string,
@@ -66,22 +63,21 @@ export enum CurrenciesEnum {
     BTC = 'Bitcoin',
     LTC = 'Litecoin',
 }
-export interface IStock extends ICurrencyItemProps {}
-export interface ICurrencyItemProps {
+export interface CurrencyItemProps {
     currencyName: string;
     value?: string;
     icon: FC<SVGProps<SVGElement>>;
     onClick?: () => void;
     code?: keyof typeof CurrenciesEnum;
 }
-export interface IModalProps {
+export interface ModalProps {
     children: ReactNode;
-    closeModalActions: () => void;
+    onClose: () => void;
 }
-export interface ISelectProps {
-    options: ICurrency[];
+export interface SelectProps {
+    options: Currency[];
 }
-export interface ICurrency {
+export interface Currency {
     code: keyof typeof CurrenciesEnum;
     value: number;
 }

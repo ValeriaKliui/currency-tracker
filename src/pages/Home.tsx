@@ -7,13 +7,13 @@ import { setBaseCurrency } from '@store/actions/currencyActions';
 
 export const Home: FC = () => {
     const dispatch = useAppDispatch();
-    const closeModalActions = (): void => {
+    const onClose = (): void => {
         dispatch(setBaseCurrency(null));
     };
     return (
         <>
             <CurrenciesList />
-            <Modal closeModalActions={closeModalActions}>
+            <Modal onClose={onClose}>
                 <CurrenciesConverter />
             </Modal>
         </>

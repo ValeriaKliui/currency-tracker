@@ -1,6 +1,6 @@
-import type { ICurrencyActions, ICurrencyState } from './types';
+import type { CurrencyActions, CurrencyState } from './types';
 
-const initialState: ICurrencyState = {
+const initialState: CurrencyState = {
     quotes: null,
     error: null,
     baseCurrencyCode: null,
@@ -10,8 +10,8 @@ const initialState: ICurrencyState = {
 
 export const currencyReducer = (
     state = initialState,
-    action: ICurrencyActions,
-): ICurrencyState => {
+    action: CurrencyActions,
+): CurrencyState => {
     switch (action.type) {
         case 'CURRENCY/FETCH_QUOTES': {
             return {

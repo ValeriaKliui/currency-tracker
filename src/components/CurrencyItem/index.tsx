@@ -1,9 +1,9 @@
 import { type FC, memo } from 'react';
-import { type ICurrencyItemProps } from '@constants/interfaces/interfaces';
+import { type CurrencyItemProps } from '@constants/interfaces/interfaces';
 
 import { Container, CurrencyInfo, CurrencyName, CurrencySub } from './styled';
 
-export const CurrencyItem: FC<ICurrencyItemProps> = memo(
+export const CurrencyItem: FC<CurrencyItemProps> = memo(
     ({ currencyName, value, icon, onClick, code }) => {
         const CurrencyIcon = icon;
         return (
