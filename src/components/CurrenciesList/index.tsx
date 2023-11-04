@@ -18,9 +18,9 @@ import {
     getQuotesSelector,
 } from '@store/selectors/currencySelectors';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
+import { roundNumber } from '@utils/roundNumber';
 
 import { CurrenciesContainer, EmptyCell, Hr, Title, Wrapper } from './styled';
-import { roundNumber } from '@utils/roundNumber';
 
 export const CurrenciesList: FC = () => {
     const quotes = useAppSelector(getQuotesSelector);

@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import Logo from '@assets/img/logo.svg';
 import { useAppSelector } from '@hooks/store';
 import { getQuotesSelector } from '@store/selectors/currencySelectors';
 import { convertTimeTo12 } from '@utils/convertTime';
@@ -9,6 +8,7 @@ import {
     Container,
     Gradient,
     Information,
+    Logo,
     StyledTitle,
     Subtitle,
     TitleContainer,
@@ -38,7 +38,7 @@ export const Header: FC = () => {
                                 international currencies.
                             </Subtitle>
                         </Information>
-                        <Logo width={300} height={300} viewBox="0 0 44 44" />
+                        <Logo viewBox="0 0 44 44" />
                     </Container>
                 </Wrapper>
             </Gradient>

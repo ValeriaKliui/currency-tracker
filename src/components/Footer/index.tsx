@@ -6,6 +6,7 @@ import {
     Blocks,
     Container,
     Copyright,
+    FooterText,
     Logo,
     LogoTitle,
     Section,
@@ -21,16 +22,16 @@ export const Footer: FC = () => {
                 <Container>
                     <div>
                         <Logo>
-                            <LogoPic />
+                            <LogoPic width={50} />
                             <LogoTitle>Modsen Currency Tracker</LogoTitle>
                         </Logo>
-                        <p>
+                        <FooterText>
                             Since then, the company has grown organically to.
                             Starsup is the world&apos;s largest trading
                             platform, with $12 billion worth of currency trading
                             and 500,000 tickets sold daily to tens of thousands
                             of traders worldwide.
-                        </p>
+                        </FooterText>
                     </div>
                     {FOOTER_INFO.sections.map(
                         ({ sectionTitle, sectionLinks }) => (

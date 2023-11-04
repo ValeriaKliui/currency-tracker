@@ -1,14 +1,14 @@
-import ARSLogo from '@assets/img/icons/ARS.svg';
-import AUDLogo from '@assets/img/icons/AUD.svg';
-import BovespaLogo from '@assets/img/icons/Bovespa.svg';
-import BTCLogo from '@assets/img/icons/BTC.svg';
-import CADLogo from '@assets/img/icons/CAD.svg';
-import CNYLogo from '@assets/img/icons/CNY.svg';
-import EURLogo from '@assets/img/icons/EUR.svg';
-import IFIXLogo from '@assets/img/icons/IFIX.svg';
-import JPYLogo from '@assets/img/icons/JPY.svg';
-import LTCLogo from '@assets/img/icons/LTC.svg';
-import USDLogo from '@assets/img/icons/USD.svg';
+import ARSLogo from '@assets/img/icons/ARS.png';
+import AUDLogo from '@assets/img/icons/AUD.png';
+import BovespaLogo from '@assets/img/icons/Bovespa.png';
+import BTCLogo from '@assets/img/icons/BTC.png';
+import CADLogo from '@assets/img/icons/CAD.png';
+import CNYLogo from '@assets/img/icons/CNY.png';
+import EURLogo from '@assets/img/icons/EUR.png';
+import IFIXLogo from '@assets/img/icons/IFIX.png';
+import JPYLogo from '@assets/img/icons/JPY.png';
+import LTCLogo from '@assets/img/icons/LTC.png';
+import USDLogo from '@assets/img/icons/USD.png';
 import { CurrenciesEnum } from '@constants/interfaces/interfaces';
 
 export const CURRENCIES_LOGOS = {

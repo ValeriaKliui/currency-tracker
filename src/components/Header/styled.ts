@@ -1,4 +1,5 @@
 import CircleSVG from '@assets/img/circle.svg';
+import LogoSvg from '@assets/img/logo.svg';
 import { pulse } from '@constants/styles/animations';
 import { wrapper } from '@constants/styles/global';
 import { styled } from 'styled-components';
@@ -17,6 +18,14 @@ export const Container = styled.div`
     grid-template-columns: 1fr 0.7fr;
     align-items: start;
     gap: 1rem;
+    align-items: center;
+    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+        justify-items: end;
+    }
+    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+        display: block;
+        padding: 0;
+    }
 `;
 export const Information = styled.div`
     display: flex;
@@ -26,6 +35,9 @@ export const Information = styled.div`
 `;
 export const TitleContainer = styled.div`
     margin-right: 4rem;
+    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+        margin-right: 0.5rem;
+    }
 `;
 export const StyledTitle = styled.h2<{ $bigger?: boolean }>`
     font-size: ${(props) =>
@@ -43,11 +55,30 @@ export const StyledTitle = styled.h2<{ $bigger?: boolean }>`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+        font-size: ${(props) => props.theme.fontSizes.xl};
+    }
+    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+        text-align: left;
+    }
+    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+        text-align: center;
+    }
 `;
 export const Subtitle = styled.p`
     font-size: ${(props) => props.theme.fontSizes.s};
     white-space: pre-line;
     text-align: center;
+    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+        font-size: ${(props) => props.theme.fontSizes.xs};
+    }
+    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+        white-space: unset;
+        text-align: left;
+    }
+    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+        text-align: center;
+    }
 `;
 export const TitleUpdates = styled.div`
     display: flex;
@@ -57,4 +88,15 @@ export const TitleUpdates = styled.div`
 `;
 export const Circle = styled(CircleSVG)`
     animation: 0.5s ease-in-out infinite alternate running ${pulse};
+`;
+export const Logo = styled(LogoSvg)`
+    width: 300px;
+    height: 300px;
+    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+        width: 180px;
+        height: 180px;
+    }
+    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+        display: none;
+    }
 `;

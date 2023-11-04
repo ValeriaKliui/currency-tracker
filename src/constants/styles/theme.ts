@@ -30,6 +30,7 @@ export const baseTheme: Theme = {
     },
     fontFamilies: ['Poppins'],
     fontSizes: {
+        xxs: '16px',
         xs: '20px',
         s: '24px',
         m: '32px',

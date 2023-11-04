@@ -3,6 +3,7 @@ import { type CurrencyItemProps } from '@constants/interfaces/interfaces';
 
 import {
     Container,
+    CurrencyIcon,
     CurrencyInfo,
     CurrencyName,
     CurrencySubText,
@@ -10,10 +11,9 @@ import {
 
 export const CurrencyItem: FC<CurrencyItemProps> = memo(
     ({ currencyName, value, icon, onClick, code }) => {
-        const CurrencyIcon = icon;
         return (
             <Container onClick={onClick}>
-                <CurrencyIcon />
+                <CurrencyIcon src={icon} />
                 <CurrencyInfo>
                     <CurrencyName>{currencyName}</CurrencyName>
                     <CurrencySubText>{value}</CurrencySubText>

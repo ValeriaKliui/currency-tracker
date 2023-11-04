@@ -7,6 +7,9 @@ export const wrapper = css`
     max-width: 1440px;
     padding: 30px 50px;
     margin: 0 auto;
+    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+        padding: 10px 30px;
+    }
 `;
 const styled = { createGlobalStyle };
 
@@ -21,6 +24,9 @@ export const GlobalStyle = styled.createGlobalStyle`
         color: ${(props) => props.theme.colors.font};
         font-size: ${(props) => props.theme.fontSizes.s};
         margin: 0;
+        @media (max-width: ${(props) => props.theme.devices.laptop}) {
+            font-size: ${(props) => props.theme.fontSizes.xxs};
+        }
     }
     a {
         color: inherit;
@@ -41,9 +47,6 @@ export const GlobalStyle = styled.createGlobalStyle`
     h6,
     p {
         margin: 0;
-    }
-    p {
-        line-height: 3rem;
     }
     .active {
         color: ${(props) => props.theme.colors.fontActive};

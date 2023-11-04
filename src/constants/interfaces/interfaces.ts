@@ -1,4 +1,4 @@
-import type { FC, ReactNode, SVGProps } from 'react';
+import type { ReactNode } from 'react';
 export interface ErrorBoundaryProps {
     children?: ReactNode;
 }
@@ -27,6 +27,7 @@ export interface Theme {
     };
     fontFamilies: [string];
     fontSizes: {
+        xxs: string;
         xs: string;
         s: string;
         m: string;
@@ -72,7 +73,7 @@ export enum CurrenciesEnum {
 export interface CurrencyItemProps {
     currencyName: string;
     value?: string;
-    icon: FC<SVGProps<SVGElement>>;
+    icon: string;
     onClick?: () => void;
     code?: keyof typeof CurrenciesEnum;
 }
