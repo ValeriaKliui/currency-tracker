@@ -33,7 +33,7 @@ export const Content = styled.div`
     width: 70vw;
     min-height: 10vw;
     background-color: ${({ theme }) => theme.colors.backgroundItem};
-    border-radius: ${(props) => props.theme.radiuses.items};
+    border-radius: ${({ theme }) => theme.radiuses.items};
     border: 1px solid ${({ theme }) => theme.colors.border};
     padding: 2rem;
     display: flex;

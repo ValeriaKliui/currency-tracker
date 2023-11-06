@@ -14,8 +14,8 @@ import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { openModal } from '@store/actions/appActions';
 import { setBaseCurrency } from '@store/actions/currencyActions';
 import {
-    getQuotesError,
-    getQuotesSelector,
+    getCurrenciesError,
+    getCurrenciesSelector,
 } from '@store/selectors/currencySelectors';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { roundNumber } from '@utils/roundNumber';
@@ -23,12 +23,12 @@ import { roundNumber } from '@utils/roundNumber';
 import { CurrenciesContainer, EmptyCell, Hr, Title, Wrapper } from './styled';
 
 export const CurrenciesList: FC = () => {
-    const quotes = useAppSelector(getQuotesSelector);
-    const error = useAppSelector(getQuotesError);
+    const currencies = useAppSelector(getCurrenciesSelector);
+    const error = useAppSelector(getCurrenciesError);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (quotes === null) dispatch(fetchCurrencyThunk());
+        if (currencies === null) dispatch(fetchCurrencyThunk());
     }, []);
 
     const handleClick = useCallback(
@@ -67,27 +67,31 @@ export const CurrenciesList: FC = () => {
                 )}
             </CurrenciesContainer>
             {error !== null && <Error text={error} />}
-            {quotes !== null && (
+            {currencies !== null && (
                 <CurrenciesContainer>
                     <div>
                         <Title>Quotes</Title>
                         <Hr />
                     </div>
                     <EmptyCell />
-                    {quotes !== null &&
-                        Object.values(quotes.data).map(({ code, value }) => {
-                            return (
-                                <CurrencyItem
-                                    key={code}
-                                    icon={
-                                        CURRENCIES_LOGOS[CurrenciesEnum[code]]
-                                    }
-                                    currencyName={CurrenciesEnum[code]}
-                                    value={toStringRound(value, code)}
-                                    onClick={handleClick(code)}
-                                />
-                            );
-                        })}
+                    {currencies !== null &&
+                        Object.values(currencies.data).map(
+                            ({ code, value }) => {
+                                return (
+                                    <CurrencyItem
+                                        key={code}
+                                        icon={
+                                            CURRENCIES_LOGOS[
+                                                CurrenciesEnum[code]
+                                            ]
+                                        }
+                                        currencyName={CurrenciesEnum[code]}
+                                        value={toStringRound(value, code)}
+                                        onClick={handleClick(code)}
+                                    />
+                                );
+                            },
+                        )}
                 </CurrenciesContainer>
             )}
         </Wrapper>

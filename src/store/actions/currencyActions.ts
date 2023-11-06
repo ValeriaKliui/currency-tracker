@@ -1,15 +1,17 @@
-import { type CurrenciesEnum } from '@constants/interfaces/interfaces';
-import type { Quotes } from '@store/reducers/currencies/types';
+import {
+    type Currencies,
+    type CurrenciesEnum,
+} from '@constants/interfaces/interfaces';
 
-export const fetchQuotes = (quotes: Quotes) => {
+export const fetchCurrencies = (currencies: Currencies) => {
     return {
-        type: 'CURRENCY/FETCH_QUOTES',
-        payload: quotes,
+        type: 'CURRENCY/FETCH_CURRENCIES',
+        payload: currencies,
     } as const;
 };
-export const fetchQuotesError = (errorStr: string) => {
+export const fetchCurrenciesError = (errorStr: string) => {
     return {
-        type: 'CURRENCY/FETCH_QUOTES_ERROR',
+        type: 'CURRENCY/FETCH_CURRENCIES_ERROR',
         payload: errorStr,
     } as const;
 };

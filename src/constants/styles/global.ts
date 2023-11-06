@@ -7,7 +7,7 @@ export const wrapper = css`
     max-width: 1440px;
     padding: 30px 50px;
     margin: 0 auto;
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
         padding: 10px 30px;
     }
 `;
@@ -19,13 +19,13 @@ export const GlobalStyle = styled.createGlobalStyle`
         src: url(${PoppinsRegular}) format('woff');
     }
     body {
-        background-color: ${(props) => props.theme.colors.background};
-        font-family: ${(props) => props.theme.fontFamilies[0]};
-        color: ${(props) => props.theme.colors.font};
-        font-size: ${(props) => props.theme.fontSizes.s};
+        background-color: ${({ theme }) => theme.colors.background};
+        font-family: ${({ theme }) => theme.fontFamilies[0]};
+        color: ${({ theme }) => theme.colors.font};
+        font-size: ${({ theme }) => theme.fontSizes.s};
         margin: 0;
-        @media (max-width: ${(props) => props.theme.devices.laptop}) {
-            font-size: ${(props) => props.theme.fontSizes.xxs};
+        @media (max-width: ${({ theme }) => theme.devices.laptop}) {
+            font-size: ${({ theme }) => theme.fontSizes.xxs};
         }
     }
     a {
@@ -33,7 +33,7 @@ export const GlobalStyle = styled.createGlobalStyle`
         text-decoration: none;
         ${scaleAnimation}
         &:hover {
-            color: ${(props) => props.theme.colors.fontActive};
+            color: ${({ theme }) => theme.colors.fontActive};
         }
     }
     li {
@@ -49,6 +49,6 @@ export const GlobalStyle = styled.createGlobalStyle`
         margin: 0;
     }
     .active {
-        color: ${(props) => props.theme.colors.fontActive};
+        color: ${({ theme }) => theme.colors.fontActive};
     }
 `;

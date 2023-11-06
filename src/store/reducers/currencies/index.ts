@@ -1,7 +1,7 @@
 import type { CurrencyActions, CurrencyState } from './types';
 
 const initialState: CurrencyState = {
-    quotes: null,
+    currencies: null,
     error: null,
     baseCurrencyCode: null,
     targetCurrencyCode: null,
@@ -13,13 +13,13 @@ export const currencyReducer = (
     action: CurrencyActions,
 ): CurrencyState => {
     switch (action.type) {
-        case 'CURRENCY/FETCH_QUOTES': {
+        case 'CURRENCY/FETCH_CURRENCIES': {
             return {
                 ...state,
-                quotes: action.payload,
+                currencies: action.payload,
             };
         }
-        case 'CURRENCY/FETCH_QUOTES_ERROR': {
+        case 'CURRENCY/FETCH_CURRENCIES_ERROR': {
             return {
                 ...state,
                 error: action.payload,

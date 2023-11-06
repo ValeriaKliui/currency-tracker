@@ -18,8 +18,8 @@ export const TogglerLabel = styled.label`
     cursor: pointer;
     width: 68px;
     height: 40px;
-    border-radius: ${(props) => props.theme.radiuses.togglerLabel};
-    border: 3px solid ${(props) => props.theme.colors.font};
+    border-radius: ${({ theme }) => theme.radiuses.togglerLabel};
+    border: 3px solid ${({ theme }) => theme.colors.font};
     position: relative;
     transition: background-color 0.2s;
 `;
@@ -31,9 +31,9 @@ export const TogglerButton = styled.span`
     left: -2px;
     width: 38px;
     height: 38px;
-    border-radius: ${(props) => props.theme.radiuses.togglerButton};
+    border-radius: ${({ theme }) => theme.radiuses.togglerButton};
     transition: 0.2s;
-    border: 3px solid ${(props) => props.theme.colors.font};
+    border: 3px solid ${({ theme }) => theme.colors.font};
     ${TogglerInput}:checked + ${TogglerLabel} & {
         left: calc(100% + 2px);
         transform: translateX(-100%);

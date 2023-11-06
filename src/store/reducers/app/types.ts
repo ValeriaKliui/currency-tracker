@@ -1,5 +1,9 @@
 import type { ThemeEnum } from '@constants/interfaces/interfaces';
-import { type closeModal, type openModal, type setTheme } from '@store/actions/appActions';
+import {
+    type closeModal,
+    type openModal,
+    type setTheme,
+} from '@store/actions/appActions';
 
 export interface IAppState {
     currentTheme: ThemeEnum;

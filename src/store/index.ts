@@ -7,10 +7,12 @@ import thunk from 'redux-thunk';
 
 import { appReducer } from './reducers/app';
 import { currencyReducer } from './reducers/currencies';
+import { timelineReducer } from './reducers/timeline';
 
 export const rootReducer = combineReducers({
     app: appReducer,
     currencies: currencyReducer,
+    timeline: timelineReducer,
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 

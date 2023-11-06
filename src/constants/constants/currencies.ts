@@ -47,3 +47,4 @@ export const STOCKS = [
         icon: IFIXLogo,
     },
 ];
+export const CURRENCIES_HISTORY_AVAILABLE = ['EUR', 'BTC', 'LTC'];

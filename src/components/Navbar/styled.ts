@@ -12,7 +12,7 @@ export const NavList = styled.ul`
     display: flex;
     width: 80%;
     justify-content: space-evenly;
-    font-size: ${(props) => props.theme.fontSizes.xs};
+    font-size: ${({ theme }) => theme.fontSizes.xs};
 `;
 export const NavItem = styled.li``;
 export const LogoContainer = styled.div`

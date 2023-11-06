@@ -9,10 +9,10 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 2fr repeat(3, 1fr);
     justify-items: end;
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
         grid-template-columns: repeat(4, 1fr);
     }
-    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         grid-template-columns: repeat(1, 1fr);
         justify-items: unset;
         gap: 1rem;
@@ -27,12 +27,12 @@ export const Blocks = styled.div`
 export const Logo = styled.div`
     display: flex;
     gap: 1rem;
-    font-size: ${(props) => props.theme.fontSizes.s};
+    font-size: ${({ theme }) => theme.fontSizes.s};
     margin-bottom: 2rem;
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
         flex-direction: column;
     }
-    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         flex-direction: unset;
         margin-bottom: unset;
     }
@@ -47,44 +47,44 @@ export const LogoTitle = styled.h3`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
-        font-size: ${(props) => props.theme.fontSizes.xs};
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
+        font-size: ${({ theme }) => theme.fontSizes.xs};
     }
 `;
 export const Section = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         align-items: flex-end;
     }
-    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         align-items: unset;
         gap: 2rem;
-        border-bottom: 1px solid ${(props) => props.theme.colors.border};
+        border-bottom: 1px solid ${({ theme }) => theme.colors.border};
     }
 `;
 export const SectionTitle = styled.h4`
-    font-size: ${(props) => props.theme.fontSizes.m};
+    font-size: ${({ theme }) => theme.fontSizes.m};
     margin-bottom: 1rem;
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
-        font-size: ${(props) => props.theme.fontSizes.s};
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
+        font-size: ${({ theme }) => theme.fontSizes.s};
     }
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
-        font-size: ${(props) => props.theme.fontSizes.xs};
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
+        font-size: ${({ theme }) => theme.fontSizes.xs};
     }
 `;
 export const SectionLink = styled(Link)`
-    color: ${(props) => props.theme.colors.subText};
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+    color: ${({ theme }) => theme.colors.subText};
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         display: none;
     }
 `;
 export const Copyright = styled.p`
-    color: ${(props) => props.theme.colors.subText};
+    color: ${({ theme }) => theme.colors.subText};
 `;
 export const FooterText = styled.p`
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
         display: none;
     }
 `;

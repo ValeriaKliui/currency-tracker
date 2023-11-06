@@ -8,9 +8,9 @@ export const Wrapper = styled.div`
     ${wrapper};
 `;
 export const Gradient = styled.div`
-    background: radial-gradient(${(props) =>
-        props.theme.colors.gradientCircle}), ${(props) =>
-        props.theme.colors.gradientBg});
+    background: radial-gradient(${({ theme }) =>
+        theme.colors.gradientCircle}), ${({ theme }) =>
+        theme.colors.gradientBg});
 `;
 export const Container = styled.div`
     padding: 3rem 0;
@@ -19,10 +19,10 @@ export const Container = styled.div`
     align-items: start;
     gap: 1rem;
     align-items: center;
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         justify-items: end;
     }
-    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         display: block;
         padding: 0;
     }
@@ -35,15 +35,13 @@ export const Information = styled.div`
 `;
 export const TitleContainer = styled.div`
     margin-right: 4rem;
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         margin-right: 0.5rem;
     }
 `;
 export const StyledTitle = styled.h2<{ $bigger?: boolean }>`
-    font-size: ${(props) =>
-        props.$bigger === true
-            ? props.theme.fontSizes['3xl']
-            : props.theme.fontSizes['2xl']};
+    font-size: ${({ theme, $bigger }) =>
+        $bigger === true ? theme.fontSizes['3xl'] : theme.fontSizes['2xl']};
     background: linear-gradient(
         90deg,
         #00ce2c 0.18%,
@@ -55,28 +53,28 @@ export const StyledTitle = styled.h2<{ $bigger?: boolean }>`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
-        font-size: ${(props) => props.theme.fontSizes.xl};
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
+        font-size: ${({ theme }) => theme.fontSizes.xl};
     }
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         text-align: left;
     }
-    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         text-align: center;
     }
 `;
 export const Subtitle = styled.p`
-    font-size: ${(props) => props.theme.fontSizes.s};
+    font-size: ${({ theme }) => theme.fontSizes.s};
     white-space: pre-line;
     text-align: center;
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
-        font-size: ${(props) => props.theme.fontSizes.xs};
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
+        font-size: ${({ theme }) => theme.fontSizes.xs};
     }
-    @media (max-width: ${(props) => props.theme.devices.tablet}) {
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         white-space: unset;
         text-align: left;
     }
-    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         text-align: center;
     }
 `;
@@ -92,11 +90,11 @@ export const Circle = styled(CircleSVG)`
 export const Logo = styled(LogoSvg)`
     width: 300px;
     height: 300px;
-    @media (max-width: ${(props) => props.theme.devices.laptop}) {
+    @media (max-width: ${({ theme }) => theme.devices.laptop}) {
         width: 180px;
         height: 180px;
     }
-    @media (max-width: ${(props) => props.theme.devices.mobile}) {
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         display: none;
     }
 `;

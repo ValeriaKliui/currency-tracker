@@ -49,15 +49,14 @@ export interface Theme {
     };
 }
 
-export interface Quotes {
+export interface Currencies {
     meta: { last_updated_at: string };
-    data: Record<
-        string,
-        {
-            code: keyof typeof CurrenciesEnum;
-            value: number;
-        }
-    >;
+    data: Record<string, Currency>;
+}
+
+export interface Currency {
+    code: keyof typeof CurrenciesEnum;
+    value: number;
 }
 export enum CurrenciesEnum {
     USD = 'Commercial Dollar',
@@ -76,6 +75,7 @@ export interface CurrencyItemProps {
     icon: string;
     onClick?: () => void;
     code?: keyof typeof CurrenciesEnum;
+    plain?: boolean;
 }
 export interface ModalProps {
     children: ReactNode;
@@ -84,7 +84,36 @@ export interface ModalProps {
 export interface SelectProps {
     options: Currency[];
 }
-export interface Currency {
-    code: keyof typeof CurrenciesEnum;
-    value: number;
+
+export interface TimelineBlockProps {
+    baseCurrencyCode: keyof typeof CurrenciesEnum | null;
+    targetCurrencyCode: keyof typeof CurrenciesEnum | null;
+    currencies: Currencies | null;
+    currencyTimelineData: TimelineDayData[];
+}
+export interface TimelineDispatch {
+    fetchCurrencyThunk: () => void;
+    fetchCurrencyTimelineThunk: (
+        targetCurrencyCode: string,
+        historyDateStart: string,
+        historyDateEnd: string,
+    ) => void;
+}
+export interface TimelineI extends TimelineBlockProps, TimelineDispatch {}
+export interface TimelineBlockState {
+    historyDateStart: string;
+    historyDateEnd: string;
+    duration: string;
+}
+export interface TimelineDayData {
+    price_close: number;
+    price_high: number;
+    price_low: number;
+    price_open: number;
+    time_close: string;
+    time_open: string;
+    time_period_end: string;
+    time_period_start: string;
+    trades_count: number;
+    volume_traded: number;
 }

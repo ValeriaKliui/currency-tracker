@@ -1,26 +1,15 @@
-import { type CurrenciesEnum } from '@constants/interfaces/interfaces';
+import {
+    type Currencies,
+    type CurrenciesEnum,
+} from '@constants/interfaces/interfaces';
 import type {
-    fetchQuotes,
-    fetchQuotesError,
+    fetchCurrencies,
+    fetchCurrenciesError,
     setBaseCurrency,
     setConvertedCurrency,
     setTargetCurrency,
 } from '@store/actions/currencyActions';
 
-export interface Currency {
-    code: keyof typeof CurrenciesEnum;
-    value: number;
-}
-export interface Quotes {
-    meta: { last_updated_at: string };
-    data: Record<
-        string,
-        {
-            code: keyof typeof CurrenciesEnum;
-            value: number;
-        }
-    >;
-}
 export interface ITimelineDayData {
     price_close: number;
     price_high: number;
@@ -34,15 +23,15 @@ export interface ITimelineDayData {
     volume_traded: number;
 }
 export interface CurrencyState {
-    quotes: Quotes | null;
+    currencies: Currencies | null;
     error: string | null;
     baseCurrencyCode: keyof typeof CurrenciesEnum | null;
     targetCurrencyCode: keyof typeof CurrenciesEnum | null;
     convertedCurrencyValue: number | null;
 }
 export type CurrencyActions =
-    | ReturnType<typeof fetchQuotes>
-    | ReturnType<typeof fetchQuotesError>
+    | ReturnType<typeof fetchCurrencies>
+    | ReturnType<typeof fetchCurrenciesError>
     | ReturnType<typeof setBaseCurrency>
     | ReturnType<typeof setTargetCurrency>
     | ReturnType<typeof setConvertedCurrency>;

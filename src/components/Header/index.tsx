@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useAppSelector } from '@hooks/store';
-import { getQuotesSelector } from '@store/selectors/currencySelectors';
-import { convertTimeTo12 } from '@utils/convertTime';
+import { getCurrenciesSelector } from '@store/selectors/currencySelectors';
+import { convertTimeTo12 } from '@utils/convertTimeTo12';
 
 import {
     Circle,
@@ -17,9 +17,10 @@ import {
 } from './styled';
 
 export const Header: FC = () => {
-    const quotes = useAppSelector(getQuotesSelector);
+    const currencies = useAppSelector(getCurrenciesSelector);
     const updateTime =
-        quotes !== null && convertTimeTo12(quotes?.meta.last_updated_at);
+        currencies !== null &&
+        convertTimeTo12(currencies?.meta.last_updated_at);
 
     return (
         <>
@@ -43,7 +44,7 @@ export const Header: FC = () => {
                 </Wrapper>
             </Gradient>
             <Wrapper>
-                {quotes !== null && (
+                {currencies !== null && (
                     <TitleUpdates>
                         <Circle />
                         <p>Last updated at {updateTime}</p>

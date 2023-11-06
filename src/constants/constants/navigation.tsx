@@ -1,10 +1,16 @@
 import { Home } from '@pages/Home';
+import Timeline from '@pages/Timeline';
 
 export const NAVIGATION_ITEMS = [
     {
         path: '/',
         element: <Home />,
         navTitle: 'Home',
+    },
+    {
+        path: '/timeline',
+        element: <Timeline />,
+        navTitle: 'Timeline',
     },
 ];
 export const FOOTER_INFO = {

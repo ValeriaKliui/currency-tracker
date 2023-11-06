@@ -1,3 +1,4 @@
+import Arrow from '@assets/img/arrow.png';
 import { styled } from 'styled-components';
 
 export const SelectContainer = styled.div`
@@ -5,22 +6,29 @@ export const SelectContainer = styled.div`
     cursor: pointer;
     width: 20rem;
 `;
-export const ChoosenOption = styled.div`
-    background-color: ${(props) => props.theme.colors.backgroundItem};
-    border: 1px solid ${(props) => props.theme.colors.border};
+export const ChoosenOption = styled.div<{ $isOpen: boolean }>`
+    border: 1px solid ${({ theme }) => theme.colors.border};
+    background-color: ${({ theme }) => theme.colors.backgroundItem};
     padding: 1rem;
     height: 2rem;
-    border-radius: ${(props) => props.theme.radiuses.items};
+    border-radius: ${({ theme }) => theme.radiuses.items};
+    display: flex;
+    align-items: center;
+    &:after {
+        content: url(${Arrow});
+        position: absolute;
+        right: 10%;
+        transform: ${({ theme, $isOpen }) => ($isOpen ? 'rotate(180deg)' : '')};
+    }
 `;
 export const OptionsContainer = styled.div`
-    border: 1px solid ${(props) => props.theme.colors.border};
     position: absolute;
-    background-color: ${(props) => props.theme.colors.backgroundItem};
+    background-color: ${({ theme }) => theme.colors.backgroundItem};
     overflow-y: scroll;
     max-height: 15rem;
     width: 20rem;
 `;
 export const Option = styled.div`
-    border: 1px solid ${(props) => props.theme.colors.border};
+    border: 1px solid ${({ theme }) => theme.colors.border};
     padding: 0.5rem;
 `;

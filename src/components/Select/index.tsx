@@ -34,9 +34,10 @@ export const Select: FC<SelectProps> = ({ options }) => {
 
     return (
         <SelectContainer ref={ref}>
-            <ChoosenOption onClick={toggleSelect}>
-                {targetCurrencyCode !== null &&
-                    CurrenciesEnum[targetCurrencyCode]}
+            <ChoosenOption onClick={toggleSelect} $isOpen={isOpen}>
+                {targetCurrencyCode !== null
+                    ? CurrenciesEnum[targetCurrencyCode]
+                    : 'Select currency'}
             </ChoosenOption>
             {isOpen && (
                 <OptionsContainer>

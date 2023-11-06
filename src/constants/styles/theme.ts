@@ -2,7 +2,7 @@ import { type DefaultTheme } from 'styled-components';
 
 import { type Theme, ThemeEnum } from '../interfaces/interfaces';
 
-const colors = {
+export const colors = {
     black: 'rgb(3, 3, 4)',
     transparentBlack: 'rgba(3, 3, 4, 0.9)',
     white: 'rgb(255, 255, 255)',
@@ -10,9 +10,11 @@ const colors = {
     gray: 'rgb(71,71,71)',
     grayDark: 'rgb(32,32,37)',
     grayLight: 'rgb(167,178,195)',
-    greenLight: 'rgba(0,206,44,0.3',
+    greenBright: 'rgba(22,199,130)',
     greenDark: 'rgba(36,121,64,0)',
+    greenLight: 'rgba(0,206,44,0.3',
     neon: 'rgba(0,206,44)',
+    red: 'rgb(234,57,67)',
 };
 
 export const baseTheme: Theme = {

@@ -1,9 +1,13 @@
-import type { CurrenciesEnum, Quotes } from '@constants/interfaces/interfaces';
+import type {
+    Currencies,
+    CurrenciesEnum,
+} from '@constants/interfaces/interfaces';
 import { type RootStoreType } from '@store/types/interfaces';
 
-export const getQuotesSelector = (state: RootStoreType): Quotes | null =>
-    state.currencies.quotes;
-export const getQuotesError = (state: RootStoreType): string | null =>
+export const getCurrenciesSelector = (
+    state: RootStoreType,
+): Currencies | null => state.currencies.currencies;
+export const getCurrenciesError = (state: RootStoreType): string | null =>
     state.currencies.error;
 export const getBaseCurrencySelector = (
     state: RootStoreType,

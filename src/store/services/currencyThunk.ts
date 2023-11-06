@@ -1,34 +1,21 @@
 import {
-    fetchQuotes,
-    fetchQuotesError,
+    fetchCurrencies,
+    fetchCurrenciesError,
     setConvertedCurrency,
 } from '@store/actions/currencyActions';
 import { CurrencyAPI } from '@utils/api/api';
 import axios, { type AxiosError, isAxiosError } from 'axios';
 import { type Dispatch } from 'redux';
 
-// export const fetchCurrencyThunk = () => async (dispatch: Dispatch) => {
-//     try {
-//         const res = await CurrencyAPI.getQuotes();
-//         if (res !== null) dispatch(fetchQuotes(res));
-//     } catch (e) {
-//         if (isAxiosError<AxiosError<{ message: string }>>(e)) {
-//             const errorStr =
-//                 e.response !== null ? e.response?.statusText : e.message;
-//             errorStr !== undefined && dispatch(fetchQuotesError(errorStr));
-//         }
-//     }
-// };
-
 export const fetchCurrencyThunk = () => async (dispatch: Dispatch) => {
     try {
-        const res = await CurrencyAPI.getQuotes();
-        if (res !== null) dispatch(fetchQuotes(res));
+        const res = await CurrencyAPI.getCurrencies();
+        if (res !== null) dispatch(fetchCurrencies(res));
     } catch (e) {
         if (isAxiosError<AxiosError<{ message: string }>>(e)) {
             const errorStr =
                 e.response !== null ? e.response?.statusText : e.message;
-            errorStr !== undefined && dispatch(fetchQuotesError(errorStr));
+            errorStr !== undefined && dispatch(fetchCurrenciesError(errorStr));
         }
     }
 };
