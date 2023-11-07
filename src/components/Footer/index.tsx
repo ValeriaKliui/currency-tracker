@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import LogoPic from '@assets/img/logo.svg';
 import { FOOTER_INFO } from '@constants/constants/navigation';
 
@@ -21,10 +22,17 @@ export const Footer: FC = () => {
             <Blocks>
                 <Container>
                     <div>
-                        <Logo>
-                            <LogoPic width={50} />
-                            <LogoTitle>Modsen Currency Tracker</LogoTitle>
-                        </Logo>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive ? 'active' : ''
+                            }
+                        >
+                            <Logo>
+                                <LogoPic width={50} />
+                                <LogoTitle>Modsen Currency Tracker</LogoTitle>
+                            </Logo>
+                        </NavLink>
                         <FooterText>
                             Since then, the company has grown organically to.
                             Starsup is the world&apos;s largest trading

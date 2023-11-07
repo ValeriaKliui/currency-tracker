@@ -34,6 +34,7 @@ export const TogglerButton = styled.span`
     border-radius: ${({ theme }) => theme.radiuses.togglerButton};
     transition: 0.2s;
     border: 3px solid ${({ theme }) => theme.colors.font};
+    background-color: ${({ theme }) => theme.colors.backgroundItem};
     ${TogglerInput}:checked + ${TogglerLabel} & {
         left: calc(100% + 2px);
         transform: translateX(-100%);

@@ -95,6 +95,7 @@ export const configChart = (dataTimeline: TimelineDayData[]) => {
                 type: 'timeseries' as const,
                 time: {
                     unit: 'day' as const,
+                    tooltipFormat: 'MMM d, yyyy',
                 },
             },
             y: {
@@ -108,6 +109,26 @@ export const configChart = (dataTimeline: TimelineDayData[]) => {
         },
         plugins: {
             legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    beforeBody: (ctx: any) => {
+                        const bodyArray = [
+                            `PRICES`,
+                            `Open: ${ctx[0].raw.o}`,
+                            `High: ${ctx[0].raw.h}`,
+                            `Low: ${ctx[0].raw.l}`,
+                            `Close: ${ctx[0].raw.c}`,
+                        ];
+                        return bodyArray;
+                    },
+                    label: (ctx: any) => {
+                        const {
+                            raw: { o, c },
+                        } = ctx;
+                        return c >= o ? `Closed higher` : `Closed lower`;
+                    },
+                },
+            },
         },
     };
 
