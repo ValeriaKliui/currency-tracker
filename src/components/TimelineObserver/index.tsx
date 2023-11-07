@@ -1,3 +1,4 @@
+import { TimelinePopUp } from '@components/TimelinePopUp';
 import { type TimelineDayData } from '@constants/interfaces/interfaces';
 
 import type { Observer, Subject } from './interfaces';
@@ -17,27 +18,22 @@ export class ConcreteSubject implements Subject {
     public subscribe(observer: Observer): void {
         const isExist = this.observers.includes(observer);
         if (isExist) {
-            console.log('Subject: Observer has been attached already.');
             return;
         }
 
-        console.log('Subject: Attached an observer.');
         this.observers.push(observer);
     }
 
     public unsubscribe(observer: Observer): void {
         const observerIndex = this.observers.indexOf(observer);
         if (observerIndex === -1) {
-            console.log('Subject: Nonexistent observer.');
             return;
         }
 
         this.observers.splice(observerIndex, 1);
-        console.log('Subject: Detached an observer.');
     }
 
     public notify(): void {
-        console.log('Subject: Notifying observers...');
         for (const observer of this.observers) {
             observer.update(this);
         }
@@ -47,7 +43,9 @@ export class ConcreteSubject implements Subject {
 export class TimelineObserver implements Observer {
     public update(subject: Subject): void {
         if (subject instanceof ConcreteSubject) {
-            console.log('ConcreteObserverA: Reacted to the event.');
+            const popUp = new TimelinePopUp('');
+            popUp.mount();
         }
     }
 }
+export const observer = new TimelineObserver();

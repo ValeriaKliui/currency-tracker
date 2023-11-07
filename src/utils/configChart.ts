@@ -5,7 +5,6 @@ export const configChart = (dataTimeline: TimelineDayData[]) => {
     const data = {
         datasets: [
             {
-                label: 'Weekly Sales',
                 data: dataTimeline.map((day) => ({
                     x: day.time_open,
                     o: day.price_open,
@@ -106,6 +105,9 @@ export const configChart = (dataTimeline: TimelineDayData[]) => {
                     offset: true,
                 },
             },
+        },
+        plugins: {
+            legend: { display: false },
         },
     };
 

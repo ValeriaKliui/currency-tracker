@@ -12,9 +12,9 @@ export const fetchCurrencyThunk = () => async (dispatch: Dispatch) => {
         const res = await CurrencyAPI.getCurrencies();
         if (res !== null) dispatch(fetchCurrencies(res));
     } catch (e) {
-        if (isAxiosError<AxiosError<{ message: string }>>(e)) {
+        if (e !== null && isAxiosError<AxiosError<{ message: string }>>(e)) {
             const errorStr =
-                e.response !== null ? e.response?.statusText : e.message;
+                e.response !== undefined ? e.response?.statusText : e.message;
             errorStr !== undefined && dispatch(fetchCurrenciesError(errorStr));
         }
     }

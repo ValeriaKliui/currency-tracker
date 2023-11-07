@@ -1,11 +1,9 @@
 import { type ChangeEvent, Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { CurrencyItem } from '@components/CurrencyItem';
+import { Error } from '@components/Error';
 import { Select } from '@components/Select';
-import {
-    ConcreteSubject,
-    TimelineObserver,
-} from '@components/TimelineObserver';
+import { ConcreteSubject, observer } from '@components/TimelineObserver';
 import {
     CURRENCIES_HISTORY_AVAILABLE,
     CURRENCIES_LOGOS,
@@ -58,6 +56,8 @@ export class TimelineBlock extends Component<
     TimelineBlockProps
 > {
     prevMonth = new Date();
+    subject = new ConcreteSubject(this.props.currencyTimelineData);
+
     constructor(props: TimelineI) {
         super(props);
         this.prevMonth.setMonth(this.prevMonth.getMonth() - 1);
@@ -70,9 +70,7 @@ export class TimelineBlock extends Component<
 
     componentDidMount() {
         if (this.props.currencies === null) this.fetchCurrencyInit();
-        const subject = new ConcreteSubject(this.props.currencyTimelineData);
-        const observer = new TimelineObserver();
-        subject.subscribe(observer);
+        this.subject.subscribe(observer);
     }
 
     componentDidUpdate(
@@ -91,18 +89,17 @@ export class TimelineBlock extends Component<
                 duration: this.state.duration,
             }));
         }
-        // if (
-        //     this.props.currencyTimelineData.length !== 0 &&
-        //     this.state.duration === 'month'
-        // )
-        //     subject.processData();
+
+        if (
+            this.props.currencyTimelineData.length !== 0 &&
+            this.state.duration === 'month'
+        )
+            this.subject.processData();
     }
 
-    // componentWillUnmount() {
-    //     const subject = new ConcreteSubject(this.props.currencyTimelineData);
-    //     const observer = new TimelineObserver();
-    //     subject.unsubscribe(observer);
-    // }
+    componentWillUnmount() {
+        this.subject.unsubscribe(observer);
+    }
 
     fetchCurrencyInit = () => {
         this.props.fetchCurrencyThunk();
@@ -125,7 +122,7 @@ export class TimelineBlock extends Component<
     };
 
     render() {
-        const { targetCurrencyCode, currencies, currencyTimelineData } =
+        const { targetCurrencyCode, currencies, currencyTimelineData, error } =
             this.props;
 
         const { duration } = this.state;
@@ -140,6 +137,7 @@ export class TimelineBlock extends Component<
 
         return (
             <Wrapper>
+                {error !== null && <Error text={error} />}
                 <CurrencyDetails>
                     <Select options={selectOptions} />
                     <Periods>

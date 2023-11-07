@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 export const SelectContainer = styled.div`
     position: relative;
     cursor: pointer;
-    width: 20rem;
+    max-width: 20rem;
 `;
 export const ChoosenOption = styled.div<{ $isOpen: boolean }>`
     border: 1px solid ${({ theme }) => theme.colors.border};
@@ -26,7 +26,7 @@ export const OptionsContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.backgroundItem};
     overflow-y: scroll;
     max-height: 15rem;
-    width: 20rem;
+    width: 100%;
 `;
 export const Option = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.border};

@@ -22,6 +22,7 @@ const mapStateToProps = (state: RootStoreType): TimelineBlockProps => {
         targetCurrencyCode: state.currencies.targetCurrencyCode,
         currencies: state.currencies.currencies,
         currencyTimelineData: state.timeline.currencyTimelineData,
+        error: state.currencies.error,
     };
 };
 

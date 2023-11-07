@@ -90,6 +90,7 @@ export interface TimelineBlockProps {
     targetCurrencyCode: keyof typeof CurrenciesEnum | null;
     currencies: Currencies | null;
     currencyTimelineData: TimelineDayData[];
+    error: string | null;
 }
 export interface TimelineDispatch {
     fetchCurrencyThunk: () => void;

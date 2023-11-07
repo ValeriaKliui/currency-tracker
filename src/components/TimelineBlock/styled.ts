@@ -16,6 +16,9 @@ export const CurrencyDetails = styled.div`
 export const Periods = styled.div`
     display: flex;
     gap: 2rem;
+    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
+        gap: 0.5rem;
+    }
 `;
 export const PeriodLabel = styled.label<{ $isChoosen: boolean }>`
     cursor: pointer;
@@ -29,6 +32,7 @@ export const PeriodType = styled.input`
 export const DatesContainer = styled.div`
     display: flex;
     gap: 3rem;
+    flex-wrap: wrap;
 `;
 export const DateInput = styled.input`
     background-color: ${({ theme }) => theme.colors.backgroundItem};
