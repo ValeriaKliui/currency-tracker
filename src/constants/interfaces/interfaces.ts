@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ChangeEvent, ReactNode } from 'react';
 export interface ErrorBoundaryProps {
     children?: ReactNode;
 }
@@ -118,3 +118,15 @@ export interface TimelineDayData {
     trades_count: number;
     volume_traded: number;
 }
+export interface InputProps {
+    placeholder: string;
+    value: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+export interface SearchBlockProps {
+    inputValueBankCard: string;
+}
+export interface SearchBlockDispatch {
+    setInputValueBankCard: (str: string) => void;
+}
+export interface BankCardI extends SearchBlockProps, SearchBlockDispatch {}
