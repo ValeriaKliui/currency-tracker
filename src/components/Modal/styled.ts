@@ -36,9 +36,5 @@ export const Content = styled.div`
     border-radius: ${({ theme }) => theme.radiuses.items};
     border: 1px solid ${({ theme }) => theme.colors.border};
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     cursor: auto;
 `;

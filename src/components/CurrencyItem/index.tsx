@@ -10,9 +10,21 @@ import {
 } from './styled';
 
 export const CurrencyItem: FC<CurrencyItemProps> = memo(
-    ({ currencyName, value, icon, onClick, code, plain = false }) => {
+    ({
+        currencyName,
+        value,
+        icon,
+        onClick,
+        code,
+        scalable = true,
+        hoverable = true,
+    }) => {
         return (
-            <Container onClick={onClick} $plain={plain}>
+            <Container
+                onClick={onClick}
+                $scalable={scalable}
+                $hoverable={hoverable}
+            >
                 <CurrencyIcon src={icon} />
                 <CurrencyInfo>
                     <CurrencyName>{currencyName}</CurrencyName>

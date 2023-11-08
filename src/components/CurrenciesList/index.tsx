@@ -7,7 +7,7 @@ import {
     STOCKS,
 } from '@constants/constants/currencies';
 import {
-    CurrenciesEnum,
+    type CurrenciesEnum,
     type CurrencyItemProps,
 } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
@@ -18,6 +18,7 @@ import {
     getCurrenciesSelector,
 } from '@store/selectors/currencySelectors';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
+import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 import { roundNumber } from '@utils/roundNumber';
 
 import { CurrenciesContainer, EmptyCell, Hr, Title, Wrapper } from './styled';
@@ -43,7 +44,10 @@ export const CurrenciesList: FC = () => {
         code: keyof typeof CurrenciesEnum,
     ) => {
         return String(
-            roundNumber(value, CURRENCIES_ROUNDING[CurrenciesEnum[code]]),
+            roundNumber(
+                value,
+                CURRENCIES_ROUNDING[getCurrencyNameByCode(code)],
+            ),
         );
     };
 
@@ -62,6 +66,8 @@ export const CurrenciesList: FC = () => {
                             currencyName={currencyName}
                             value={value}
                             icon={icon}
+                            scalable={false}
+                            hoverable={false}
                         />
                     ),
                 )}
@@ -82,10 +88,12 @@ export const CurrenciesList: FC = () => {
                                         key={code}
                                         icon={
                                             CURRENCIES_LOGOS[
-                                                CurrenciesEnum[code]
+                                                getCurrencyNameByCode(code)
                                             ]
                                         }
-                                        currencyName={CurrenciesEnum[code]}
+                                        currencyName={getCurrencyNameByCode(
+                                            code,
+                                        )}
                                         value={toStringRound(value, code)}
                                         onClick={handleClick(code)}
                                     />

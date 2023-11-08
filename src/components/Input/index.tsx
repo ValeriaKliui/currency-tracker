@@ -3,10 +3,10 @@ import { type InputProps } from '@constants/interfaces/interfaces';
 
 export class Input extends Component<InputProps> {
     render() {
-        const { placeholder, value, onChange } = this.props;
+        const { placeholder, value, onChange, type = 'text' } = this.props;
         return (
             <input
-                type="text"
+                type={type}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}

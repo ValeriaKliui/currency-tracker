@@ -1,7 +1,11 @@
 import { styled } from 'styled-components';
 
-export const CurrContainer = styled.div`
+export const ConverterContainer = styled.div`
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+`;
+export const Title = styled.h3``;
+export const CenteredTitle = styled(Title)`
+    align-self: center;
 `;

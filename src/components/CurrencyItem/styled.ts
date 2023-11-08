@@ -1,17 +1,20 @@
 import { scaleAnimation } from '@constants/styles/animations';
 import styled from 'styled-components';
 
-export const Container = styled.div<{ $plain: boolean }>`
+export const Container = styled.div<{
+    $scalable: boolean;
+    $hoverable: boolean;
+}>`
     padding: 1rem;
     border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: ${({ theme }) => theme.radiuses.items};
-    background-color: ${({ $plain, theme }) =>
-        $plain ? 'transparent' : theme.colors.backgroundItem};
+    /* background-color: ${({ $scalable, theme }) =>
+        $scalable ? 'transparent' : theme.colors.backgroundItem}; */
     display: flex;
     align-items: center;
     gap: 1rem;
-    cursor: ${({ $plain }) => ($plain ? 'auto' : 'pointer')};
-    ${({ $plain }) => !$plain && scaleAnimation};
+    cursor: ${({ $hoverable }) => ($hoverable ? 'pointer' : 'auto')};
+    ${({ $scalable }) => ($scalable ? scaleAnimation : '')};
 `;
 export const CurrencyInfo = styled.div`
     display: flex;

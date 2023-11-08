@@ -75,7 +75,8 @@ export interface CurrencyItemProps {
     icon: string;
     onClick?: () => void;
     code?: keyof typeof CurrenciesEnum;
-    plain?: boolean;
+    scalable?: boolean;
+    hoverable?: boolean;
 }
 export interface ModalProps {
     children: ReactNode;
@@ -119,14 +120,22 @@ export interface TimelineDayData {
     volume_traded: number;
 }
 export interface InputProps {
-    placeholder: string;
+    placeholder?: string;
     value: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    type?: string;
 }
 export interface SearchBlockProps {
+    inputValueBankCard: string;
+}
+export interface SearchBlockState {
     inputValueBankCard: string;
 }
 export interface SearchBlockDispatch {
     setInputValueBankCard: (str: string) => void;
 }
 export interface BankCardI extends SearchBlockProps, SearchBlockDispatch {}
+export interface HintsProps {
+    options: Currency[];
+    onOptionClick: (currencyCode: keyof typeof CurrenciesEnum) => void;
+}

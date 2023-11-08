@@ -9,13 +9,13 @@ import {
     CURRENCIES_LOGOS,
 } from '@constants/constants/currencies';
 import {
-    CurrenciesEnum,
     type TimelineBlockProps,
     type TimelineBlockState,
     type TimelineI,
 } from '@constants/interfaces/interfaces';
 import { configChart } from '@utils/configChart';
 import { formatDate } from '@utils/formatDate';
+import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 import {
     BarElement,
     CategoryScale,
@@ -193,14 +193,17 @@ export class TimelineBlock extends Component<
                     )}
                     {targetCurrencyCode !== null && (
                         <CurrencyItem
-                            currencyName={CurrenciesEnum[targetCurrencyCode]}
+                            currencyName={getCurrencyNameByCode(
+                                targetCurrencyCode,
+                            )}
                             icon={
                                 CURRENCIES_LOGOS[
-                                    CurrenciesEnum[targetCurrencyCode]
+                                    getCurrencyNameByCode(targetCurrencyCode)
                                 ]
                             }
                             code={targetCurrencyCode}
-                            plain={true}
+                            scalable={false}
+                            hoverable={false}
                         />
                     )}
                 </CurrencyDetails>
