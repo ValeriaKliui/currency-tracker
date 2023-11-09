@@ -126,13 +126,13 @@ export interface InputProps {
     type?: string;
 }
 export interface SearchBlockProps {
-    inputValueBankCard: string;
+    currencies: Currencies | null;
 }
 export interface SearchBlockState {
     inputValueBankCard: string;
 }
 export interface SearchBlockDispatch {
-    setInputValueBankCard: (str: string) => void;
+    fetchCurrencyThunk: () => void;
 }
 export interface BankCardI extends SearchBlockProps, SearchBlockDispatch {}
 export interface HintsProps {

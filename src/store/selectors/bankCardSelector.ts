@@ -1,4 +1,4 @@
-import { type RootStoreType } from '@store/types/interfaces';
+// import { type RootStoreType } from '@store/types/interfaces';
 
-export const getInputValueBankCard = (state: RootStoreType): string =>
-    state.bankCard.inputValueBankCard;
+// export const getInputValueBankCard = (state: RootStoreType): string =>
+//     state.bankCard.inputValueBankCard;

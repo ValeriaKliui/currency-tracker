@@ -55,12 +55,12 @@ export const Section = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    position: relative;
     @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         align-items: flex-end;
     }
     @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         align-items: unset;
-        gap: 2rem;
         border-bottom: 1px solid ${({ theme }) => theme.colors.border};
     }
 `;
@@ -73,11 +73,17 @@ export const SectionTitle = styled.h4`
     @media (max-width: ${({ theme }) => theme.devices.tablet}) {
         font-size: ${({ theme }) => theme.fontSizes.xs};
     }
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
+        cursor: pointer;
+    }
 `;
-export const SectionLink = styled(Link)`
+export const SectionLink = styled(Link)<{ $isOpened: boolean }>`
     color: ${({ theme }) => theme.colors.subText};
-    @media (max-width: ${({ theme }) => theme.devices.tablet}) {
-        display: none;
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
+        display: ${({ $isOpened }) => ($isOpened ? 'block' : 'none')};
+        &:last-child {
+            margin-bottom: 2rem;
+        }
     }
 `;
 export const Copyright = styled.p`
@@ -86,5 +92,15 @@ export const Copyright = styled.p`
 export const FooterText = styled.p`
     @media (max-width: ${({ theme }) => theme.devices.laptop}) {
         display: none;
+    }
+`;
+export const ArrowMobileContainer = styled.div<{ $isOpened: boolean }>`
+    display: none;
+    @media (max-width: ${({ theme }) => theme.devices.mobile}) {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        cursor: pointer;
+        transform: ${({ $isOpened }) => ($isOpened ? 'rotate(180deg)' : '')};
     }
 `;

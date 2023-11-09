@@ -10,15 +10,11 @@ export const Hints: FC<HintsProps> = ({ options, onOptionClick }) => {
     return (
         <OptionsContainer>
             {options.map((currency, index) => (
-                // <Option
-                //     key={currency.code}
-                //
-                // >
-                //     {getCurrencyNameByCode(options[index].code)}
-                // </Option>
                 <CurrencyItem
                     key={currency.code}
-                    currencyName={getCurrencyNameByCode(options[index].code)}
+                    currencyName={`${getCurrencyNameByCode(
+                        options[index].code,
+                    )} (${currency.code})`}
                     icon={
                         CURRENCIES_LOGOS[
                             getCurrencyNameByCode(options[index].code)

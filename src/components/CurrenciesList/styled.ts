@@ -1,7 +1,7 @@
 import { wrapper } from '@constants/styles/global';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
     ${wrapper};
     display: flex;
     flex-direction: column;

@@ -6,7 +6,7 @@ import {
 import thunk from 'redux-thunk';
 
 import { appReducer } from './reducers/app';
-import { bankCardReducer } from './reducers/bankCard';
+// import { bankCardReducer } from './reducers/bankCard';
 import { currencyReducer } from './reducers/currencies';
 import { timelineReducer } from './reducers/timeline';
 
@@ -14,7 +14,7 @@ export const rootReducer = combineReducers({
     app: appReducer,
     currencies: currencyReducer,
     timeline: timelineReducer,
-    bankCard: bankCardReducer,
+    // bankCard: bankCardReducer,
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 

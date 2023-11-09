@@ -1,6 +1,4 @@
-import { type setInputValueBankCard } from '@store/actions/bankCardActions';
+// import { type setInputValueBankCard } from '@store/actions/bankCardActions';
 
-export interface BankCardState {
-    inputValueBankCard: string;
-}
-export type BankCardActions = ReturnType<typeof setInputValueBankCard>;
+// export interface BankCardState {}
+// // export type BankCardActions = ReturnType<typeof setInputValueBankCard>;

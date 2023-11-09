@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 export const SelectContainer = styled.div`
     position: relative;
     cursor: pointer;
+    max-width: 30rem;
 `;
 export const ChoosenOption = styled.div<{ $isOpen: boolean }>`
     border: 1px solid ${({ theme }) => theme.colors.border};
@@ -16,7 +17,7 @@ export const ChoosenOption = styled.div<{ $isOpen: boolean }>`
     &:after {
         content: url(${Arrow});
         position: absolute;
-        right: 10%;
+        right: 1rem;
         transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : '')};
     }
 `;

@@ -1,13 +1,14 @@
 import { wrapper } from '@constants/styles/global';
 import { styled } from 'styled-components';
 
-export const Wrapper = styled.div`
-    ${wrapper}
-`;
 export const Container = styled.div`
+    ${wrapper}
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+`;
+export const SearchContainer = styled.div`
+    position: relative;
 `;

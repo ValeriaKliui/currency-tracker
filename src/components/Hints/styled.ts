@@ -4,7 +4,7 @@ export const OptionsContainer = styled.div`
     position: absolute;
     background-color: ${({ theme }) => theme.colors.backgroundItem};
     overflow-y: scroll;
-    max-height: 15rem;
+    max-height: 12rem;
     width: 100%;
 `;
 export const Option = styled.div`

@@ -8,8 +8,6 @@ export const Container = styled.div<{
     padding: 1rem;
     border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: ${({ theme }) => theme.radiuses.items};
-    /* background-color: ${({ $scalable, theme }) =>
-        $scalable ? 'transparent' : theme.colors.backgroundItem}; */
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -35,6 +33,7 @@ export const CurrencySubText = styled.p`
     }
 `;
 export const CurrencyIcon = styled.img`
+    width: 70px;
     @media (max-width: ${({ theme }) => theme.devices.laptop}) {
         width: 70px;
     }

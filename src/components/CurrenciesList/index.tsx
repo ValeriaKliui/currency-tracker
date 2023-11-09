@@ -21,7 +21,7 @@ import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 import { roundNumber } from '@utils/roundNumber';
 
-import { CurrenciesContainer, EmptyCell, Hr, Title, Wrapper } from './styled';
+import { Container, CurrenciesContainer, EmptyCell, Hr, Title } from './styled';
 
 export const CurrenciesList: FC = () => {
     const currencies = useAppSelector(getCurrenciesSelector);
@@ -52,7 +52,7 @@ export const CurrenciesList: FC = () => {
     };
 
     return (
-        <Wrapper>
+        <Container>
             <CurrenciesContainer>
                 <div>
                     <Title>Stocks</Title>
@@ -102,6 +102,6 @@ export const CurrenciesList: FC = () => {
                         )}
                 </CurrenciesContainer>
             )}
-        </Wrapper>
+        </Container>
     );
 };

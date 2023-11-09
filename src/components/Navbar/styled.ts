@@ -2,7 +2,7 @@ import { scaleAnimation } from '@constants/styles/animations';
 import { wrapper } from '@constants/styles/global';
 import { styled } from 'styled-components';
 
-export const Wrapper = styled.nav`
+export const Container = styled.nav`
     ${wrapper}
     display: flex;
     justify-content: space-between;

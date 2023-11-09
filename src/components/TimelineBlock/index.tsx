@@ -30,6 +30,7 @@ import {
 import 'chartjs-adapter-date-fns';
 
 import {
+    Container,
     CurrencyDetails,
     DateContainer,
     DateInput,
@@ -37,7 +38,6 @@ import {
     PeriodLabel,
     Periods,
     PeriodType,
-    Wrapper,
 } from './styled';
 
 ChartJS.register(
@@ -131,12 +131,11 @@ export class TimelineBlock extends Component<
         const selectOptions =
             currencies === null
                 ? []
-                : Object.values(currencies.data).filter((curr) =>
-                      CURRENCIES_HISTORY_AVAILABLE.includes(curr.code),
+                : Object.values(currencies.data).filter((currency) =>
+                      CURRENCIES_HISTORY_AVAILABLE.includes(currency.code),
                   );
-
         return (
-            <Wrapper>
+            <Container>
                 {error !== null && <Error text={error} />}
                 <CurrencyDetails>
                     <Select options={selectOptions} />
@@ -211,7 +210,7 @@ export class TimelineBlock extends Component<
                     currencyTimelineData.length !== 0 && (
                         <Bar data={data} options={options} plugins={plugins} />
                     )}
-            </Wrapper>
+            </Container>
         );
     }
 }

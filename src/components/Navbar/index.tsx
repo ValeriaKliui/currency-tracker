@@ -4,11 +4,11 @@ import Logo from '@assets/img/logo.svg';
 import { ThemeToggler } from '@components/ThemeToggler';
 import { NAVIGATION_ITEMS } from '@constants/constants/navigation';
 
-import { LogoContainer, NavItem, NavList, Wrapper } from './styled';
+import { Container, LogoContainer, NavItem, NavList } from './styled';
 
 export const Navbar: FC = () => {
     return (
-        <Wrapper>
+        <Container>
             <LogoContainer>
                 <NavLink
                     to="/"
@@ -25,6 +25,6 @@ export const Navbar: FC = () => {
                 ))}
             </NavList>
             <ThemeToggler />
-        </Wrapper>
+        </Container>
     );
 };

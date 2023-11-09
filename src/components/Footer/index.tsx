@@ -1,9 +1,11 @@
-import { type FC } from 'react';
+import { type FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import Arrow from '@assets/img/arrow.svg';
 import LogoPic from '@assets/img/logo.svg';
 import { FOOTER_INFO } from '@constants/constants/navigation';
 
 import {
+    ArrowMobileContainer,
     Blocks,
     Container,
     Copyright,
@@ -17,6 +19,18 @@ import {
 } from './styled';
 
 export const Footer: FC = () => {
+    const [sectionClicked, setSectionClicked] = useState('');
+    const [isOpened, setIsOpened] = useState(false);
+
+    const toggleOpening = (sectionTitle: string) => () => {
+        setSectionClicked((prevTitle) => {
+            setIsOpened(() => {
+                return prevTitle !== sectionTitle;
+            });
+            return sectionTitle;
+        });
+    };
+
     return (
         <Wrapper>
             <Blocks>
@@ -44,12 +58,33 @@ export const Footer: FC = () => {
                     {FOOTER_INFO.sections.map(
                         ({ sectionTitle, sectionLinks }) => (
                             <Section key={sectionTitle}>
-                                <SectionTitle>{sectionTitle}</SectionTitle>
-                                {sectionLinks.map(({ linkTitle, linkHref }) => (
-                                    <SectionLink key={linkTitle} to={linkHref}>
-                                        {linkTitle}
-                                    </SectionLink>
-                                ))}
+                                <SectionTitle
+                                    onClick={toggleOpening(sectionTitle)}
+                                >
+                                    {sectionTitle}
+                                </SectionTitle>
+                                {sectionLinks.map(({ linkTitle, linkHref }) => {
+                                    return (
+                                        <SectionLink
+                                            key={linkTitle}
+                                            to={linkHref}
+                                            $isOpened={
+                                                isOpened
+                                                    ? sectionTitle ===
+                                                      sectionClicked
+                                                    : false
+                                            }
+                                        >
+                                            {linkTitle}
+                                        </SectionLink>
+                                    );
+                                })}
+                                <ArrowMobileContainer
+                                    onClick={toggleOpening(sectionTitle)}
+                                    $isOpened={isOpened}
+                                >
+                                    <Arrow />
+                                </ArrowMobileContainer>
                             </Section>
                         ),
                     )}
