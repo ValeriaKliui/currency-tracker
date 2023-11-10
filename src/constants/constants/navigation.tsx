@@ -1,4 +1,4 @@
-import BankCard from '@pages/BankCard';
+import { BankCard } from '@pages/BankCard';
 import { Home } from '@pages/Home';
 import Timeline from '@pages/Timeline';
 

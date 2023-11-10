@@ -139,3 +139,39 @@ export interface HintsProps {
     options: Currency[];
     onOptionClick: (currencyCode: keyof typeof CurrenciesEnum) => void;
 }
+export enum BankOpened {
+    opened = 'VeryLikelyOpen',
+}
+export interface Bank {
+    fsq_id: string;
+    closed_bucket: BankOpened;
+    geocodes: {
+        main: {
+            latitude: number;
+            longitude: number;
+        };
+    };
+    link: string;
+    location: {
+        address: string;
+        country: string;
+        formatted_address: string;
+        locality: string;
+        region: string;
+    };
+    name: string;
+}
+export interface BanksData {
+    results: Bank[];
+}
+export interface CardProps {
+    banksData: BanksData | null;
+}
+export interface CardDispatch {
+    fetchBanksThunk: () => void;
+}
+export interface CardI extends CardProps, CardDispatch {}
+export interface CardState {
+    viewport: { latitude: number; longitude: number; zoom: number };
+    selectedBankID: string | null;
+}

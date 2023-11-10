@@ -1,10 +1,12 @@
 import {
+    type BanksData,
     type Currencies,
     type CurrenciesEnum,
 } from '@constants/interfaces/interfaces';
 import type {
     fetchCurrencies,
     fetchCurrenciesError,
+    setBanksData,
     setBaseCurrency,
     setConvertedCurrency,
     setTargetCurrency,
@@ -28,10 +30,12 @@ export interface CurrencyState {
     baseCurrencyCode: keyof typeof CurrenciesEnum | null;
     targetCurrencyCode: keyof typeof CurrenciesEnum | null;
     convertedCurrencyValue: number | null;
+    banksData: BanksData | null;
 }
 export type CurrencyActions =
     | ReturnType<typeof fetchCurrencies>
     | ReturnType<typeof fetchCurrenciesError>
     | ReturnType<typeof setBaseCurrency>
     | ReturnType<typeof setTargetCurrency>
-    | ReturnType<typeof setConvertedCurrency>;
+    | ReturnType<typeof setConvertedCurrency>
+    | ReturnType<typeof setBanksData>;

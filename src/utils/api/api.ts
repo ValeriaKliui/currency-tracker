@@ -1,4 +1,5 @@
 import {
+    type BanksData,
     type Currencies,
     type TimelineDayData,
 } from '@constants/interfaces/interfaces';
@@ -33,6 +34,19 @@ export const CurrencyAPI = {
                 `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${targetCurrencyCode}_USD/history?apikey=${process.env.REACT_APP_KEY_OXLCV}&period_id=1DAY&time_start=${historyDateStart}&time_end=${historyDateEnd}`,
 
                 // `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?apikey=${CURRENCY_KEY}&period_id=1DAY&time_start=2023-10-02T00:00:00&time_end=2023-10-02T23:59:59`,
+            )
+            .then((response) => response.data);
+    },
+    async getBanks() {
+        return await axios
+            .get<BanksData>(
+                'https://api.foursquare.com/v3/places/search?ll=53.87%2C27.62&radius=100000&categories=11045&fields=fsq_id%2Clink%2Cname%2Cclosed_bucket%2Cgeocodes%2Clocation&limit=50',
+                {
+                    headers: {
+                        Authorization: `${process.env.REACT_APP_KEY_BANKS}`,
+                        accept: 'application/json',
+                    },
+                },
             )
             .then((response) => response.data);
     },

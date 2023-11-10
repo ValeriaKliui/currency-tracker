@@ -1,6 +1,7 @@
 import {
     fetchCurrencies,
     fetchCurrenciesError,
+    setBanksData,
     setConvertedCurrency,
 } from '@store/actions/currencyActions';
 import { CurrencyAPI } from '@utils/api/api';
@@ -40,3 +41,16 @@ export const fetchConversedCurrThunk =
             }
         }
     };
+
+export const fetchBanksThunk = () => async (dispatch: Dispatch) => {
+    try {
+        const res = await CurrencyAPI.getBanks();
+        res !== null && dispatch(setBanksData(res));
+    } catch (e) {
+        if (axios.isAxiosError<AxiosError<{ message: string }>>(e)) {
+            const err =
+                e.response !== null ? e.response?.data.message : e.message;
+            console.log(err);
+        }
+    }
+};

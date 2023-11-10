@@ -1,4 +1,5 @@
 import {
+    type BanksData,
     type Currencies,
     type CurrenciesEnum,
 } from '@constants/interfaces/interfaces';
@@ -35,5 +36,11 @@ export const setConvertedCurrency = (convertedValue: number) => {
     return {
         type: 'CURRENCY/SET_CONVERTED_CURRENCY',
         payload: convertedValue,
+    } as const;
+};
+export const setBanksData = (banksData: BanksData) => {
+    return {
+        type: 'CURRENCY/SET_BANKS_DATA',
+        payload: banksData,
     } as const;
 };

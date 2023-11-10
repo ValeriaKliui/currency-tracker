@@ -6,6 +6,7 @@ export const OptionsContainer = styled.div`
     overflow-y: scroll;
     max-height: 12rem;
     width: 100%;
+    z-index: 100;
 `;
 export const Option = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.border};

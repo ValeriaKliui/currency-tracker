@@ -1,12 +1,16 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import { Hints } from '@components/Hints';
 import { Input } from '@components/Input';
 import {
     type BankCardI,
     CurrenciesEnum,
+    type SearchBlockDispatch,
     type SearchBlockProps,
     type SearchBlockState,
 } from '@constants/interfaces/interfaces';
+import { fetchCurrencyThunk } from '@store/services/currencyThunk';
+import { type RootStoreType } from '@store/types/interfaces';
 
 import { Container, SearchContainer } from './styled';
 
@@ -74,3 +78,13 @@ export class SearchBlock extends Component<
         );
     }
 }
+const mapStateToProps = (state: RootStoreType): SearchBlockProps => {
+    return {
+        currencies: state.currencies.currencies,
+    };
+};
+
+const mapDispatchToProps: SearchBlockDispatch = {
+    fetchCurrencyThunk,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBlock);
