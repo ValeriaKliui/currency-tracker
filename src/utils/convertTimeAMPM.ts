@@ -1,4 +1,4 @@
-export const convertTimeTo12 = (dateString: string): string => {
+export const convertTimeAMPM = (dateString: string): string => {
     const timeZoneDate = new Date(Date.parse(dateString)).toLocaleString(
         'en-US',
         { timeZone: 'UTC' },

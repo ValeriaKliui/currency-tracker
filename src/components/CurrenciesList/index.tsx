@@ -1,15 +1,8 @@
 import { type FC, useCallback, useEffect } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Error } from '@components/Error';
-import {
-    CURRENCIES_LOGOS,
-    CURRENCIES_ROUNDING,
-    STOCKS,
-} from '@constants/constants/currencies';
-import {
-    type CurrenciesEnum,
-    type CurrencyItemProps,
-} from '@constants/interfaces/interfaces';
+import { CURRENCIES_ROUNDING, STOCKS } from '@constants/constants/currencies';
+import { type CurrenciesEnum } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { openModal } from '@store/actions/appActions';
 import { setBaseCurrency } from '@store/actions/currencyActions';
@@ -59,18 +52,14 @@ export const CurrenciesList: FC = () => {
                     <Hr />
                 </div>
                 <EmptyCell />
-                {STOCKS.map(
-                    ({ currencyName, value, icon }: CurrencyItemProps) => (
-                        <CurrencyItem
-                            key={currencyName}
-                            currencyName={currencyName}
-                            value={value}
-                            icon={icon}
-                            scalable={false}
-                            hoverable={false}
-                        />
-                    ),
-                )}
+                {STOCKS.map(({ currencyName, icon, value }) => (
+                    <CurrencyItem
+                        key={currencyName}
+                        currencyName={currencyName}
+                        icon={icon}
+                        subText={value}
+                    />
+                ))}
             </CurrenciesContainer>
             {error !== null && <Error text={error} />}
             {currencies !== null && (
@@ -86,16 +75,12 @@ export const CurrenciesList: FC = () => {
                                 return (
                                     <CurrencyItem
                                         key={code}
-                                        icon={
-                                            CURRENCIES_LOGOS[
-                                                getCurrencyNameByCode(code)
-                                            ]
+                                        currencyCode={code}
+                                        subText={
+                                            'R$ ' + toStringRound(value, code)
                                         }
-                                        currencyName={getCurrencyNameByCode(
-                                            code,
-                                        )}
-                                        value={toStringRound(value, code)}
                                         onClick={handleClick(code)}
+                                        scalable={true}
                                     />
                                 );
                             },

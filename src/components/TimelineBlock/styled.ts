@@ -1,3 +1,4 @@
+import { transitionAnimation } from '@constants/styles/animations';
 import { wrapper } from '@constants/styles/global';
 import { styled } from 'styled-components';
 
@@ -6,7 +7,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    margin-bottom: 3rem;
 `;
 export const CurrencyDetails = styled.div`
     display: flex;
@@ -21,6 +21,7 @@ export const Periods = styled.div`
     }
 `;
 export const PeriodLabel = styled.label<{ $isChoosen: boolean }>`
+    ${transitionAnimation}
     cursor: pointer;
     border-bottom: ${({ $isChoosen, theme }) =>
         $isChoosen ? `1px solid ${theme.colors.fontActive}` : ''};
@@ -44,4 +45,5 @@ export const DateInput = styled.input`
 export const DateContainer = styled.label`
     display: flex;
     gap: 1rem;
+    ${transitionAnimation}
 `;

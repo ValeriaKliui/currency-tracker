@@ -1,5 +1,7 @@
 import { type FC, memo } from 'react';
+import { CURRENCIES_LOGOS } from '@constants/constants/currencies';
 import { type CurrencyItemProps } from '@constants/interfaces/interfaces';
+import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 
 import {
     Container,
@@ -12,24 +14,37 @@ import {
 export const CurrencyItem: FC<CurrencyItemProps> = memo(
     ({
         currencyName,
-        value,
         icon,
         onClick,
-        code,
-        scalable = true,
-        hoverable = true,
+        currencyCode,
+        scalable = false,
+        subText,
     }) => {
+        const getIconSrc = () => {
+            if (currencyCode !== undefined) {
+                return CURRENCIES_LOGOS[getCurrencyNameByCode(currencyCode)];
+            }
+            if (icon !== null) return icon;
+            return '';
+        };
+
+        const getCurrencyName = () => {
+            if (currencyCode !== undefined)
+                return getCurrencyNameByCode(currencyCode);
+            if (currencyName !== null) return currencyName;
+            return '';
+        };
+
         return (
             <Container
                 onClick={onClick}
                 $scalable={scalable}
-                $hoverable={hoverable}
+                $hoverable={onClick !== undefined}
             >
-                <CurrencyIcon src={icon} />
+                <CurrencyIcon src={getIconSrc()} />
                 <CurrencyInfo>
-                    <CurrencyName>{currencyName}</CurrencyName>
-                    <CurrencySubText>{value}</CurrencySubText>
-                    {code !== null && <CurrencySubText>{code}</CurrencySubText>}
+                    <CurrencyName>{getCurrencyName()}</CurrencyName>
+                    <CurrencySubText>{subText ?? currencyCode}</CurrencySubText>
                 </CurrencyInfo>
             </Container>
         );

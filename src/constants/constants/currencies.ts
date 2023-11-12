@@ -37,7 +37,7 @@ export const CURRENCIES_ROUNDING = {
 
 export const STOCKS = [
     {
-        currencyName: 'BovespaIndex',
+        currencyName: 'Bovespa Index',
         value: '0.15%',
         icon: BovespaLogo,
     },

@@ -5,6 +5,7 @@ import type { ActionsAppType, IAppState } from './types';
 const initialState: IAppState = {
     currentTheme: ThemeEnum.dark,
     isModalOpened: false,
+    isHintsOpened: false,
 };
 export const appReducer = (
     state = initialState,
@@ -29,6 +30,13 @@ export const appReducer = (
                 isModalOpened: false,
             };
         }
+        case 'APP/SET_IS_HINTS_OPENED': {
+            return {
+                ...state,
+                isHintsOpened: action.payload,
+            };
+        }
+
         default:
             return state;
     }

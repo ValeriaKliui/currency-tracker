@@ -18,3 +18,5 @@ export const getTargetCurrencySelector = (
 export const getConvertedCurrencyValue = (
     state: RootStoreType,
 ): number | null => state.currencies.convertedCurrencyValue;
+export const getCurrencyAmount = (state: RootStoreType): number =>
+    state.currencies.currencyAmount;

@@ -1,10 +1,12 @@
 import Arrow from '@assets/img/arrow.png';
+import { transitionAnimation } from '@constants/styles/animations';
 import { styled } from 'styled-components';
 
 export const SelectContainer = styled.div`
     position: relative;
     cursor: pointer;
     max-width: 30rem;
+    ${transitionAnimation}
 `;
 export const ChoosenOption = styled.div<{ $isOpen: boolean }>`
     border: 1px solid ${({ theme }) => theme.colors.border};

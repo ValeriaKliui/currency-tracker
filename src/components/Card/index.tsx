@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Map, Marker, Popup } from 'react-map-gl';
 import { connect } from 'react-redux';
 import {
+    BankOpened,
     type CardDispatch,
     type CardI,
     type CardProps,
@@ -9,6 +10,7 @@ import {
 } from '@constants/interfaces/interfaces';
 import { fetchBanksThunk } from '@store/services/currencyThunk';
 import { type RootStoreType } from '@store/types/interfaces';
+import { getRelevantBanks } from '@utils/getRelevantBanks';
 
 export class Card extends Component<CardI, CardState> {
     constructor(props: CardI) {
@@ -54,13 +56,15 @@ export class Card extends Component<CardI, CardState> {
     }
 
     closePopUp() {
-        this.setState({ selectedBankID: null });
+        return () => {
+            this.setState({ selectedBankID: null });
+        };
     }
 
     render() {
         const { viewport, selectedBankID } = this.state;
-        const { banksData } = this.props;
-        console.log(selectedBankID);
+        const { banksData, targetCurrencyCode } = this.props;
+
         return (
             <>
                 {viewport.latitude !== 0 && viewport.longitude !== 0 && (
@@ -70,31 +74,55 @@ export class Card extends Component<CardI, CardState> {
                         mapStyle="mapbox://styles/mapbox/streets-v11"
                         style={{ height: '50vh' }}
                     >
-                        {banksData?.results.map(
-                            ({ fsq_id: bankID, geocodes, name }) => (
-                                <div key={bankID}>
-                                    <Marker
-                                        style={{ cursor: 'pointer' }}
-                                        longitude={geocodes.main.longitude}
-                                        latitude={geocodes.main.latitude}
-                                        onClick={this.openPopUp(bankID)}
-                                    />
-                                    {bankID === selectedBankID && (
-                                        <Popup
-                                            latitude={geocodes.main.latitude}
+                        {banksData !== null &&
+                            getRelevantBanks(targetCurrencyCode, banksData).map(
+                                ({
+                                    fsq_id: bankID,
+                                    geocodes,
+                                    name,
+                                    closed_bucket: isOpened,
+                                    location: { formatted_address: address },
+                                }) => (
+                                    <div key={bankID}>
+                                        <Marker
+                                            style={{ cursor: 'pointer' }}
                                             longitude={geocodes.main.longitude}
-                                            offset={30}
-                                            style={{ color: 'black' }}
-                                            onClose={this.closePopUp}
-                                            closeButton={true}
-                                            closeOnClick={false}
-                                        >
-                                            <p>{name}</p>
-                                        </Popup>
-                                    )}
-                                </div>
-                            ),
-                        )}
+                                            latitude={geocodes.main.latitude}
+                                            onClick={this.openPopUp(bankID)}
+                                        />
+                                        {bankID === selectedBankID && (
+                                            <Popup
+                                                latitude={
+                                                    geocodes.main.latitude
+                                                }
+                                                longitude={
+                                                    geocodes.main.longitude
+                                                }
+                                                offset={30}
+                                                style={{ color: 'black' }}
+                                                onClose={this.closePopUp}
+                                                closeButton={true}
+                                                closeOnClick={false}
+                                            >
+                                                <h3>Банк: {name}</h3>
+                                                <p>
+                                                    <i>
+                                                        {isOpened !== null &&
+                                                            Object.entries(
+                                                                BankOpened,
+                                                            ).filter(
+                                                                (status) =>
+                                                                    status[1] ===
+                                                                    isOpened,
+                                                            )[0][0]}
+                                                    </i>
+                                                </p>
+                                                <p>Адрес: {address}</p>
+                                            </Popup>
+                                        )}
+                                    </div>
+                                ),
+                            )}
                     </Map>
                 )}
             </>
@@ -104,6 +132,7 @@ export class Card extends Component<CardI, CardState> {
 const mapStateToProps = (state: RootStoreType): CardProps => {
     return {
         banksData: state.currencies.banksData,
+        targetCurrencyCode: state.currencies.targetCurrencyCode,
     };
 };
 

@@ -4,10 +4,7 @@ import { CurrencyItem } from '@components/CurrencyItem';
 import { Error } from '@components/Error';
 import { Select } from '@components/Select';
 import { ConcreteSubject, observer } from '@components/TimelineObserver';
-import {
-    CURRENCIES_HISTORY_AVAILABLE,
-    CURRENCIES_LOGOS,
-} from '@constants/constants/currencies';
+import { CURRENCIES_HISTORY_AVAILABLE } from '@constants/constants/currencies';
 import {
     type TimelineBlockProps,
     type TimelineBlockState,
@@ -15,7 +12,6 @@ import {
 } from '@constants/interfaces/interfaces';
 import { configChart } from '@utils/configChart';
 import { formatDate } from '@utils/formatDate';
-import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 import {
     BarElement,
     CategoryScale,
@@ -91,10 +87,21 @@ export class TimelineBlock extends Component<
         }
 
         if (
+            prevState.duration !== this.state.duration &&
+            this.state.duration === 'month'
+        ) {
+            this.setState({
+                historyDateStart: formatDate(this.prevMonth),
+                historyDateEnd: formatDate(new Date()),
+            });
+        }
+
+        if (
             this.props.currencyTimelineData.length !== 0 &&
             this.state.duration === 'month'
-        )
+        ) {
             this.subject.processData();
+        }
     }
 
     componentWillUnmount() {
@@ -191,23 +198,12 @@ export class TimelineBlock extends Component<
                         </DatesContainer>
                     )}
                     {targetCurrencyCode !== null && (
-                        <CurrencyItem
-                            currencyName={getCurrencyNameByCode(
-                                targetCurrencyCode,
-                            )}
-                            icon={
-                                CURRENCIES_LOGOS[
-                                    getCurrencyNameByCode(targetCurrencyCode)
-                                ]
-                            }
-                            code={targetCurrencyCode}
-                            scalable={false}
-                            hoverable={false}
-                        />
+                        <CurrencyItem currencyCode={targetCurrencyCode} />
                     )}
                 </CurrencyDetails>
                 {currencyTimelineData !== null &&
-                    currencyTimelineData.length !== 0 && (
+                    currencyTimelineData.length !== 0 &&
+                    targetCurrencyCode !== null && (
                         <Bar data={data} options={options} plugins={plugins} />
                     )}
             </Container>

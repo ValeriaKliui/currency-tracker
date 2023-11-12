@@ -24,3 +24,9 @@ export const closeModal = () => {
         },
     } as const;
 };
+export const setIsHintsOpened = (isHintsOpened: boolean) => {
+    return {
+        type: 'APP/SET_IS_HINTS_OPENED',
+        payload: isHintsOpened,
+    } as const;
+};

@@ -7,6 +7,7 @@ const initialState: CurrencyState = {
     targetCurrencyCode: null,
     convertedCurrencyValue: null,
     banksData: null,
+    currencyAmount: 1,
 };
 
 export const currencyReducer = (
@@ -42,6 +43,12 @@ export const currencyReducer = (
             return {
                 ...state,
                 targetCurrencyCode: action.payload,
+            };
+        }
+        case 'CURRENCY/SET_CURRENCY_AMOUNT': {
+            return {
+                ...state,
+                currencyAmount: action.payload,
             };
         }
         case 'CURRENCY/SET_BANKS_DATA': {

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { CurrencyItem } from '@components/CurrencyItem';
 import { Hints } from '@components/Hints';
 import { Input } from '@components/Input';
 import {
@@ -9,6 +10,11 @@ import {
     type SearchBlockProps,
     type SearchBlockState,
 } from '@constants/interfaces/interfaces';
+import { setIsHintsOpened } from '@store/actions/appActions';
+import {
+    setBanksData,
+    setTargetCurrency,
+} from '@store/actions/currencyActions';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { type RootStoreType } from '@store/types/interfaces';
 
@@ -30,6 +36,11 @@ export class SearchBlock extends Component<
         if (this.props.currencies === null) this.fetchCurrencyInit();
     }
 
+    componentWillUnmount(): void {
+        const { setTargetCurrency } = this.props;
+        setTargetCurrency(null);
+    }
+
     fetchCurrencyInit = () => {
         this.props.fetchCurrencyThunk();
     };
@@ -39,10 +50,16 @@ export class SearchBlock extends Component<
             ...prevState,
             inputValueBankCard: e.target.value,
         }));
+        this.props.setIsHintsOpened(true);
+    }
+
+    chooseCurrency(currencyCode: keyof typeof CurrenciesEnum) {
+        const { setTargetCurrency } = this.props;
+        setTargetCurrency(currencyCode);
     }
 
     render() {
-        const { currencies } = this.props;
+        const { currencies, targetCurrencyCode } = this.props;
         const { inputValueBankCard } = this.state;
         const selectOptions =
             currencies === null
@@ -67,13 +84,14 @@ export class SearchBlock extends Component<
                         value={this.state.inputValueBankCard}
                         onChange={this.handleChange.bind(this)}
                     />
-                    {inputValueBankCard.length > 0 && (
-                        <Hints
-                            options={selectOptions}
-                            onOptionClick={() => {}}
-                        />
-                    )}
+                    <Hints
+                        options={selectOptions}
+                        onOptionClick={this.chooseCurrency.bind(this)}
+                    />
                 </SearchContainer>
+                {targetCurrencyCode !== null && (
+                    <CurrencyItem currencyCode={targetCurrencyCode} />
+                )}
             </Container>
         );
     }
@@ -81,10 +99,15 @@ export class SearchBlock extends Component<
 const mapStateToProps = (state: RootStoreType): SearchBlockProps => {
     return {
         currencies: state.currencies.currencies,
+        targetCurrencyCode: state.currencies.targetCurrencyCode,
+        banksData: state.currencies.banksData,
     };
 };
 
 const mapDispatchToProps: SearchBlockDispatch = {
     fetchCurrencyThunk,
+    setTargetCurrency,
+    setIsHintsOpened,
+    setBanksData,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBlock);

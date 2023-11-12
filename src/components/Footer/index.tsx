@@ -6,7 +6,6 @@ import { FOOTER_INFO } from '@constants/constants/navigation';
 
 import {
     ArrowMobileContainer,
-    Blocks,
     Container,
     Copyright,
     FooterText,
@@ -23,76 +22,64 @@ export const Footer: FC = () => {
     const [isOpened, setIsOpened] = useState(false);
 
     const toggleOpening = (sectionTitle: string) => () => {
-        setSectionClicked((prevTitle) => {
-            setIsOpened(() => {
-                return prevTitle !== sectionTitle;
-            });
-            return sectionTitle;
-        });
+        setSectionClicked(sectionTitle);
+        if (sectionTitle === sectionClicked)
+            setIsOpened((prevState) => !prevState);
+        else setIsOpened(true);
     };
 
     return (
         <Wrapper>
-            <Blocks>
-                <Container>
-                    <div>
-                        <NavLink
-                            to="/"
-                            className={({ isActive }) =>
-                                isActive ? 'active' : ''
+            <Container>
+                <div>
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
+                        <Logo>
+                            <LogoPic width={50} />
+                            <LogoTitle>Modsen Currency Tracker</LogoTitle>
+                        </Logo>
+                    </NavLink>
+                    <FooterText>
+                        Since then, the company has grown organically to.
+                        Starsup is the world&apos;s largest trading platform,
+                        with $12 billion worth of currency trading and 500,000
+                        tickets sold daily to tens of thousands of traders
+                        worldwide.
+                    </FooterText>
+                </div>
+                {FOOTER_INFO.sections.map(({ sectionTitle, sectionLinks }) => (
+                    <Section key={sectionTitle}>
+                        <SectionTitle onClick={toggleOpening(sectionTitle)}>
+                            {sectionTitle}
+                        </SectionTitle>
+                        {sectionLinks.map(({ linkTitle, linkHref }) => {
+                            return (
+                                <SectionLink
+                                    key={linkTitle}
+                                    to={linkHref}
+                                    $isOpened={
+                                        isOpened &&
+                                        sectionTitle === sectionClicked
+                                    }
+                                >
+                                    {linkTitle}
+                                </SectionLink>
+                            );
+                        })}
+                        <ArrowMobileContainer
+                            onClick={toggleOpening(sectionTitle)}
+                            $isOpened={
+                                isOpened && sectionTitle === sectionClicked
                             }
                         >
-                            <Logo>
-                                <LogoPic width={50} />
-                                <LogoTitle>Modsen Currency Tracker</LogoTitle>
-                            </Logo>
-                        </NavLink>
-                        <FooterText>
-                            Since then, the company has grown organically to.
-                            Starsup is the world&apos;s largest trading
-                            platform, with $12 billion worth of currency trading
-                            and 500,000 tickets sold daily to tens of thousands
-                            of traders worldwide.
-                        </FooterText>
-                    </div>
-                    {FOOTER_INFO.sections.map(
-                        ({ sectionTitle, sectionLinks }) => (
-                            <Section key={sectionTitle}>
-                                <SectionTitle
-                                    onClick={toggleOpening(sectionTitle)}
-                                >
-                                    {sectionTitle}
-                                </SectionTitle>
-                                {sectionLinks.map(({ linkTitle, linkHref }) => {
-                                    return (
-                                        <SectionLink
-                                            key={linkTitle}
-                                            to={linkHref}
-                                            $isOpened={
-                                                isOpened
-                                                    ? sectionTitle ===
-                                                      sectionClicked
-                                                    : false
-                                            }
-                                        >
-                                            {linkTitle}
-                                        </SectionLink>
-                                    );
-                                })}
-                                <ArrowMobileContainer
-                                    onClick={toggleOpening(sectionTitle)}
-                                    $isOpened={isOpened}
-                                >
-                                    <Arrow />
-                                </ArrowMobileContainer>
-                            </Section>
-                        ),
-                    )}
-                </Container>
-                <Copyright>
-                    Startsup © 2023-2024, All Rights Reserved
-                </Copyright>
-            </Blocks>
+                            <Arrow />
+                        </ArrowMobileContainer>
+                    </Section>
+                ))}
+            </Container>
+            <Copyright>Startsup © 2023-2024, All Rights Reserved</Copyright>
         </Wrapper>
     );
 };

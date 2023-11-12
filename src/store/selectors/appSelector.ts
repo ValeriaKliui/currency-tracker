@@ -3,5 +3,7 @@ import { type RootStoreType } from '@store/types/interfaces';
 
 export const getThemeSelector = (state: RootStoreType): ThemeEnum =>
     state.app.currentTheme;
-export const isModalOpenedSelector = (state: RootStoreType): boolean =>
+export const getIsModalOpenedSelector = (state: RootStoreType): boolean =>
     state.app.isModalOpened;
+export const getIsHintsOpened = (state: RootStoreType): boolean =>
+    state.app.isHintsOpened;

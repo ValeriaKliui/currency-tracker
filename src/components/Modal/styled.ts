@@ -30,7 +30,6 @@ export const Overlay = styled.div`
     cursor: pointer;
 `;
 export const Content = styled.div`
-    width: 20vw;
     min-height: 20vw;
     background-color: ${({ theme }) => theme.colors.backgroundItem};
     border-radius: ${({ theme }) => theme.radiuses.items};

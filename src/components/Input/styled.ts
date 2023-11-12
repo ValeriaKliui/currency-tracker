@@ -10,8 +10,14 @@ export const InputStyled = styled.input`
     padding: 1rem 2rem;
     font-size: ${({ theme }) => theme.fontSizes.s};
     color: ${({ theme }) => theme.colors.font};
+    width: 100%;
     &::placeholder {
         color: ${({ theme }) => theme.colors.subText};
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 `;
 export const IconContainer = styled.div`

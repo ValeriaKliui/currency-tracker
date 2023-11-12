@@ -70,13 +70,12 @@ export enum CurrenciesEnum {
     LTC = 'Litecoin',
 }
 export interface CurrencyItemProps {
-    currencyName: string;
-    value?: string;
-    icon: string;
+    currencyName?: string;
+    icon?: string;
     onClick?: () => void;
-    code?: keyof typeof CurrenciesEnum;
+    currencyCode?: keyof typeof CurrenciesEnum;
     scalable?: boolean;
-    hoverable?: boolean;
+    subText?: string;
 }
 export interface ModalProps {
     children: ReactNode;
@@ -127,12 +126,19 @@ export interface InputProps {
 }
 export interface SearchBlockProps {
     currencies: Currencies | null;
+    targetCurrencyCode: keyof typeof CurrenciesEnum | null;
+    banksData: Bank[] | null;
 }
 export interface SearchBlockState {
     inputValueBankCard: string;
 }
 export interface SearchBlockDispatch {
     fetchCurrencyThunk: () => void;
+    setTargetCurrency: (
+        targetCurrencyCode: keyof typeof CurrenciesEnum | null,
+    ) => void;
+    setIsHintsOpened: (isHintsOpened: boolean) => void;
+    setBanksData: (banksData: Bank[]) => void;
 }
 export interface BankCardI extends SearchBlockProps, SearchBlockDispatch {}
 export interface HintsProps {
@@ -140,7 +146,9 @@ export interface HintsProps {
     onOptionClick: (currencyCode: keyof typeof CurrenciesEnum) => void;
 }
 export enum BankOpened {
-    opened = 'VeryLikelyOpen',
+    'Opened' = 'VeryLikelyOpen',
+    'Probably opened' = 'LikelyOpen',
+    'Closed' = 'Unsure',
 }
 export interface Bank {
     fsq_id: string;
@@ -161,11 +169,9 @@ export interface Bank {
     };
     name: string;
 }
-export interface BanksData {
-    results: Bank[];
-}
 export interface CardProps {
-    banksData: BanksData | null;
+    banksData: Bank[] | null;
+    targetCurrencyCode: keyof typeof CurrenciesEnum | null;
 }
 export interface CardDispatch {
     fetchBanksThunk: () => void;
@@ -174,4 +180,7 @@ export interface CardI extends CardProps, CardDispatch {}
 export interface CardState {
     viewport: { latitude: number; longitude: number; zoom: number };
     selectedBankID: string | null;
+}
+export interface BanksData {
+    results: Bank[];
 }

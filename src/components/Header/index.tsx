@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useAppSelector } from '@hooks/store';
 import { getCurrenciesSelector } from '@store/selectors/currencySelectors';
-import { convertTimeTo12 } from '@utils/convertTimeTo12';
+import { convertTimeAMPM } from '@utils/convertTimeAMPM';
 
 import {
     Circle,
@@ -20,7 +20,7 @@ export const Header: FC = () => {
     const currencies = useAppSelector(getCurrenciesSelector);
     const updateTime =
         currencies !== null &&
-        convertTimeTo12(currencies?.meta.last_updated_at);
+        convertTimeAMPM(currencies?.meta.last_updated_at);
 
     return (
         <>

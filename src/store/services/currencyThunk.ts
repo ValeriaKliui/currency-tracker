@@ -45,7 +45,7 @@ export const fetchConversedCurrThunk =
 export const fetchBanksThunk = () => async (dispatch: Dispatch) => {
     try {
         const res = await CurrencyAPI.getBanks();
-        res !== null && dispatch(setBanksData(res));
+        res !== null && dispatch(setBanksData(res.results));
     } catch (e) {
         if (axios.isAxiosError<AxiosError<{ message: string }>>(e)) {
             const err =

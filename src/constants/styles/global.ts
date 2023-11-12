@@ -8,7 +8,7 @@ export const wrapper = css`
     padding: 30px 50px;
     margin: 0 auto;
     @media (max-width: ${({ theme }) => theme.devices.laptop}) {
-        padding: 10px 30px;
+        padding: 30px;
     }
 `;
 const styled = { createGlobalStyle };

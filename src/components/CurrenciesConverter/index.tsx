@@ -1,16 +1,18 @@
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Input } from '@components/Input';
 import { Select } from '@components/Select';
-import {
-    CURRENCIES_LOGOS,
-    CURRENCIES_ROUNDING,
-} from '@constants/constants/currencies';
+import { CURRENCIES_ROUNDING } from '@constants/constants/currencies';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
+import {
+    setCurrencyAmount,
+    setTargetCurrency,
+} from '@store/actions/currencyActions';
 import {
     getBaseCurrencySelector,
     getConvertedCurrencyValue,
     getCurrenciesSelector,
+    getCurrencyAmount,
     getTargetCurrencySelector,
 } from '@store/selectors/currencySelectors';
 import { fetchConversedCurrThunk } from '@store/services/currencyThunk';
@@ -20,9 +22,9 @@ import { roundNumber } from '@utils/roundNumber';
 import { CenteredTitle, ConverterContainer, Title } from './styled';
 
 export const CurrenciesConverter: FC = () => {
-    const [amount, setAmount] = useState('1');
     const dispatch = useAppDispatch();
     const baseCurrencyCode = useAppSelector(getBaseCurrencySelector);
+    const currencyAmount = useAppSelector(getCurrencyAmount);
     const targetCurrency = useAppSelector(getTargetCurrencySelector);
     const convertedCurrencyValue = useAppSelector(getConvertedCurrencyValue);
     const currencies = useAppSelector(getCurrenciesSelector);
@@ -40,38 +42,34 @@ export const CurrenciesConverter: FC = () => {
     useEffect(() => {
         if (baseCurrencyCode !== null && targetCurrency !== null)
             dispatch(fetchConversedCurrThunk(baseCurrencyCode, targetCurrency));
-    }, [targetCurrency]);
+    }, [targetCurrency, baseCurrencyCode]);
+
+    useEffect(() => {
+        dispatch(setCurrencyAmount(1));
+        dispatch(setTargetCurrency(null));
+    }, [baseCurrencyCode]);
 
     return (
         <ConverterContainer>
             <CenteredTitle>Amount</CenteredTitle>
             <Input
-                value={amount}
+                value={currencyAmount.toString()}
                 onChange={(e) => {
-                    setAmount(e.target.value);
+                    dispatch(setCurrencyAmount(Number(e.target.value)));
                 }}
                 type="number"
             />
             <Title>From:</Title>
             {baseCurrencyCode !== null && (
-                <CurrencyItem
-                    currencyName={getCurrencyNameByCode(baseCurrencyCode)}
-                    icon={
-                        CURRENCIES_LOGOS[
-                            getCurrencyNameByCode(baseCurrencyCode)
-                        ]
-                    }
-                    scalable={false}
-                    hoverable={false}
-                />
+                <CurrencyItem currencyCode={baseCurrencyCode} />
             )}
             <h3>To:</h3>
             <Select options={currenciesArray} />
-            {convertedCurrencyValue !== null && amount !== '' && (
+            {convertedCurrencyValue !== null && targetCurrency !== null && (
                 <>
                     <CenteredTitle>
-                        {amount} {baseCurrencyCode} ={' '}
-                        {Number(convertedRoundedValue) * Number(amount)}
+                        {currencyAmount} {baseCurrencyCode} ={' '}
+                        {Number(convertedRoundedValue) * currencyAmount}{' '}
                         {targetCurrency}
                     </CenteredTitle>
                 </>

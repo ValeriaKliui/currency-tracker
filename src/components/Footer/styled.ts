@@ -3,7 +3,11 @@ import { wrapper } from '@constants/styles/global';
 import styled from 'styled-components';
 
 export const Wrapper = styled.footer`
-    ${wrapper}
+    ${wrapper};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 `;
 export const Container = styled.div`
     display: grid;
@@ -15,15 +19,10 @@ export const Container = styled.div`
     @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         grid-template-columns: repeat(1, 1fr);
         justify-items: unset;
-        gap: 1rem;
+        gap: 2rem;
     }
 `;
-export const Blocks = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-`;
+export const Blocks = styled.div``;
 export const Logo = styled.div`
     display: flex;
     gap: 1rem;
@@ -81,9 +80,6 @@ export const SectionLink = styled(Link)<{ $isOpened: boolean }>`
     color: ${({ theme }) => theme.colors.subText};
     @media (max-width: ${({ theme }) => theme.devices.mobile}) {
         display: ${({ $isOpened }) => ($isOpened ? 'block' : 'none')};
-        &:last-child {
-            margin-bottom: 2rem;
-        }
     }
 `;
 export const Copyright = styled.p`

@@ -61,7 +61,7 @@ export const lightTheme: DefaultTheme = {
         background: colors.white,
         backgroundTransparent: colors.transparentWhite,
         font: colors.grayDark,
-        backgroundItem: colors.neon,
+        backgroundItem: colors.white,
         subText: colors.grayDark,
         border: colors.grayLight,
     },
