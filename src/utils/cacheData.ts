@@ -16,6 +16,7 @@ export const getCache = <Type>(cacheKey: string): Type | null => {
         )
     )
         return JSON.parse(cachedValue).data;
+    else removeCache(cacheKey);
     return null;
 };
 
@@ -28,4 +29,7 @@ export const isCacheValid = (
     const cacheDurationHours =
         (currentDate.getTime() - cacheTimestampDate.getTime()) / 3600000;
     return cacheDurationHours < Number(cacheMaxDuration);
+};
+export const removeCache = (cacheKey: string) => {
+    localStorage.removeItem(cacheKey);
 };

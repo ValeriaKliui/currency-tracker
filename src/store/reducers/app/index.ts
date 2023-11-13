@@ -6,6 +6,7 @@ const initialState: IAppState = {
     currentTheme: ThemeEnum.dark,
     isModalOpened: false,
     isHintsOpened: false,
+    isFetching: false,
 };
 export const appReducer = (
     state = initialState,
@@ -16,6 +17,12 @@ export const appReducer = (
             return {
                 ...state,
                 currentTheme: action.payload.theme,
+            };
+        }
+        case 'APP/SET_IS_FETCHING': {
+            return {
+                ...state,
+                isFetching: action.payload,
             };
         }
         case 'APP/OPEN_MODAL': {

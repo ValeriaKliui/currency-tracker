@@ -1,8 +1,9 @@
-import { type FC } from 'react';
+import { type FC,useEffect } from 'react';
 import { ThemeEnum } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { setTheme } from '@store/actions/appActions';
 import { getThemeSelector } from '@store/selectors/appSelector';
+import { getCache, setCache } from '@utils/cacheData';
 
 import {
     TogglerButton,
@@ -16,12 +17,16 @@ export const ThemeToggler: FC = () => {
     const theme = useAppSelector(getThemeSelector);
 
     const onChange = (): void => {
-        dispatch(
-            setTheme(
-                theme === ThemeEnum.light ? ThemeEnum.dark : ThemeEnum.light,
-            ),
-        );
+        const choosenTheme =
+            theme === ThemeEnum.light ? ThemeEnum.dark : ThemeEnum.light;
+        dispatch(setTheme(choosenTheme));
+        setCache('theme', choosenTheme);
     };
+
+    useEffect(() => {
+        const savedTheme = getCache<ThemeEnum>('theme');
+        savedTheme !== null && dispatch(setTheme(savedTheme));
+    }, []);
 
     return (
         <TogglerContainer>

@@ -23,3 +23,11 @@ export const scaleAnimation = css`
 export const transitionAnimation = css`
     transition: 0.2s ease all;
 `;
+export const spin = keyframes`
+ 0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }`;

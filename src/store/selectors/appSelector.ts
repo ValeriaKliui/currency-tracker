@@ -7,3 +7,5 @@ export const getIsModalOpenedSelector = (state: RootStoreType): boolean =>
     state.app.isModalOpened;
 export const getIsHintsOpened = (state: RootStoreType): boolean =>
     state.app.isHintsOpened;
+export const getIsFetching = (state: RootStoreType): boolean =>
+    state.app.isFetching;

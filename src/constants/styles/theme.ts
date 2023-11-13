@@ -4,7 +4,7 @@ import { type Theme, ThemeEnum } from '../interfaces/interfaces';
 
 export const colors = {
     black: 'rgb(3, 3, 4)',
-    transparentBlack: 'rgba(3, 3, 4, 0.9)',
+    transparentBlack: 'rgba(3, 3, 4, 0.5)',
     white: 'rgb(255, 255, 255)',
     transparentWhite: 'rgba(255, 255, 255, 0.9)',
     gray: 'rgb(71,71,71)',

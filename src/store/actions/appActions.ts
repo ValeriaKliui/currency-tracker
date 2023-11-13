@@ -8,6 +8,12 @@ export const setTheme = (theme: ThemeEnum) => {
         },
     } as const;
 };
+export const setIsFetching = (isFetching: boolean) => {
+    return {
+        type: 'APP/SET_IS_FETCHING',
+        payload: isFetching,
+    } as const;
+};
 export const openModal = () => {
     return {
         type: 'APP/OPEN_MODAL',
