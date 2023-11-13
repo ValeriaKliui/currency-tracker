@@ -1,17 +1,22 @@
+import { type Currencies } from '@constants/interfaces/interfaces';
 import {
-    fetchCurrencies,
     fetchCurrenciesError,
     setBanksData,
     setConvertedCurrency,
+    setCurrencies,
 } from '@store/actions/currencyActions';
 import { CurrencyAPI } from '@utils/api/api';
+import { setCache } from '@utils/cacheData';
 import axios, { type AxiosError, isAxiosError } from 'axios';
 import { type Dispatch } from 'redux';
 
 export const fetchCurrencyThunk = () => async (dispatch: Dispatch) => {
     try {
         const res = await CurrencyAPI.getCurrencies();
-        if (res !== null) dispatch(fetchCurrencies(res));
+        if (res !== null) {
+            dispatch(setCurrencies(res));
+            setCache<Currencies>('currencyData', res);
+        }
     } catch (e) {
         if (e !== null && isAxiosError<AxiosError<{ message: string }>>(e)) {
             const errorStr =

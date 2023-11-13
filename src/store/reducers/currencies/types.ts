@@ -4,11 +4,11 @@ import {
     type CurrenciesEnum,
 } from '@constants/interfaces/interfaces';
 import type {
-    fetchCurrencies,
     fetchCurrenciesError,
     setBanksData,
     setBaseCurrency,
     setConvertedCurrency,
+    setCurrencies,
     setCurrencyAmount,
     setTargetCurrency,
 } from '@store/actions/currencyActions';
@@ -35,7 +35,7 @@ export interface CurrencyState {
     currencyAmount: number;
 }
 export type CurrencyActions =
-    | ReturnType<typeof fetchCurrencies>
+    | ReturnType<typeof setCurrencies>
     | ReturnType<typeof fetchCurrenciesError>
     | ReturnType<typeof setBaseCurrency>
     | ReturnType<typeof setTargetCurrency>

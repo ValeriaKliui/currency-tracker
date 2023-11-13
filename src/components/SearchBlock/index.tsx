@@ -5,6 +5,7 @@ import { Hints } from '@components/Hints';
 import { Input } from '@components/Input';
 import {
     type BankCardI,
+    type Currencies,
     CurrenciesEnum,
     type SearchBlockDispatch,
     type SearchBlockProps,
@@ -13,10 +14,10 @@ import {
 import { setIsHintsOpened } from '@store/actions/appActions';
 import {
     setBanksData,
-    setTargetCurrency,
-} from '@store/actions/currencyActions';
+ setCurrencies,    setTargetCurrency } from '@store/actions/currencyActions';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { type RootStoreType } from '@store/types/interfaces';
+import { getCache } from '@utils/cacheData';
 
 import { Container, SearchContainer } from './styled';
 
@@ -30,10 +31,12 @@ export class SearchBlock extends Component<
         this.state = {
             inputValueBankCard: '',
         };
+        this.chooseCurrency = this.chooseCurrency.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
-        if (this.props.currencies === null) this.fetchCurrencyInit();
+        this.setCurrencyInit();
     }
 
     componentWillUnmount(): void {
@@ -41,8 +44,11 @@ export class SearchBlock extends Component<
         setTargetCurrency(null);
     }
 
-    fetchCurrencyInit = () => {
-        this.props.fetchCurrencyThunk();
+    setCurrencyInit = () => {
+        const { fetchCurrencyThunk, setCurrencies } = this.props;
+        const cachedCurrencyData = getCache<Currencies>('currencyData');
+        if (cachedCurrencyData !== null) setCurrencies(cachedCurrencyData);
+        else fetchCurrencyThunk();
     };
 
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -82,11 +88,11 @@ export class SearchBlock extends Component<
                     <Input
                         placeholder="Сurrency search..."
                         value={this.state.inputValueBankCard}
-                        onChange={this.handleChange.bind(this)}
+                        onChange={this.handleChange}
                     />
                     <Hints
                         options={selectOptions}
-                        onOptionClick={this.chooseCurrency.bind(this)}
+                        onOptionClick={this.chooseCurrency}
                     />
                 </SearchContainer>
                 {targetCurrencyCode !== null && (
@@ -109,5 +115,6 @@ const mapDispatchToProps: SearchBlockDispatch = {
     setTargetCurrency,
     setIsHintsOpened,
     setBanksData,
+    setCurrencies,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBlock);

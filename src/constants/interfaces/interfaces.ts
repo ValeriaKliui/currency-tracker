@@ -99,6 +99,7 @@ export interface TimelineDispatch {
         historyDateStart: string,
         historyDateEnd: string,
     ) => void;
+    setCurrencies: (currencies: Currencies) => void;
 }
 export interface TimelineI extends TimelineBlockProps, TimelineDispatch {}
 export interface TimelineBlockState {
@@ -139,6 +140,7 @@ export interface SearchBlockDispatch {
     ) => void;
     setIsHintsOpened: (isHintsOpened: boolean) => void;
     setBanksData: (banksData: Bank[]) => void;
+    setCurrencies: (currencies: Currencies) => void;
 }
 export interface BankCardI extends SearchBlockProps, SearchBlockDispatch {}
 export interface HintsProps {

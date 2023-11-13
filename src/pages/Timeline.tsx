@@ -6,10 +6,10 @@ import {
     type TimelineDispatch,
     type TimelineI,
 } from '@constants/interfaces/interfaces';
+import { setCurrencies } from '@store/actions/currencyActions';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { fetchCurrencyTimelineThunk } from '@store/services/timelineThunk';
 import { type RootStoreType } from '@store/types/interfaces';
-
 export class Timeline extends Component<TimelineI> {
     render() {
         return <TimelineBlock {...this.props} />;
@@ -29,5 +29,6 @@ const mapStateToProps = (state: RootStoreType): TimelineBlockProps => {
 const mapDispatchToProps: TimelineDispatch = {
     fetchCurrencyThunk,
     fetchCurrencyTimelineThunk,
+    setCurrencies,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Timeline);

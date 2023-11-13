@@ -15,7 +15,7 @@ export const currencyReducer = (
     action: CurrencyActions,
 ): CurrencyState => {
     switch (action.type) {
-        case 'CURRENCY/FETCH_CURRENCIES': {
+        case 'CURRENCY/SET_CURRENCIES': {
             return {
                 ...state,
                 currencies: action.payload,

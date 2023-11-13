@@ -2,15 +2,19 @@ import { type FC, useCallback, useEffect } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Error } from '@components/Error';
 import { CURRENCIES_ROUNDING, STOCKS } from '@constants/constants/currencies';
-import { type CurrenciesEnum } from '@constants/interfaces/interfaces';
+import {
+    type Currencies,
+    type CurrenciesEnum,
+} from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { openModal } from '@store/actions/appActions';
-import { setBaseCurrency } from '@store/actions/currencyActions';
+import { setBaseCurrency, setCurrencies } from '@store/actions/currencyActions';
 import {
     getCurrenciesError,
     getCurrenciesSelector,
 } from '@store/selectors/currencySelectors';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
+import { getCache } from '@utils/cacheData';
 import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 import { roundNumber } from '@utils/roundNumber';
 
@@ -22,7 +26,10 @@ export const CurrenciesList: FC = () => {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (currencies === null) dispatch(fetchCurrencyThunk());
+        const cachedCurrencyData = getCache<Currencies>('currencyData');
+        if (cachedCurrencyData !== null)
+            dispatch(setCurrencies(cachedCurrencyData));
+        else dispatch(fetchCurrencyThunk());
     }, []);
 
     const handleClick = useCallback(

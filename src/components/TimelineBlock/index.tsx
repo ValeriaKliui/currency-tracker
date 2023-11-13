@@ -6,10 +6,12 @@ import { Select } from '@components/Select';
 import { ConcreteSubject, observer } from '@components/TimelineObserver';
 import { CURRENCIES_HISTORY_AVAILABLE } from '@constants/constants/currencies';
 import {
+    type Currencies,
     type TimelineBlockProps,
     type TimelineBlockState,
     type TimelineI,
 } from '@constants/interfaces/interfaces';
+import { getCache } from '@utils/cacheData';
 import { configChart } from '@utils/configChart';
 import { formatDate } from '@utils/formatDate';
 import {
@@ -65,7 +67,7 @@ export class TimelineBlock extends Component<
     }
 
     componentDidMount() {
-        if (this.props.currencies === null) this.fetchCurrencyInit();
+        this.setCurrencyInit();
         this.subject.subscribe(observer);
     }
 
@@ -108,8 +110,11 @@ export class TimelineBlock extends Component<
         this.subject.unsubscribe(observer);
     }
 
-    fetchCurrencyInit = () => {
-        this.props.fetchCurrencyThunk();
+    setCurrencyInit = () => {
+        const { fetchCurrencyThunk, setCurrencies } = this.props;
+        const cachedCurrencyData = getCache<Currencies>('currencyData');
+        if (cachedCurrencyData !== null) setCurrencies(cachedCurrencyData);
+        else fetchCurrencyThunk();
     };
 
     fetchCurrencyHistory = () => {

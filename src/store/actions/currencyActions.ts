@@ -4,9 +4,9 @@ import {
     type CurrenciesEnum,
 } from '@constants/interfaces/interfaces';
 
-export const fetchCurrencies = (currencies: Currencies) => {
+export const setCurrencies = (currencies: Currencies) => {
     return {
-        type: 'CURRENCY/FETCH_CURRENCIES',
+        type: 'CURRENCY/SET_CURRENCIES',
         payload: currencies,
     } as const;
 };
