@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import { Hints } from '@components/Hints';
 import {
-    type CurrenciesEnum,
+    type CurrencyCodeType,
     type SelectProps,
 } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
@@ -18,7 +18,7 @@ export const Select: FC<SelectProps> = ({ options }) => {
     const isHintsOpened = useAppSelector(getIsHintsOpened);
     const targetCurrencyCode = useAppSelector(getTargetCurrencySelector);
 
-    const chooseCurrency = (currencyCode: keyof typeof CurrenciesEnum) => {
+    const chooseCurrency = (currencyCode: CurrencyCodeType) => {
         dispatch(setTargetCurrency(currencyCode));
     };
     const openHints = () => {

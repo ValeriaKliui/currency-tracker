@@ -1,5 +1,8 @@
-import { CurrenciesEnum } from '@constants/interfaces/interfaces';
+import {
+    CurrenciesEnum,
+    type CurrencyCodeType,
+} from '@constants/interfaces/interfaces';
 
-export const getCurrencyNameByCode = (code: keyof typeof CurrenciesEnum) => {
+export const getCurrencyNameByCode = (code: CurrencyCodeType) => {
     return CurrenciesEnum[code];
 };

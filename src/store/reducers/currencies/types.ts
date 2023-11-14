@@ -1,7 +1,7 @@
 import {
     type Bank,
     type Currencies,
-    type CurrenciesEnum,
+    type CurrencyCodeType,
 } from '@constants/interfaces/interfaces';
 import type {
     fetchCurrenciesError,
@@ -28,8 +28,8 @@ export interface ITimelineDayData {
 export interface CurrencyState {
     currencies: Currencies | null;
     error: string | null;
-    baseCurrencyCode: keyof typeof CurrenciesEnum | null;
-    targetCurrencyCode: keyof typeof CurrenciesEnum | null;
+    baseCurrencyCode: CurrencyCodeType | null;
+    targetCurrencyCode: CurrencyCodeType | null;
     convertedCurrencyValue: number | null;
     banksData: Bank[] | null;
     currencyAmount: number;

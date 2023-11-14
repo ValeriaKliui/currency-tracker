@@ -1,12 +1,12 @@
 import { type FC, useCallback } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import {
-    type CurrenciesEnum,
+    type CurrencyCodeType,
     type HintsProps,
 } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { useClickOutside } from '@hooks/useClickOutside';
-import { openModal, setIsHintsOpened } from '@store/actions/appActions';
+import { setIsHintsOpened } from '@store/actions/appActions';
 import { getIsHintsOpened } from '@store/selectors/appSelector';
 
 import { OptionsContainer } from './styled';
@@ -20,8 +20,8 @@ export const Hints: FC<HintsProps> = ({ options, onOptionClick }) => {
     });
 
     const handleClick = useCallback(
-        (code: keyof typeof CurrenciesEnum | null) => () => {
-            dispatch(openModal());
+        (code: CurrencyCodeType | null) => () => {
+            dispatch(setIsHintsOpened(false));
             code !== null && onOptionClick(code);
         },
         [],

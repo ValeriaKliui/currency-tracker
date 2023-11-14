@@ -39,6 +39,9 @@ export const GlobalStyle = styled.createGlobalStyle`
     li {
         list-style-type: none;
     }
+    ul {
+        padding: 0;
+    }
     h1,
     h2,
     h3,

@@ -1,6 +1,6 @@
 import type {
     Currencies,
-    CurrenciesEnum,
+    CurrencyCodeType,
 } from '@constants/interfaces/interfaces';
 import { type RootStoreType } from '@store/types/interfaces';
 
@@ -11,10 +11,10 @@ export const getCurrenciesError = (state: RootStoreType): string | null =>
     state.currencies.error;
 export const getBaseCurrencySelector = (
     state: RootStoreType,
-): keyof typeof CurrenciesEnum | null => state.currencies.baseCurrencyCode;
+): CurrencyCodeType | null => state.currencies.baseCurrencyCode;
 export const getTargetCurrencySelector = (
     state: RootStoreType,
-): keyof typeof CurrenciesEnum | null => state.currencies.targetCurrencyCode;
+): CurrencyCodeType | null => state.currencies.targetCurrencyCode;
 export const getConvertedCurrencyValue = (
     state: RootStoreType,
 ): number | null => state.currencies.convertedCurrencyValue;

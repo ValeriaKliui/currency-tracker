@@ -4,7 +4,7 @@ import { Error } from '@components/Error';
 import { CURRENCIES_ROUNDING, STOCKS } from '@constants/constants/currencies';
 import {
     type Currencies,
-    type CurrenciesEnum,
+    type CurrencyCodeType,
 } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { openModal } from '@store/actions/appActions';
@@ -33,16 +33,13 @@ export const CurrenciesList: FC = () => {
     }, []);
 
     const handleClick = useCallback(
-        (code: keyof typeof CurrenciesEnum | null) => () => {
+        (code: CurrencyCodeType | null) => () => {
             dispatch(openModal());
             dispatch(setBaseCurrency(code));
         },
         [],
     );
-    const toStringRound = (
-        value: number,
-        code: keyof typeof CurrenciesEnum,
-    ) => {
+    const toStringRound = (value: number, code: CurrencyCodeType) => {
         return String(
             roundNumber(
                 value,

@@ -49,13 +49,14 @@ export interface Theme {
     };
 }
 
+export type CurrencyCodeType = keyof typeof CurrenciesEnum;
 export interface Currencies {
     meta: { last_updated_at: string };
     data: Record<string, Currency>;
 }
 
 export interface Currency {
-    code: keyof typeof CurrenciesEnum;
+    code: CurrencyCodeType;
     value: number;
 }
 export enum CurrenciesEnum {
@@ -73,7 +74,7 @@ export interface CurrencyItemProps {
     currencyName?: string;
     icon?: string;
     onClick?: () => void;
-    currencyCode?: keyof typeof CurrenciesEnum;
+    currencyCode?: CurrencyCodeType;
     scalable?: boolean;
     subText?: string;
 }
@@ -86,8 +87,8 @@ export interface SelectProps {
 }
 
 export interface TimelineBlockProps {
-    baseCurrencyCode: keyof typeof CurrenciesEnum | null;
-    targetCurrencyCode: keyof typeof CurrenciesEnum | null;
+    baseCurrencyCode: CurrencyCodeType | null;
+    targetCurrencyCode: CurrencyCodeType | null;
     currencies: Currencies | null;
     currencyTimelineData: TimelineDayData[];
     error: string | null;
@@ -127,7 +128,7 @@ export interface InputProps {
 }
 export interface SearchBlockProps {
     currencies: Currencies | null;
-    targetCurrencyCode: keyof typeof CurrenciesEnum | null;
+    targetCurrencyCode: CurrencyCodeType | null;
     banksData: Bank[] | null;
 }
 export interface SearchBlockState {
@@ -135,9 +136,7 @@ export interface SearchBlockState {
 }
 export interface SearchBlockDispatch {
     fetchCurrencyThunk: () => void;
-    setTargetCurrency: (
-        targetCurrencyCode: keyof typeof CurrenciesEnum | null,
-    ) => void;
+    setTargetCurrency: (targetCurrencyCode: CurrencyCodeType | null) => void;
     setIsHintsOpened: (isHintsOpened: boolean) => void;
     setBanksData: (banksData: Bank[]) => void;
     setCurrencies: (currencies: Currencies) => void;
@@ -145,7 +144,7 @@ export interface SearchBlockDispatch {
 export interface BankCardI extends SearchBlockProps, SearchBlockDispatch {}
 export interface HintsProps {
     options: Currency[];
-    onOptionClick: (currencyCode: keyof typeof CurrenciesEnum) => void;
+    onOptionClick: (currencyCode: CurrencyCodeType) => void;
 }
 export enum BankOpened {
     'Opened' = 'VeryLikelyOpen',
@@ -173,7 +172,7 @@ export interface Bank {
 }
 export interface CardProps {
     banksData: Bank[] | null;
-    targetCurrencyCode: keyof typeof CurrenciesEnum | null;
+    targetCurrencyCode: CurrencyCodeType | null;
 }
 export interface CardDispatch {
     fetchBanksThunk: () => void;
@@ -185,4 +184,13 @@ export interface CardState {
 }
 export interface BanksData {
     results: Bank[];
+}
+export interface NavLinksProps {
+    onClick?: () => void;
+}
+export interface PeriodProps {
+    value: string;
+    name: string;
+    checked: boolean;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }

@@ -54,20 +54,17 @@ export const Footer: FC = () => {
                         <SectionTitle onClick={toggleOpening(sectionTitle)}>
                             {sectionTitle}
                         </SectionTitle>
-                        {sectionLinks.map(({ linkTitle, linkHref }) => {
-                            return (
-                                <SectionLink
-                                    key={linkTitle}
-                                    to={linkHref}
-                                    $isOpened={
-                                        isOpened &&
-                                        sectionTitle === sectionClicked
-                                    }
-                                >
-                                    {linkTitle}
-                                </SectionLink>
-                            );
-                        })}
+                        {sectionLinks.map(({ linkTitle, linkHref }) => (
+                            <SectionLink
+                                key={linkTitle}
+                                to={linkHref}
+                                $isOpened={
+                                    isOpened && sectionTitle === sectionClicked
+                                }
+                            >
+                                {linkTitle}
+                            </SectionLink>
+                        ))}
                         <ArrowMobileContainer
                             onClick={toggleOpening(sectionTitle)}
                             $isOpened={

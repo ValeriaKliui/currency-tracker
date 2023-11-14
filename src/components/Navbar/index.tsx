@@ -1,10 +1,11 @@
 import { type FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '@assets/img/logo.svg';
+import { BurgerMenu } from '@components/BurgerMenu';
+import { NavLinks } from '@components/NavLinks';
 import { ThemeToggler } from '@components/ThemeToggler';
-import { NAVIGATION_ITEMS } from '@constants/constants/navigation';
 
-import { Container, LogoContainer, NavItem, NavList } from './styled';
+import { Container, LogoContainer, MobileContainer } from './styled';
 
 export const Navbar: FC = () => {
     return (
@@ -17,14 +18,14 @@ export const Navbar: FC = () => {
                     <Logo />
                 </NavLink>
             </LogoContainer>
-            <NavList>
-                {NAVIGATION_ITEMS.map(({ path, navTitle }) => (
-                    <NavItem key={navTitle}>
-                        <NavLink to={path}>{navTitle}</NavLink>
-                    </NavItem>
-                ))}
-            </NavList>
-            <ThemeToggler />
+            <MobileContainer>
+                <NavLinks />
+            </MobileContainer>
+            <MobileContainer>
+                <ThemeToggler />
+            </MobileContainer>
+
+            <BurgerMenu />
         </Container>
     );
 };

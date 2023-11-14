@@ -1,7 +1,7 @@
 import {
     type Bank,
     type Currencies,
-    type CurrenciesEnum,
+    type CurrencyCodeType,
 } from '@constants/interfaces/interfaces';
 
 export const setCurrencies = (currencies: Currencies) => {
@@ -16,16 +16,14 @@ export const fetchCurrenciesError = (errorStr: string) => {
         payload: errorStr,
     } as const;
 };
-export const setBaseCurrency = (
-    baseCurrencyCode: keyof typeof CurrenciesEnum | null,
-) => {
+export const setBaseCurrency = (baseCurrencyCode: CurrencyCodeType | null) => {
     return {
         type: 'CURRENCY/SET_BASE_CURRENCY',
         payload: baseCurrencyCode,
     } as const;
 };
 export const setTargetCurrency = (
-    targetCurrencyCode: keyof typeof CurrenciesEnum | null,
+    targetCurrencyCode: CurrencyCodeType | null,
 ) => {
     return {
         type: 'CURRENCY/SET_TARGET_CURRENCY',

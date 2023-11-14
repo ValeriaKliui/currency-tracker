@@ -2,6 +2,7 @@ import { type ChangeEvent, Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Error } from '@components/Error';
+import { Period } from '@components/Period';
 import { Select } from '@components/Select';
 import { ConcreteSubject, observer } from '@components/TimelineObserver';
 import { CURRENCIES_HISTORY_AVAILABLE } from '@constants/constants/currencies';
@@ -33,9 +34,7 @@ import {
     DateContainer,
     DateInput,
     DatesContainer,
-    PeriodLabel,
     Periods,
-    PeriodType,
 } from './styled';
 
 ChartJS.register(
@@ -153,30 +152,19 @@ export class TimelineBlock extends Component<
                     <Select options={selectOptions} />
                     <Periods>
                         <p>Choose duration:</p>
-                        <PeriodLabel
-                            $isChoosen={this.state.duration === 'month'}
-                        >
-                            month
-                            <PeriodType
-                                type="radio"
-                                value="month"
-                                name="duration"
-                                checked={this.state.duration === 'month'}
-                                onChange={this.handleChange}
-                            />
-                        </PeriodLabel>
-                        <PeriodLabel
-                            $isChoosen={this.state.duration === 'period'}
-                        >
-                            period
-                            <PeriodType
-                                type="radio"
-                                value="period"
-                                name="duration"
-                                checked={this.state.duration === 'period'}
-                                onChange={this.handleChange}
-                            />
-                        </PeriodLabel>
+
+                        <Period
+                            checked={this.state.duration === 'month'}
+                            name="duration"
+                            value="month"
+                            onChange={this.handleChange}
+                        />
+                        <Period
+                            checked={this.state.duration === 'period'}
+                            name="duration"
+                            value="period"
+                            onChange={this.handleChange}
+                        />
                     </Periods>
 
                     {duration === 'period' && (

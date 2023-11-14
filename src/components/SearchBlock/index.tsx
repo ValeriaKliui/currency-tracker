@@ -7,6 +7,7 @@ import {
     type BankCardI,
     type Currencies,
     CurrenciesEnum,
+    type CurrencyCodeType,
     type SearchBlockDispatch,
     type SearchBlockProps,
     type SearchBlockState,
@@ -14,7 +15,9 @@ import {
 import { setIsHintsOpened } from '@store/actions/appActions';
 import {
     setBanksData,
- setCurrencies,    setTargetCurrency } from '@store/actions/currencyActions';
+    setCurrencies,
+    setTargetCurrency,
+} from '@store/actions/currencyActions';
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { type RootStoreType } from '@store/types/interfaces';
 import { getCache } from '@utils/cacheData';
@@ -59,7 +62,7 @@ export class SearchBlock extends Component<
         this.props.setIsHintsOpened(true);
     }
 
-    chooseCurrency(currencyCode: keyof typeof CurrenciesEnum) {
+    chooseCurrency(currencyCode: CurrencyCodeType) {
         const { setTargetCurrency } = this.props;
         setTargetCurrency(currencyCode);
     }
