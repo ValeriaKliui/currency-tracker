@@ -21,6 +21,7 @@ import {
 import { fetchCurrencyThunk } from '@store/services/currencyThunk';
 import { type RootStoreType } from '@store/types/interfaces';
 import { getCache } from '@utils/cacheData';
+import { getAvailableCurrencies } from '@utils/getAvailableCurrencies';
 
 import { Container, SearchContainer } from './styled';
 
@@ -70,19 +71,12 @@ export class SearchBlock extends Component<
     render() {
         const { currencies, targetCurrencyCode } = this.props;
         const { inputValueBankCard } = this.state;
-        const selectOptions =
-            currencies === null
-                ? []
-                : Object.values(currencies.data).filter(({ code }) => {
-                      return (
-                          code
-                              .toLowerCase()
-                              .includes(inputValueBankCard.toLowerCase()) ||
-                          CurrenciesEnum[code]
-                              .toLowerCase()
-                              .includes(inputValueBankCard.toLowerCase())
-                      );
-                  });
+        const selectOptions = getAvailableCurrencies(currencies, ({ code }) => {
+            code.toLowerCase().includes(inputValueBankCard.toLowerCase()) ||
+                CurrenciesEnum[code]
+                    .toLowerCase()
+                    .includes(inputValueBankCard.toLowerCase());
+        });
 
         return (
             <Container>

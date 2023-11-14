@@ -5,9 +5,13 @@ import { Error } from '@components/Error';
 import { Period } from '@components/Period';
 import { Select } from '@components/Select';
 import { ConcreteSubject, observer } from '@components/TimelineObserver';
-import { CURRENCIES_HISTORY_AVAILABLE } from '@constants/constants/currencies';
+import {
+    CURRENCIES_HISTORY_AVAILABLE,
+    TIMELINE_DURATION,
+} from '@constants/constants/currencies';
 import {
     type Currencies,
+    type Currency,
     type TimelineBlockProps,
     type TimelineBlockState,
     type TimelineI,
@@ -15,6 +19,7 @@ import {
 import { getCache } from '@utils/cacheData';
 import { configChart } from '@utils/configChart';
 import { formatDate } from '@utils/formatDate';
+import { getAvailableCurrencies } from '@utils/getAvailableCurrencies';
 import {
     BarElement,
     CategoryScale,
@@ -54,6 +59,10 @@ export class TimelineBlock extends Component<
 > {
     prevMonth = new Date();
     subject = new ConcreteSubject(this.props.currencyTimelineData);
+    isChartReady =
+        this.props.currencyTimelineData !== null &&
+        this.props.currencyTimelineData.length !== 0 &&
+        this.props.targetCurrencyCode !== null;
 
     constructor(props: TimelineI) {
         super(props);
@@ -61,7 +70,7 @@ export class TimelineBlock extends Component<
         this.state = {
             historyDateStart: formatDate(this.prevMonth),
             historyDateEnd: formatDate(new Date()),
-            duration: 'month',
+            duration: TIMELINE_DURATION.default,
         };
     }
 
@@ -80,26 +89,25 @@ export class TimelineBlock extends Component<
             this.state.historyDateEnd !== prevState.historyDateEnd
         )
             this.fetchCurrencyHistory();
+
         if (prevState.duration !== this.state.duration) {
             this.setState((prevState) => ({
                 ...prevState,
                 duration: this.state.duration,
             }));
-        }
-
-        if (
-            prevState.duration !== this.state.duration &&
-            this.state.duration === 'month'
-        ) {
-            this.setState({
-                historyDateStart: formatDate(this.prevMonth),
-                historyDateEnd: formatDate(new Date()),
-            });
+            if (this.state.duration === TIMELINE_DURATION.default) {
+                this.setState({
+                    historyDateStart: formatDate(this.prevMonth),
+                    historyDateEnd: formatDate(new Date()),
+                });
+                this.props.currencyTimelineData.length !== 0 &&
+                    this.subject.processData();
+            }
         }
 
         if (
             this.props.currencyTimelineData.length !== 0 &&
-            this.state.duration === 'month'
+            this.state.duration === TIMELINE_DURATION.default
         ) {
             this.subject.processData();
         }
@@ -136,15 +144,17 @@ export class TimelineBlock extends Component<
         const { targetCurrencyCode, currencies, currencyTimelineData, error } =
             this.props;
 
-        const { duration } = this.state;
+        const { duration, historyDateStart, historyDateEnd } = this.state;
         const { data, options, plugins } = configChart(currencyTimelineData);
 
-        const selectOptions =
-            currencies === null
-                ? []
-                : Object.values(currencies.data).filter((currency) =>
-                      CURRENCIES_HISTORY_AVAILABLE.includes(currency.code),
-                  );
+        const selectOptions = getAvailableCurrencies(
+            currencies,
+            (currency: Currency) =>
+                CURRENCIES_HISTORY_AVAILABLE.includes(currency.code),
+        );
+
+        const durations = Object.values(TIMELINE_DURATION);
+
         return (
             <Container>
                 {error !== null && <Error text={error} />}
@@ -152,28 +162,24 @@ export class TimelineBlock extends Component<
                     <Select options={selectOptions} />
                     <Periods>
                         <p>Choose duration:</p>
-
-                        <Period
-                            checked={this.state.duration === 'month'}
-                            name="duration"
-                            value="month"
-                            onChange={this.handleChange}
-                        />
-                        <Period
-                            checked={this.state.duration === 'period'}
-                            name="duration"
-                            value="period"
-                            onChange={this.handleChange}
-                        />
+                        {durations.map((duration) => (
+                            <Period
+                                key={duration}
+                                name="duration"
+                                value={duration}
+                                onChange={this.handleChange}
+                                checked={this.state.duration === duration}
+                            />
+                        ))}
                     </Periods>
 
-                    {duration === 'period' && (
+                    {duration === TIMELINE_DURATION.period && (
                         <DatesContainer>
                             <DateContainer>
                                 start date
                                 <DateInput
                                     type="date"
-                                    value={this.state.historyDateStart}
+                                    value={historyDateStart}
                                     name="historyDateStart"
                                     onChange={this.handleChange}
                                 />
@@ -182,7 +188,7 @@ export class TimelineBlock extends Component<
                                 end date
                                 <DateInput
                                     type="date"
-                                    value={this.state.historyDateEnd}
+                                    value={historyDateEnd}
                                     name="historyDateEnd"
                                     onChange={this.handleChange}
                                     max={formatDate(new Date())}
@@ -194,11 +200,9 @@ export class TimelineBlock extends Component<
                         <CurrencyItem currencyCode={targetCurrencyCode} />
                     )}
                 </CurrencyDetails>
-                {currencyTimelineData !== null &&
-                    currencyTimelineData.length !== 0 &&
-                    targetCurrencyCode !== null && (
-                        <Bar data={data} options={options} plugins={plugins} />
-                    )}
+                {this.isChartReady && (
+                    <Bar data={data} options={options} plugins={plugins} />
+                )}
             </Container>
         );
     }

@@ -1,4 +1,4 @@
-import { type FC, useEffect } from 'react';
+import { type ChangeEvent,type FC, useCallback, useEffect } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Input } from '@components/Input';
 import { Select } from '@components/Select';
@@ -49,14 +49,16 @@ export const CurrenciesConverter: FC = () => {
         dispatch(setTargetCurrency(null));
     }, [baseCurrencyCode]);
 
+    const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(setCurrencyAmount(Number(e.target.value)));
+    }, []);
+
     return (
         <ConverterContainer>
             <CenteredTitle>Amount</CenteredTitle>
             <Input
                 value={currencyAmount.toString()}
-                onChange={(e) => {
-                    dispatch(setCurrencyAmount(Number(e.target.value)));
-                }}
+                onChange={onChange}
                 type="number"
             />
             <Title>From:</Title>

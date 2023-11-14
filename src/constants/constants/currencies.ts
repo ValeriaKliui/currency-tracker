@@ -48,3 +48,7 @@ export const STOCKS = [
     },
 ];
 export const CURRENCIES_HISTORY_AVAILABLE = ['EUR', 'BTC', 'LTC'];
+export const TIMELINE_DURATION = {
+    default: 'month',
+    period: 'period',
+};
