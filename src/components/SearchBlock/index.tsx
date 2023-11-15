@@ -72,10 +72,12 @@ export class SearchBlock extends Component<
         const { currencies, targetCurrencyCode } = this.props;
         const { inputValueBankCard } = this.state;
         const selectOptions = getAvailableCurrencies(currencies, ({ code }) => {
-            code.toLowerCase().includes(inputValueBankCard.toLowerCase()) ||
+            return (
+                code.toLowerCase().includes(inputValueBankCard.toLowerCase()) ||
                 CurrenciesEnum[code]
                     .toLowerCase()
-                    .includes(inputValueBankCard.toLowerCase());
+                    .includes(inputValueBankCard.toLowerCase())
+            );
         });
 
         return (

@@ -1,4 +1,4 @@
-import { type FC, StrictMode } from 'react';
+import { type FC, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createHashRouter, Outlet, RouterProvider } from 'react-router-dom';
@@ -14,6 +14,7 @@ import { getIsFetching } from '@store/selectors/appSelector';
 import { Theme } from '@utils/ThemeProvider';
 
 import { store } from './store';
+import { Error } from '@components/Error';
 
 const BasicLayout: FC = () => {
     const isFetching = useAppSelector(getIsFetching);
@@ -42,7 +43,9 @@ root.render(
         <Provider store={store}>
             <Theme>
                 <GlobalStyle />
-                <RouterProvider router={router} />
+                <Suspense fallback={<Spinner />}>
+                    <RouterProvider router={router} />
+                </Suspense>
             </Theme>
         </Provider>
     </StrictMode>,

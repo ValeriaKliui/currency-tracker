@@ -1,6 +1,18 @@
-import { BankCard } from '@pages/BankCard';
-import { Home } from '@pages/Home';
-import Timeline from '@pages/Timeline';
+import { lazy } from 'react';
+
+const Home = lazy(
+    async () =>
+        await import('@pages/Home').then(({ Home }) => ({ default: Home })),
+);
+
+const Timeline = lazy(async () => await import('@pages/Timeline'));
+
+const BankCard = lazy(
+    async () =>
+        await import('@pages/BankCard').then(({ BankCard }) => ({
+            default: BankCard,
+        })),
+);
 
 export const NAVIGATION_ITEMS = [
     {

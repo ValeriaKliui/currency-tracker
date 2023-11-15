@@ -6,8 +6,7 @@ import {
 export const getAvailableCurrencies = (
     currencies: Currencies | null,
     filterCallback: (currency: Currency) => void,
-): Currency[] => {
-    return currencies === null
+): Currency[] =>
+    currencies === null
         ? []
         : Object.values(currencies.data).filter(filterCallback);
-};

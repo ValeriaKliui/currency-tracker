@@ -59,10 +59,6 @@ export class TimelineBlock extends Component<
 > {
     prevMonth = new Date();
     subject = new ConcreteSubject(this.props.currencyTimelineData);
-    isChartReady =
-        this.props.currencyTimelineData !== null &&
-        this.props.currencyTimelineData.length !== 0 &&
-        this.props.targetCurrencyCode !== null;
 
     constructor(props: TimelineI) {
         super(props);
@@ -155,6 +151,11 @@ export class TimelineBlock extends Component<
 
         const durations = Object.values(TIMELINE_DURATION);
 
+        const isChartReady =
+            this.props.currencyTimelineData !== null &&
+            this.props.currencyTimelineData.length !== 0 &&
+            this.props.targetCurrencyCode !== null;
+
         return (
             <Container>
                 {error !== null && <Error text={error} />}
@@ -200,7 +201,7 @@ export class TimelineBlock extends Component<
                         <CurrencyItem currencyCode={targetCurrencyCode} />
                     )}
                 </CurrencyDetails>
-                {this.isChartReady && (
+                {isChartReady && (
                     <Bar data={data} options={options} plugins={plugins} />
                 )}
             </Container>

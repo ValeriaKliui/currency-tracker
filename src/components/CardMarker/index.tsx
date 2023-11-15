@@ -1,9 +1,9 @@
-import { Component } from 'react';
+import { Component, PureComponent } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import { type CardMarkerProps } from '@constants/interfaces/interfaces';
 import { getBankStatus } from '@utils/getBankStatus';
 
-export class CardMarker extends Component<CardMarkerProps> {
+export class CardMarker extends PureComponent<CardMarkerProps> {
     render() {
         const {
             onClick,
