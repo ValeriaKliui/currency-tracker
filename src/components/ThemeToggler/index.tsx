@@ -1,4 +1,4 @@
-import { type FC,useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { ThemeEnum } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { setTheme } from '@store/actions/appActions';

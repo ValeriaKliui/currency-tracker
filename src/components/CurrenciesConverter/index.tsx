@@ -1,4 +1,4 @@
-import { type ChangeEvent,type FC, useCallback, useEffect } from 'react';
+import { type ChangeEvent, type FC, useCallback, useEffect } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Input } from '@components/Input';
 import { Select } from '@components/Select';
@@ -31,8 +31,8 @@ export const CurrenciesConverter: FC = () => {
 
     const currenciesArray =
         currencies != null ? Object.values(currencies.data) : [];
+
     const convertedRoundedValue =
-        convertedCurrencyValue !== null &&
         targetCurrency !== null &&
         roundNumber(
             convertedCurrencyValue,
@@ -65,16 +65,14 @@ export const CurrenciesConverter: FC = () => {
             {baseCurrencyCode !== null && (
                 <CurrencyItem currencyCode={baseCurrencyCode} />
             )}
-            <h3>To:</h3>
+            <Title>To:</Title>
             <Select options={currenciesArray} />
             {convertedCurrencyValue !== null && targetCurrency !== null && (
-                <>
-                    <CenteredTitle>
-                        {currencyAmount} {baseCurrencyCode} ={' '}
-                        {Number(convertedRoundedValue) * currencyAmount}{' '}
-                        {targetCurrency}
-                    </CenteredTitle>
-                </>
+                <CenteredTitle>
+                    {currencyAmount} {baseCurrencyCode} ={' '}
+                    {Number(convertedRoundedValue) * currencyAmount}{' '}
+                    {targetCurrency}
+                </CenteredTitle>
             )}
         </ConverterContainer>
     );

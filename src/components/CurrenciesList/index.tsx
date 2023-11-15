@@ -39,6 +39,7 @@ export const CurrenciesList: FC = () => {
         },
         [],
     );
+
     const toStringRound = (value: number, code: CurrencyCodeType) => {
         return String(
             roundNumber(
@@ -75,19 +76,15 @@ export const CurrenciesList: FC = () => {
                     <EmptyCell />
                     {currencies !== null &&
                         Object.values(currencies.data).map(
-                            ({ code, value }) => {
-                                return (
-                                    <CurrencyItem
-                                        key={code}
-                                        currencyCode={code}
-                                        subText={
-                                            'R$ ' + toStringRound(value, code)
-                                        }
-                                        onClick={handleClick(code)}
-                                        scalable={true}
-                                    />
-                                );
-                            },
+                            ({ code, value }) => (
+                                <CurrencyItem
+                                    key={code}
+                                    currencyCode={code}
+                                    subText={'R$ ' + toStringRound(value, code)}
+                                    onClick={handleClick(code)}
+                                    scalable={true}
+                                />
+                            ),
                         )}
                 </CurrenciesContainer>
             )}

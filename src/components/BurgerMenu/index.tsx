@@ -1,4 +1,4 @@
-import { type FC,useState } from 'react';
+import { type FC, useState } from 'react';
 import { NavLinks } from '@components/NavLinks';
 import { ThemeToggler } from '@components/ThemeToggler';
 

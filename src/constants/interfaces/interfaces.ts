@@ -1,4 +1,8 @@
 import type { ChangeEvent, ReactNode } from 'react';
+import {
+    type MarkerEvent,
+    type MarkerInstance,
+} from 'react-map-gl/dist/esm/types';
 export interface ErrorBoundaryProps {
     children?: ReactNode;
 }
@@ -193,4 +197,10 @@ export interface PeriodProps {
     name: string;
     checked: boolean;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+export interface CardMarkerProps {
+    bank: Bank;
+    onClick: (e: MarkerEvent<MarkerInstance, MouseEvent>) => void;
+    onClose: () => void;
+    selectedBankID: string | null;
 }

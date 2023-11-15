@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC, memo } from 'react';
 import { Hints } from '@components/Hints';
 import {
     type CurrencyCodeType,
@@ -13,7 +13,7 @@ import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 
 import { ChoosenOption, SelectContainer } from './styled';
 
-export const Select: FC<SelectProps> = ({ options }) => {
+export const Select: FC<SelectProps> = memo(({ options }) => {
     const dispatch = useAppDispatch();
     const isHintsOpened = useAppSelector(getIsHintsOpened);
     const targetCurrencyCode = useAppSelector(getTargetCurrencySelector);
@@ -35,4 +35,4 @@ export const Select: FC<SelectProps> = ({ options }) => {
             <Hints options={options} onOptionClick={chooseCurrency} />
         </SelectContainer>
     );
-};
+});

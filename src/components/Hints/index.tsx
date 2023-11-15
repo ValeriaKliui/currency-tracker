@@ -1,4 +1,4 @@
-import { type FC, useCallback } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import {
     type CurrencyCodeType,
@@ -11,7 +11,7 @@ import { getIsHintsOpened } from '@store/selectors/appSelector';
 
 import { OptionsContainer } from './styled';
 
-export const Hints: FC<HintsProps> = ({ options, onOptionClick }) => {
+export const Hints: FC<HintsProps> = memo(({ options, onOptionClick }) => {
     const dispatch = useAppDispatch();
     const isHintsOpened = useAppSelector(getIsHintsOpened);
 
@@ -38,4 +38,4 @@ export const Hints: FC<HintsProps> = ({ options, onOptionClick }) => {
             ))}
         </OptionsContainer>
     );
-};
+});

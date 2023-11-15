@@ -1,3 +1,4 @@
-export const roundNumber = (number: number, rounding: number) => {
-    return number.toFixed(rounding);
+export const roundNumber = (number: number | null, rounding: number | null) => {
+    if (number !== null && rounding !== null) return number.toFixed(rounding);
+    return null;
 };

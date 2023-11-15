@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import { Map, Marker, Popup } from 'react-map-gl';
+import { Map } from 'react-map-gl';
 import { connect } from 'react-redux';
+import { CardMarker } from '@components/CardMarker';
 import {
-    BankOpened,
     type CardDispatch,
     type CardI,
     type CardProps,
@@ -76,51 +76,14 @@ export class Card extends Component<CardI, CardState> {
                     >
                         {banksData !== null &&
                             getRelevantBanks(targetCurrencyCode, banksData).map(
-                                ({
-                                    fsq_id: bankID,
-                                    geocodes,
-                                    name,
-                                    closed_bucket: isOpened,
-                                    location: { formatted_address: address },
-                                }) => (
-                                    <div key={bankID}>
-                                        <Marker
-                                            style={{ cursor: 'pointer' }}
-                                            longitude={geocodes.main.longitude}
-                                            latitude={geocodes.main.latitude}
-                                            onClick={this.openPopUp(bankID)}
-                                        />
-                                        {bankID === selectedBankID && (
-                                            <Popup
-                                                latitude={
-                                                    geocodes.main.latitude
-                                                }
-                                                longitude={
-                                                    geocodes.main.longitude
-                                                }
-                                                offset={30}
-                                                style={{ color: 'black' }}
-                                                onClose={this.closePopUp}
-                                                closeButton={true}
-                                                closeOnClick={false}
-                                            >
-                                                <h3>Банк: {name}</h3>
-                                                <p>
-                                                    <i>
-                                                        {isOpened !== null &&
-                                                            Object.entries(
-                                                                BankOpened,
-                                                            ).filter(
-                                                                (status) =>
-                                                                    status[1] ===
-                                                                    isOpened,
-                                                            )[0][0]}
-                                                    </i>
-                                                </p>
-                                                <p>Адрес: {address}</p>
-                                            </Popup>
-                                        )}
-                                    </div>
+                                (bank) => (
+                                    <CardMarker
+                                        key={bank.fsq_id}
+                                        bank={bank}
+                                        onClick={this.openPopUp(bank.fsq_id)}
+                                        onClose={this.closePopUp}
+                                        selectedBankID={selectedBankID}
+                                    />
                                 ),
                             )}
                     </Map>
