@@ -1,4 +1,6 @@
-export const convertTimeAMPM = (dateString: string): string => {
+export const convertTimeAMPM = (dateString: string | undefined): string => {
+    if (dateString === undefined || dateString.length === 0) return '';
+
     const timeZoneDate = new Date(Date.parse(dateString)).toLocaleString(
         'en-US',
         { timeZone: 'UTC' },

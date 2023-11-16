@@ -1,4 +1,4 @@
-import { type FC, useState, useCallback } from 'react';
+import { type FC, useState, useCallback, useReducer } from 'react';
 import { NavLinks } from '@components/NavLinks';
 import { ThemeToggler } from '@components/ThemeToggler';
 
@@ -11,11 +11,10 @@ import {
 } from './styled';
 
 export const BurgerMenu: FC = () => {
-    const [isMenuOpened, setIsMenuOpened] = useState(false);
-
-    const toggleMenu = useCallback(() => {
-        setIsMenuOpened(!isMenuOpened);
-    }, [isMenuOpened]);
+    const [isMenuOpened, toggleMenu] = useReducer(
+        (isMenuOpened: boolean) => !isMenuOpened,
+        false,
+    );
 
     return (
         <>

@@ -11,6 +11,15 @@ const config = {
     // Automatically clear mock calls, instances, contexts and results before every test
     clearMocks: true,
 
+    moduleNameMapper: {
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+            '<rootDir>__mocks__/fileMock.js',
+        '\\.(css|less|scss|sss|styl)$':
+            '<rootDir>/node_modules/identity-obj-proxy',
+        '\\.svg$': '<rootDir>__mocks__/svg.js',
+        '^@utils/(.*)': '<rootDir>src/utils/$1',
+    },
+
     // An array of regexp pattern strings used to skip coverage collection
     coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
 
@@ -21,7 +30,7 @@ const config = {
     rootDir: './',
 
     // The glob patterns Jest uses to detect test files
-    testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+    testMatch: ['<rootDir>/src/tests/**/*(*.)@(spec|test).[tj]s?(x)'],
 
     // All imported modules in your tests should be mocked automatically
     // automock: false,
