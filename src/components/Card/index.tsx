@@ -74,18 +74,17 @@ export class Card extends Component<CardI, CardState> {
                         mapStyle="mapbox://styles/mapbox/streets-v11"
                         style={{ height: '50vh' }}
                     >
-                        {banksData !== null &&
-                            getRelevantBanks(targetCurrencyCode, banksData).map(
-                                (bank) => (
-                                    <CardMarker
-                                        key={bank.fsq_id}
-                                        bank={bank}
-                                        onClick={this.openPopUp(bank.fsq_id)}
-                                        onClose={this.closePopUp}
-                                        selectedBankID={selectedBankID}
-                                    />
-                                ),
-                            )}
+                        {getRelevantBanks(targetCurrencyCode, banksData).map(
+                            (bank) => (
+                                <CardMarker
+                                    key={bank.fsq_id}
+                                    bank={bank}
+                                    onClick={this.openPopUp(bank.fsq_id)}
+                                    onClose={this.closePopUp}
+                                    selectedBankID={selectedBankID}
+                                />
+                            ),
+                        )}
                     </Map>
                 )}
             </>

@@ -2,8 +2,9 @@ import { type Bank } from '@constants/interfaces/interfaces';
 
 export const getRelevantBanks = (
     currencyCode: string | null,
-    banksData: Bank[],
+    banksData: Bank[] | null,
 ): Bank[] => {
+    if (banksData === null) return [];
     switch (currencyCode) {
         case 'EUR || USD':
             return banksData;

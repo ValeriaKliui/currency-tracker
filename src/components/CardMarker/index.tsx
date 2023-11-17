@@ -1,7 +1,7 @@
-import { Component, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import { type CardMarkerProps } from '@constants/interfaces/interfaces';
-import { getBankStatus } from '@utils/getBankStatus';
+import { formatBankStatus } from '@utils/formatBankStatus';
 
 export class CardMarker extends PureComponent<CardMarkerProps> {
     render() {
@@ -40,9 +40,7 @@ export class CardMarker extends PureComponent<CardMarkerProps> {
                     >
                         <h3>Банк: {name}</h3>
                         <p>
-                            <i>
-                                {isOpened !== null && getBankStatus(isOpened)}
-                            </i>
+                            <i>{formatBankStatus(isOpened)}</i>
                         </p>
                         <p>Адрес: {address}</p>
                     </Popup>

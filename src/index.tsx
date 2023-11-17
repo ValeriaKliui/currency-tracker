@@ -14,7 +14,6 @@ import { getIsFetching } from '@store/selectors/appSelector';
 import { Theme } from '@utils/ThemeProvider';
 
 import { store } from './store';
-import { Error } from '@components/Error';
 
 const BasicLayout: FC = () => {
     const isFetching = useAppSelector(getIsFetching);

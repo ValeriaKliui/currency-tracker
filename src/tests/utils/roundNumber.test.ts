@@ -8,16 +8,16 @@ describe('round number', () => {
         [0.342413423, -5, null],
     ];
 
-    test('returns null for null input', () => {
-        const result = roundNumber(null, null);
-        expect(result).toEqual(null);
-    });
-
     test.each(cases)(
         'returns correctly formatted string for valid input',
         (firstArg: number, secondArg: number, expectedResult: string) => {
             const result = roundNumber(firstArg, secondArg);
-            expect(result).toEqual(expectedResult);
+            expect(result).toStrictEqual(expectedResult);
         },
     );
+
+    test('returns null for null input', () => {
+        const result = roundNumber(null, null);
+        expect(result).toStrictEqual(null);
+    });
 });

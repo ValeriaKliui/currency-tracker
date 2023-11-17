@@ -1,4 +1,4 @@
-import { type FC, useState, useCallback, useReducer } from 'react';
+import { type FC, useReducer } from 'react';
 import { NavLinks } from '@components/NavLinks';
 import { ThemeToggler } from '@components/ThemeToggler';
 
