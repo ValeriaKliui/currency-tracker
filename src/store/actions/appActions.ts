@@ -17,17 +17,13 @@ export const setIsFetching = (isFetching: boolean) => {
 export const openModal = () => {
     return {
         type: 'APP/OPEN_MODAL',
-        payload: {
-            isModalOpened: true,
-        },
+        payload: true,
     } as const;
 };
 export const closeModal = () => {
     return {
         type: 'APP/CLOSE_MODAL',
-        payload: {
-            isModalOpened: false,
-        },
+        payload: false,
     } as const;
 };
 export const setIsHintsOpened = (isHintsOpened: boolean) => {

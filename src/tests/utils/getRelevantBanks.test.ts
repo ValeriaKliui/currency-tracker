@@ -1,26 +1,27 @@
-import { Bank } from '@constants/interfaces/interfaces';
+import { type Bank } from '@constants/interfaces/interfaces';
 import { getRelevantBanks } from '@utils/getRelevantBanks';
-import { bankData } from '../mocks/mocks';
+
+import { banksData } from '../mocks/mocks';
 
 describe('get relevant banks for choosen currency', () => {
     const cases = [
         [
             'JPY',
-            bankData,
-            bankData.filter((bank) =>
+            banksData,
+            banksData.filter((bank) =>
                 Boolean(bank.name.toLowerCase().includes('техно')),
             ),
         ],
         [
             'AUD',
-            bankData,
-            bankData.filter(
+            banksData,
+            banksData.filter(
                 (bank) =>
                     Boolean(bank.name.toLowerCase().includes('белинв')) ||
                     Boolean(bank.name.toLowerCase().includes('техно')),
             ),
         ],
-        ['EUR', bankData, bankData],
+        ['EUR', banksData, banksData],
     ];
 
     test.each(cases)(
@@ -32,11 +33,11 @@ describe('get relevant banks for choosen currency', () => {
     );
 
     test('should return all banks for incorredct input', () => {
-        const resultEmpty = getRelevantBanks('', bankData);
-        expect(resultEmpty).toStrictEqual(bankData);
+        const resultEmpty = getRelevantBanks('', banksData);
+        expect(resultEmpty).toStrictEqual(banksData);
 
-        const resultWrong = getRelevantBanks('wrong data', bankData);
-        expect(resultWrong).toStrictEqual(bankData);
+        const resultWrong = getRelevantBanks('wrong data', banksData);
+        expect(resultWrong).toStrictEqual(banksData);
     });
 
     test('should return empty array if no banks data', () => {

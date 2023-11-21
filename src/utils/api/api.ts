@@ -31,10 +31,10 @@ export const CurrencyAPI = {
         historyDateStart: string,
         historyDateEnd: string,
     ) {
-        return await cachedAxios
+        return await axios
             .get<TimelineDayData[]>(
                 `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${targetCurrencyCode}_USD/history?apikey=${process.env.REACT_APP_KEY_OXLCV}&period_id=1DAY&time_start=${historyDateStart}&time_end=${historyDateEnd}`,
-
+                // https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?apikey=1BF63EF6-881B-4683-A970-B5CAF04BF982&period_id=1DAY&time_start=2023-10-21&time_end=2023-11-21
                 // `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?apikey=${CURRENCY_KEY}&period_id=1DAY&time_start=2023-10-02T00:00:00&time_end=2023-10-02T23:59:59`,
             )
             .then((response) => response.data);

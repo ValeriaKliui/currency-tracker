@@ -29,7 +29,7 @@ export const ThemeToggler: FC = () => {
     }, []);
 
     return (
-        <TogglerContainer>
+        <TogglerContainer data-testid="theme-toggler">
             <TogglerInput
                 type="checkbox"
                 onChange={onChange}

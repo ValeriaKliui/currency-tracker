@@ -1,4 +1,5 @@
 import { getAvailableCurrencies } from '@utils/getAvailableCurrencies';
+
 import { currenciesData } from '../mocks/mocks';
 
 describe('get available currencies', () => {

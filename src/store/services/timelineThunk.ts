@@ -19,8 +19,10 @@ export const fetchCurrencyTimelineThunk =
                 historyDateEnd,
             );
             dispatch(setIsFetching(false));
+            console.log(res);
             res !== null && dispatch(fetchTimelineHistory(res));
         } catch (e) {
+            console.log(e);
             if (axios.isAxiosError<AxiosError<{ message: string }>>(e)) {
                 const err =
                     e.response !== null ? e.response?.data.message : e.message;

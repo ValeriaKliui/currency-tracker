@@ -15,11 +15,17 @@ const config = {
         '\\.svg$': '<rootDir>__mocks__/svg.js',
         '^@constants/(.*)': '<rootDir>src/constants/$1',
         '^@utils/(.*)': '<rootDir>src/utils/$1',
+        '^@store/(.*)': '<rootDir>src/store/$1',
+        '^@hooks/(.*)': '<rootDir>src/hooks/$1',
     },
     coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
     moduleDirectories: ['node_modules'],
     rootDir: './',
-    testMatch: ['<rootDir>/src/tests/**/*(*.)@(spec|test).[tj]s?(x)'],
+    testMatch: [
+        '<rootDir>/src/tests/**/*(*.)@(spec|test).[tj]s?(x)',
+        '<rootDir>src/**/*(*.)@(spec|test).ts?(x)',
+    ],
+    setupFilesAfterEnv: ['<rootDir>jest.setup.ts'],
 };
 
 module.exports = config;
