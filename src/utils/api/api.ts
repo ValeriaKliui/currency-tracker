@@ -10,11 +10,12 @@ const cachedAxios = setupCache(axios);
 export const CurrencyAPI = {
     async getCurrencies() {
         return await cachedAxios
-            .get<Currencies[]>(
-                // `https://api.currencyapi.com/v3/latest?apikey=${CURRENCY_KEY}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
-                'https://6540914a45bedb25bfc2188a.mockapi.io/test',
+            .get<Currencies>(
+                `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_KEY_CURRENCYAPI}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
             )
-            .then((response) => response.data[0]);
+            .then((response) => {
+                return response.data;
+            });
     },
     async getConversedCurrency(
         baseCurrencyCode: string,
@@ -31,11 +32,9 @@ export const CurrencyAPI = {
         historyDateStart: string,
         historyDateEnd: string,
     ) {
-        return await axios
+        return await cachedAxios
             .get<TimelineDayData[]>(
                 `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${targetCurrencyCode}_USD/history?apikey=${process.env.REACT_APP_KEY_OXLCV}&period_id=1DAY&time_start=${historyDateStart}&time_end=${historyDateEnd}`,
-                // https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?apikey=1BF63EF6-881B-4683-A970-B5CAF04BF982&period_id=1DAY&time_start=2023-10-21&time_end=2023-11-21
-                // `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?apikey=${CURRENCY_KEY}&period_id=1DAY&time_start=2023-10-02T00:00:00&time_end=2023-10-02T23:59:59`,
             )
             .then((response) => response.data);
     },

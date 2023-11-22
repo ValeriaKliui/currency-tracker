@@ -19,7 +19,6 @@ export const fetchCurrencyTimelineThunk =
                 historyDateEnd,
             );
             dispatch(setIsFetching(false));
-            console.log(res);
             res !== null && dispatch(fetchTimelineHistory(res));
         } catch (e) {
             console.log(e);
