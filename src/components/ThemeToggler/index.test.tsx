@@ -6,7 +6,7 @@ import { Theme } from '@utils/ThemeProvider';
 import { ThemeToggler } from '.';
 
 describe('theme toggler', () => {
-    test('Should be rendered on the page', () => {
+    test('should be rendered on the page', () => {
         const { getByTestId } = render(
             <Provider store={store}>
                 <Theme>
@@ -18,7 +18,7 @@ describe('theme toggler', () => {
         expect(toggler).toBeInTheDocument();
     });
 
-    test('Should toggle the theme checkbox checked value and id', () => {
+    test('should toggle the theme checkbox checked value and id', () => {
         const { getByTestId } = render(
             <Provider store={store}>
                 <Theme>

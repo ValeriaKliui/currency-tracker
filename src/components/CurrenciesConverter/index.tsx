@@ -54,7 +54,7 @@ export const CurrenciesConverter: FC = () => {
     }, []);
 
     return (
-        <ConverterContainer>
+        <ConverterContainer data-testid="currencies-converter">
             <CenteredTitle>Amount</CenteredTitle>
             <Input
                 value={currencyAmount.toString()}
