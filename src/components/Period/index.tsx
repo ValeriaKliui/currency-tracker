@@ -15,6 +15,7 @@ export class Period extends Component<PeriodProps> {
                     name={name}
                     checked={checked}
                     onChange={onChange}
+                    data-testid="period"
                 />
             </PeriodLabel>
         );

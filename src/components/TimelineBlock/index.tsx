@@ -57,12 +57,11 @@ export class TimelineBlock extends Component<
     TimelineBlockState,
     TimelineBlockProps
 > {
-    prevMonth = new Date();
+    prevMonth = new Date().setMonth(new Date().getMonth() - 1);
     subject = new ConcreteSubject(this.props.currencyTimelineData);
 
     constructor(props: TimelineI) {
         super(props);
-        this.prevMonth.setMonth(this.prevMonth.getMonth() - 1);
         this.state = {
             historyDateStart: formatDate(this.prevMonth),
             historyDateEnd: formatDate(new Date()),

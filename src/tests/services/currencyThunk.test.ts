@@ -26,7 +26,7 @@ describe('currency thunk', () => {
         process.env = OLD_ENV;
     });
     process.env.REACT_APP_KEY_CURRENCYAPI =
-        'cur_live_PAuYjJpmqsxnbB3j7pFLDLytVJAlq0OmKztPjRrz';
+        'cur_live_8sMXemsaQDJ1FHxHEh6Z2UyEui2pcP1VTWJDwoDZ';
 
     it('Should dispatch currency thunk and fetch currency data', async () => {
         mock.onGet(

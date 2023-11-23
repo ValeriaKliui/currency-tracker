@@ -59,7 +59,7 @@ describe('currencies converter', () => {
         mock.restore();
     });
     process.env.REACT_APP_KEY_CURRENCYAPI =
-        'cur_live_PAuYjJpmqsxnbB3j7pFLDLytVJAlq0OmKztPjRrz';
+        'cur_live_8sMXemsaQDJ1FHxHEh6Z2UyEui2pcP1VTWJDwoDZ';
 
     test('should open converter after click and set base currency', async () => {
         mockCurrencies();

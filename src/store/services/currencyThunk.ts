@@ -21,6 +21,7 @@ export const fetchCurrencyThunk = () => async (dispatch: Dispatch) => {
             setCache<Currencies>('currencyData', res);
         }
     } catch (e) {
+        dispatch(setIsFetching(false));
         if (e !== null && isAxiosError<AxiosError<{ message: string }>>(e)) {
             const errorStr =
                 e.response !== undefined ? e.response?.statusText : e.message;
@@ -44,6 +45,7 @@ export const fetchConversedCurrThunk =
                     setConvertedCurrency(res.data[targetCurrencyCode].value),
                 );
         } catch (e) {
+            dispatch(setIsFetching(false));
             if (axios.isAxiosError<AxiosError<{ message: string }>>(e)) {
                 const err =
                     e.response !== null ? e.response?.data?.message : e.message;
@@ -59,6 +61,7 @@ export const fetchBanksThunk = () => async (dispatch: Dispatch) => {
         dispatch(setIsFetching(false));
         res !== null && dispatch(setBanksData(res.results));
     } catch (e) {
+        dispatch(setIsFetching(false));
         if (axios.isAxiosError<AxiosError<{ message: string }>>(e)) {
             const err =
                 e.response !== null ? e.response?.data.message : e.message;

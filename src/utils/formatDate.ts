@@ -1,4 +1,5 @@
-export const formatDate = (date: Date) => {
+export const formatDate = (date: Date | number) => {
+    if (typeof date === 'number') date = new Date(date);
     if (date.toString().toLowerCase() === 'invalid date') return '';
     const day = date.getDate() > 8 ? date.getDate() : `0${date.getDate()}`;
     const month =
