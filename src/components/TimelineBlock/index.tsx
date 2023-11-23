@@ -202,7 +202,12 @@ export class TimelineBlock extends Component<
                     )}
                 </CurrencyDetails>
                 {isChartReady && (
-                    <Bar data={data} options={options} plugins={plugins} />
+                    <Bar
+                        data={data}
+                        options={options}
+                        plugins={plugins}
+                        data-testid="timeline-chart"
+                    />
                 )}
             </Container>
         );

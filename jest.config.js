@@ -17,6 +17,7 @@ const config = {
         '^@hooks/(.*)': '<rootDir>src/hooks/$1',
         '^@components/(.*)': '<rootDir>src/components/$1',
         '^@assets/(.*)': '<rootDir>src/assets/$1',
+        '^@pages/(.*)': '<rootDir>src/pages/$1',
     },
     coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
     moduleDirectories: ['node_modules'],

@@ -46,7 +46,7 @@ export const fetchConversedCurrThunk =
         } catch (e) {
             if (axios.isAxiosError<AxiosError<{ message: string }>>(e)) {
                 const err =
-                    e.response !== null ? e.response?.data.message : e.message;
+                    e.response !== null ? e.response?.data?.message : e.message;
                 console.log(err);
             }
         }

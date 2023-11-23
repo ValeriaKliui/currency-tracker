@@ -26,7 +26,7 @@ export const Select: FC<SelectProps> = memo(({ options }) => {
     };
 
     return (
-        <SelectContainer>
+        <SelectContainer data-testid="select">
             <ChoosenOption $isOpen={isHintsOpened} onClick={openHints}>
                 {targetCurrencyCode !== null
                     ? getCurrencyNameByCode(targetCurrencyCode)
