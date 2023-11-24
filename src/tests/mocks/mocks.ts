@@ -23,46 +23,17 @@ export const banksData = [
 ];
 
 export const currenciesData: Currencies = {
-    meta: {
-        last_updated_at: '2023-10-30T23:59:59Z',
-    },
+    meta: { last_updated_at: '2023-11-23T23:59:59Z' },
     data: {
-        ARS: {
-            code: 'ARS',
-            value: 350.0210225314,
-        },
-        AUD: {
-            code: 'AUD',
-            value: 1.5702001694,
-        },
-        BTC: {
-            code: 'BTC',
-            value: 0.0000289942,
-        },
-        CAD: {
-            code: 'CAD',
-            value: 1.3828801919,
-        },
-        CNY: {
-            code: 'CNY',
-            value: 7.3134514276,
-        },
-        EUR: {
-            code: 'EUR',
-            value: 0.9418101495,
-        },
-        JPY: {
-            code: 'JPY',
-            value: 149.1421572962,
-        },
-        LTC: {
-            code: 'LTC',
-            value: 0.014456536,
-        },
-        USD: {
-            code: 'USD',
-            value: 1,
-        },
+        ARS: { code: 'ARS', value: 356.931810664 },
+        AUD: { code: 'AUD', value: 1.5241502041 },
+        BTC: { code: 'BTC', value: 0.0000267554 },
+        CAD: { code: 'CAD', value: 1.3694001547 },
+        CNY: { code: 'CNY', value: 7.1446710353 },
+        EUR: { code: 'EUR', value: 0.9169501549 },
+        JPY: { code: 'JPY', value: 149.6046601414 },
+        LTC: { code: 'LTC', value: 0.0143823824 },
+        USD: { code: 'USD', value: 1 },
     },
 };
 export const timelineData: TimelineDayData[] = [

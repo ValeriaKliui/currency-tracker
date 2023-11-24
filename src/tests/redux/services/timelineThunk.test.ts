@@ -6,7 +6,7 @@ import { type AnyAction } from 'redux';
 import configureStore from 'redux-mock-store';
 import thunk, { type ThunkDispatch } from 'redux-thunk';
 
-import { timelineData } from '../mocks/mocks';
+import { timelineData } from '../../mocks/mocks';
 
 type DispatchExts = ThunkDispatch<RootState, undefined, AnyAction>;
 

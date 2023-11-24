@@ -7,12 +7,7 @@ describe('get available currencies', () => {
         const result = getAvailableCurrencies(currenciesData, ({ code }) => {
             return code.toLowerCase().includes('b');
         });
-        expect(result).toStrictEqual([
-            {
-                code: 'BTC',
-                value: 0.0000289942,
-            },
-        ]);
+        expect(result).toStrictEqual([currenciesData.data.BTC]);
     });
 
     test('should return available currencies for filter func (find currencies whose value > 100)', () => {
@@ -20,14 +15,8 @@ describe('get available currencies', () => {
             return value > 100;
         });
         expect(result).toStrictEqual([
-            {
-                code: 'ARS',
-                value: 350.0210225314,
-            },
-            {
-                code: 'JPY',
-                value: 149.1421572962,
-            },
+            currenciesData.data.ARS,
+            currenciesData.data.JPY,
         ]);
     });
 

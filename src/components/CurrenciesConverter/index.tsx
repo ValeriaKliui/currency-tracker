@@ -1,4 +1,10 @@
-import { type ChangeEvent, type FC, useCallback, useEffect } from 'react';
+import {
+    type ChangeEvent,
+    type FC,
+    useCallback,
+    useEffect,
+    useMemo,
+} from 'react';
 import { CurrencyItem } from '@components/CurrencyItem';
 import { Input } from '@components/Input';
 import { Select } from '@components/Select';
@@ -29,8 +35,11 @@ export const CurrenciesConverter: FC = () => {
     const convertedCurrencyValue = useAppSelector(getConvertedCurrencyValue);
     const currencies = useAppSelector(getCurrenciesSelector);
 
-    const currenciesArray =
-        currencies != null ? Object.values(currencies.data) : [];
+    const currenciesArray = useMemo(() => {
+        const currenciesArray =
+            currencies != null ? Object.values(currencies.data) : [];
+        return currenciesArray;
+    }, [currencies]);
 
     const convertedRoundedValue =
         targetCurrency !== null &&
@@ -42,16 +51,19 @@ export const CurrenciesConverter: FC = () => {
     useEffect(() => {
         if (baseCurrencyCode !== null && targetCurrency !== null)
             dispatch(fetchConversedCurrThunk(baseCurrencyCode, targetCurrency));
-    }, [targetCurrency, baseCurrencyCode]);
+    }, [targetCurrency, baseCurrencyCode, dispatch]);
 
     useEffect(() => {
         dispatch(setCurrencyAmount(1));
         dispatch(setTargetCurrency(null));
-    }, [baseCurrencyCode]);
+    }, [baseCurrencyCode, dispatch]);
 
-    const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setCurrencyAmount(Number(e.target.value)));
-    }, []);
+    const onChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            dispatch(setCurrencyAmount(Number(e.target.value)));
+        },
+        [dispatch],
+    );
 
     return (
         <ConverterContainer data-testid="currencies-converter">

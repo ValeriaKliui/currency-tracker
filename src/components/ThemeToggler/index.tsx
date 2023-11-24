@@ -26,7 +26,7 @@ export const ThemeToggler: FC = () => {
     useEffect(() => {
         const savedTheme = getCache<ThemeEnum>('theme');
         savedTheme !== null && dispatch(setTheme(savedTheme));
-    }, []);
+    }, [dispatch]);
 
     return (
         <TogglerContainer data-testid="theme-toggler">

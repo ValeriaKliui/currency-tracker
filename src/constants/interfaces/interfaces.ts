@@ -111,6 +111,7 @@ export interface TimelineBlockState {
     historyDateStart: string;
     historyDateEnd: string;
     duration: string;
+    selectOptions: Currency[];
 }
 export interface TimelineDayData {
     price_close: number;

@@ -12,7 +12,8 @@
     "extends": [
         "plugin:react/recommended",
         "standard-with-typescript",
-        "prettier"
+        "prettier",
+        "plugin:react-hooks/recommended"
     ],
     "overrides": [],
     "parserOptions": {

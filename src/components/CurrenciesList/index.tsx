@@ -30,14 +30,14 @@ export const CurrenciesList: FC = () => {
         if (cachedCurrencyData !== null)
             dispatch(setCurrencies(cachedCurrencyData));
         else dispatch(fetchCurrencyThunk());
-    }, []);
+    }, [dispatch]);
 
     const handleClick = useCallback(
         (code: CurrencyCodeType | null) => () => {
             dispatch(openModal());
             dispatch(setBaseCurrency(code));
         },
-        [],
+        [dispatch],
     );
 
     const toStringRound = (value: number, code: CurrencyCodeType) => {

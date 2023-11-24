@@ -66,6 +66,11 @@ export class TimelineBlock extends Component<
             historyDateStart: formatDate(this.prevMonth),
             historyDateEnd: formatDate(new Date()),
             duration: TIMELINE_DURATION.default,
+            selectOptions: getAvailableCurrencies(
+                this.props.currencies,
+                (currency: Currency) =>
+                    CURRENCIES_HISTORY_AVAILABLE.includes(currency.code),
+            ),
         };
     }
 
@@ -106,6 +111,16 @@ export class TimelineBlock extends Component<
         ) {
             this.subject.processData();
         }
+
+        if (this.props.currencies?.meta !== prevProps?.currencies?.meta) {
+            this.setState({
+                selectOptions: getAvailableCurrencies(
+                    this.props.currencies,
+                    (currency: Currency) =>
+                        CURRENCIES_HISTORY_AVAILABLE.includes(currency.code),
+                ),
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -136,18 +151,11 @@ export class TimelineBlock extends Component<
     };
 
     render() {
-        const { targetCurrencyCode, currencies, currencyTimelineData, error } =
-            this.props;
+        const { targetCurrencyCode, currencyTimelineData, error } = this.props;
 
-        const { duration, historyDateStart, historyDateEnd } = this.state;
+        const { duration, historyDateStart, historyDateEnd, selectOptions } =
+            this.state;
         const { data, options, plugins } = configChart(currencyTimelineData);
-
-        const selectOptions = getAvailableCurrencies(
-            currencies,
-            (currency: Currency) =>
-                CURRENCIES_HISTORY_AVAILABLE.includes(currency.code),
-        );
-
         const durations = Object.values(TIMELINE_DURATION);
 
         const isChartReady =

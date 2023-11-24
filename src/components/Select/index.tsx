@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { Hints } from '@components/Hints';
 import {
     type CurrencyCodeType,
@@ -18,9 +18,13 @@ export const Select: FC<SelectProps> = memo(({ options }) => {
     const isHintsOpened = useAppSelector(getIsHintsOpened);
     const targetCurrencyCode = useAppSelector(getTargetCurrencySelector);
 
-    const chooseCurrency = (currencyCode: CurrencyCodeType) => {
-        dispatch(setTargetCurrency(currencyCode));
-    };
+    const chooseCurrency = useCallback(
+        (currencyCode: CurrencyCodeType) => {
+            dispatch(setTargetCurrency(currencyCode));
+        },
+        [dispatch],
+    );
+
     const openHints = () => {
         dispatch(setIsHintsOpened(true));
     };

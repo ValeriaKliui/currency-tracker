@@ -11,7 +11,7 @@ import { getIsHintsOpened } from '@store/selectors/appSelector';
 
 import { OptionsContainer } from './styled';
 
-export const Hints: FC<HintsProps> = memo(({ options, onOptionClick }) => {
+export const Hints: FC<HintsProps> = memo(({ options = [], onOptionClick }) => {
     const dispatch = useAppDispatch();
     const isHintsOpened = useAppSelector(getIsHintsOpened);
 
@@ -24,7 +24,7 @@ export const Hints: FC<HintsProps> = memo(({ options, onOptionClick }) => {
             dispatch(setIsHintsOpened(false));
             code !== null && onOptionClick(code);
         },
-        [],
+        [dispatch, onOptionClick],
     );
 
     return (
