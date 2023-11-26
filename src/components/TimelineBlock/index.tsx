@@ -167,7 +167,10 @@ export class TimelineBlock extends Component<
             <Container>
                 {error !== null && <Error text={error} />}
                 <CurrencyDetails>
-                    <Select options={selectOptions} />
+                    <Select
+                        options={selectOptions}
+                        testID="currency-selector"
+                    />
                     <Periods>
                         <p>Choose duration:</p>
                         {durations.map((duration) => (
@@ -177,6 +180,7 @@ export class TimelineBlock extends Component<
                                 value={duration}
                                 onChange={this.handleChange}
                                 checked={this.state.duration === duration}
+                                testID={duration}
                             />
                         ))}
                     </Periods>
@@ -190,6 +194,7 @@ export class TimelineBlock extends Component<
                                     value={historyDateStart}
                                     name="historyDateStart"
                                     onChange={this.handleChange}
+                                    data-cy="history-date-start"
                                 />
                             </DateContainer>
                             <DateContainer>
@@ -200,12 +205,16 @@ export class TimelineBlock extends Component<
                                     name="historyDateEnd"
                                     onChange={this.handleChange}
                                     max={formatDate(new Date())}
+                                    data-cy="history-date-end"
                                 />
                             </DateContainer>
                         </DatesContainer>
                     )}
                     {targetCurrencyCode !== null && (
-                        <CurrencyItem currencyCode={targetCurrencyCode} />
+                        <CurrencyItem
+                            currencyCode={targetCurrencyCode}
+                            testID="target-currency"
+                        />
                     )}
                 </CurrencyDetails>
                 {isChartReady && (
@@ -214,6 +223,7 @@ export class TimelineBlock extends Component<
                         options={options}
                         plugins={plugins}
                         data-testid="timeline-chart"
+                        data-cy="timeline-chart"
                     />
                 )}
             </Container>

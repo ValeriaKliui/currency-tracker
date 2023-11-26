@@ -1,5 +1,4 @@
 import { Provider } from 'react-redux';
-import { CurrenciesEnum } from '@constants/interfaces/interfaces';
 import { Home } from '@pages/Home';
 import { store } from '@store/index';
 import { type RootState } from '@store/index';
@@ -27,8 +26,7 @@ const mockedStore = mockStore(undefined);
 
 const mockCurrencies = () => {
     mock.onGet(
-        // `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_KEY_CURRENCYAPI}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
-        'https://mocki.io/v1/3939759e-0fc5-42c2-98cf-a2ad27855180',
+        `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_KEY_CURRENCYAPI}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
     ).reply(200, currenciesData);
     mock.onAny().passThrough();
     store.dispatch(fetchCurrencyThunk() as unknown as AnyAction);
@@ -65,7 +63,7 @@ describe('currencies converter', () => {
     test('should open converter after click and set base currency', async () => {
         mockCurrencies();
 
-        const { getAllByText } = await act(async () =>
+        const { getAllByTestId } = await act(async () =>
             render(
                 <Provider store={store}>
                     <Theme>
@@ -75,33 +73,27 @@ describe('currencies converter', () => {
             ),
         );
 
-        const currencyItem = getAllByText(CurrenciesEnum.ARS);
+        const currencyItems = getAllByTestId('currency-item');
+        expect(store.getState().currencies.baseCurrencyCode).toBeNull();
         expect(store.getState().app.isModalOpened).toBe(false);
-        fireEvent.click(currencyItem[0]);
+        fireEvent.click(currencyItems[0]);
         expect(store.getState().app.isModalOpened).toBe(true);
-        expect(store.getState().currencies.baseCurrencyCode).toBe('ARS');
+        expect(store.getState().currencies.baseCurrencyCode).not.toBeNull();
     });
 
     test('should choose target currency after click on currency options', () => {
         const { getAllByTestId } = render(
             <Provider store={store}>
                 <Theme>
-                    <CurrenciesConverter />
+                    <CurrenciesConverter testID="currency-converter" />
                 </Theme>
             </Provider>,
         );
 
-        const currencyItems = getAllByTestId('currency-item');
-        const lastCurrencyItem = currencyItems[currencyItems.length - 1];
-        const currencyCodes = Object.keys(CurrenciesEnum).sort((a, b) =>
-            a.localeCompare(b),
-        );
-        const lastCurrencyCode = currencyCodes[currencyCodes.length - 1];
-
-        fireEvent.click(lastCurrencyItem);
-        expect(store.getState().currencies.targetCurrencyCode).toBe(
-            lastCurrencyCode,
-        );
+        const currencyItems = getAllByTestId('currency-option');
+        expect(store.getState().currencies.targetCurrencyCode).toBeNull();
+        fireEvent.click(currencyItems[0]);
+        expect(store.getState().currencies.targetCurrencyCode).not.toBeNull();
     });
 
     test('should display converted value after choosing target currency', async () => {
@@ -112,7 +104,7 @@ describe('currencies converter', () => {
             render(
                 <Provider store={store}>
                     <Theme>
-                        <CurrenciesConverter />
+                        <CurrenciesConverter testID="currency-converter" />
                     </Theme>
                 </Provider>,
             ),

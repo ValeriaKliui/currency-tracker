@@ -13,7 +13,7 @@ import { getCurrencyNameByCode } from '@utils/getCurrencyNameByCode';
 
 import { ChoosenOption, SelectContainer } from './styled';
 
-export const Select: FC<SelectProps> = memo(({ options }) => {
+export const Select: FC<SelectProps> = memo(({ options, testID }) => {
     const dispatch = useAppDispatch();
     const isHintsOpened = useAppSelector(getIsHintsOpened);
     const targetCurrencyCode = useAppSelector(getTargetCurrencySelector);
@@ -30,8 +30,12 @@ export const Select: FC<SelectProps> = memo(({ options }) => {
     };
 
     return (
-        <SelectContainer data-testid="select">
-            <ChoosenOption $isOpen={isHintsOpened} onClick={openHints}>
+        <SelectContainer data-testid={testID} data-cy={testID}>
+            <ChoosenOption
+                $isOpen={isHintsOpened}
+                onClick={openHints}
+                data-cy="currency-choosen"
+            >
                 {targetCurrencyCode !== null
                     ? getCurrencyNameByCode(targetCurrencyCode)
                     : 'Select currency'}

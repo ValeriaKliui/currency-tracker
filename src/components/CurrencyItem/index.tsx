@@ -19,6 +19,7 @@ export const CurrencyItem: FC<CurrencyItemProps> = memo(
         currencyCode,
         scalable = false,
         subText,
+        testID,
     }) => {
         const getIconSrc = () => {
             if (currencyCode !== undefined) {
@@ -40,7 +41,8 @@ export const CurrencyItem: FC<CurrencyItemProps> = memo(
                 onClick={onClick}
                 $scalable={scalable}
                 $hoverable={onClick !== undefined}
-                data-testid="currency-item"
+                data-testid={testID}
+                data-cy={testID}
             >
                 <CurrencyIcon src={getIconSrc()} />
                 <CurrencyInfo>

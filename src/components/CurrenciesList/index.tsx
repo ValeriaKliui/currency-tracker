@@ -63,6 +63,7 @@ export const CurrenciesList: FC = () => {
                         currencyName={currencyName}
                         icon={icon}
                         subText={value}
+                        testID="stock-item"
                     />
                 ))}
             </CurrenciesContainer>
@@ -83,6 +84,7 @@ export const CurrenciesList: FC = () => {
                                     subText={'R$ ' + toStringRound(value, code)}
                                     onClick={handleClick(code)}
                                     scalable={true}
+                                    testID="currency-item"
                                 />
                             ),
                         )}

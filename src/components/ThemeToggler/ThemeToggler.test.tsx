@@ -10,7 +10,7 @@ describe('theme toggler', () => {
         const { getByTestId } = render(
             <Provider store={store}>
                 <Theme>
-                    <ThemeToggler />
+                    <ThemeToggler testID="theme-toggler" />
                 </Theme>
             </Provider>,
         );
@@ -22,7 +22,7 @@ describe('theme toggler', () => {
         const { getByTestId } = render(
             <Provider store={store}>
                 <Theme>
-                    <ThemeToggler />
+                    <ThemeToggler testID="theme-toggler" />
                 </Theme>
             </Provider>,
         );

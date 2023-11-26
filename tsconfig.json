@@ -10,7 +10,7 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "strictNullChecks": true,
-        "types": ["node", "jest", "@testing-library/jest-dom"],
+        "types": ["node", "jest", "@testing-library/jest-dom","@simonsmith/cypress-image-snapshot/types"],
         "paths": {
             "@assets/*": ["./src/assets/*"],
             "@constants/*": ["./src/constants/*"],
@@ -26,5 +26,5 @@
             "module": "CommonJS"
         }
     },
-    "exclude": ["cypress.config.ts", "cypress", "node_modules"]
+    "exclude": ["cypress.config.ts", "cypress-plugin-snapshots", "cypress-image-snapshot", "cypress", "node_modules"],
 }

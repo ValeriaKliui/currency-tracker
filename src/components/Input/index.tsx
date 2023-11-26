@@ -6,7 +6,13 @@ import { IconContainer, InputContainer, InputStyled } from './styled';
 
 export class Input extends Component<InputProps> {
     render() {
-        const { placeholder, value, onChange, type = 'text' } = this.props;
+        const {
+            placeholder,
+            value,
+            onChange,
+            type = 'text',
+            testID,
+        } = this.props;
         return (
             <InputContainer>
                 <InputStyled
@@ -14,6 +20,7 @@ export class Input extends Component<InputProps> {
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
+                    data-cy={testID}
                 />
                 <IconContainer>
                     <SearchIcon />

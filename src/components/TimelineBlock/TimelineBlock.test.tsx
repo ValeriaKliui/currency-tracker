@@ -50,8 +50,7 @@ const mockedStore = mockStore(undefined);
 
 const mockCurrencies = () => {
     mock.onGet(
-        // `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_KEY_CURRENCYAPI}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
-        'https://mocki.io/v1/3939759e-0fc5-42c2-98cf-a2ad27855180',
+        `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_KEY_CURRENCYAPI}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
     ).reply(200, currenciesData);
     mock.onAny().passThrough();
     store.dispatch(fetchCurrencyThunk() as unknown as AnyAction);
@@ -116,7 +115,10 @@ describe('timeline block', () => {
             render(
                 <Provider store={store}>
                     <Theme>
-                        <Select options={selectOptions} />
+                        <Select
+                            options={selectOptions}
+                            testID="currency-selector"
+                        />
                         <Bar
                             data={data}
                             options={options}
@@ -128,7 +130,7 @@ describe('timeline block', () => {
             ),
         );
 
-        const currencyItems = getAllByTestId('currency-item');
+        const currencyItems = getAllByTestId('currency-option');
         const firstCurrencyItem = currencyItems[0];
         fireEvent.click(firstCurrencyItem);
 

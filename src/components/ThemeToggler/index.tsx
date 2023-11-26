@@ -1,5 +1,8 @@
 import { type FC, useEffect } from 'react';
-import { ThemeEnum } from '@constants/interfaces/interfaces';
+import {
+    ThemeEnum,
+    type ThemeTogglerProps,
+} from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import { setTheme } from '@store/actions/appActions';
 import { getThemeSelector } from '@store/selectors/appSelector';
@@ -12,7 +15,7 @@ import {
     TogglerLabel,
 } from './styled';
 
-export const ThemeToggler: FC = () => {
+export const ThemeToggler: FC<ThemeTogglerProps> = ({ testID }) => {
     const dispatch = useAppDispatch();
     const theme = useAppSelector(getThemeSelector);
 
@@ -29,13 +32,14 @@ export const ThemeToggler: FC = () => {
     }, [dispatch]);
 
     return (
-        <TogglerContainer data-testid="theme-toggler">
+        <TogglerContainer data-testid={testID} data-cy={testID}>
             <TogglerInput
                 type="checkbox"
                 onChange={onChange}
                 id={theme}
                 checked={theme === ThemeEnum.dark}
                 data-testid="theme-checkbox"
+                data-cy="theme-checkbox"
             />
             <TogglerLabel htmlFor={theme}>
                 <TogglerButton />

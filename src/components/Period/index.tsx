@@ -5,9 +5,9 @@ import { PeriodLabel, PeriodType } from './styled';
 
 export class Period extends Component<PeriodProps> {
     render() {
-        const { checked, value, name, onChange } = this.props;
+        const { checked, value, name, onChange, testID } = this.props;
         return (
-            <PeriodLabel $isChoosen={checked}>
+            <PeriodLabel $isChoosen={checked} data-cy={testID}>
                 {value}
                 <PeriodType
                     type="radio"
@@ -15,7 +15,7 @@ export class Period extends Component<PeriodProps> {
                     name={name}
                     checked={checked}
                     onChange={onChange}
-                    data-testid="period"
+                    data-testid={testID}
                 />
             </PeriodLabel>
         );

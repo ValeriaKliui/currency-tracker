@@ -8,7 +8,7 @@ export const colors = {
     white: 'rgb(255, 255, 255)',
     transparentWhite: 'rgba(255, 255, 255, 0.9)',
     gray: 'rgb(71,71,71)',
-    grayDark: 'rgb(32,32,37)',
+    grayDark: 'rgb(32, 32, 37)',
     grayLight: 'rgb(167,178,195)',
     greenBright: 'rgba(22,199,130)',
     greenDark: 'rgba(36,121,64,0)',

@@ -19,6 +19,10 @@ export class TimelinePopUp extends Component {
     }
 
     render() {
-        return <PopUpContainer>Timeline for 1 month was build</PopUpContainer>;
+        return (
+            <PopUpContainer data-cy="timeline-popup">
+                Timeline for 1 month was build
+            </PopUpContainer>
+        );
     }
 }

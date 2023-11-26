@@ -9,6 +9,7 @@ import { CurrencyItem } from '@components/CurrencyItem';
 import { Input } from '@components/Input';
 import { Select } from '@components/Select';
 import { CURRENCIES_ROUNDING } from '@constants/constants/currencies';
+import { type CurrenciesConverterProps } from '@constants/interfaces/interfaces';
 import { useAppDispatch, useAppSelector } from '@hooks/store';
 import {
     setCurrencyAmount,
@@ -27,7 +28,9 @@ import { roundNumber } from '@utils/roundNumber';
 
 import { CenteredTitle, ConverterContainer, Title } from './styled';
 
-export const CurrenciesConverter: FC = () => {
+export const CurrenciesConverter: FC<CurrenciesConverterProps> = ({
+    testID,
+}) => {
     const dispatch = useAppDispatch();
     const baseCurrencyCode = useAppSelector(getBaseCurrencySelector);
     const currencyAmount = useAppSelector(getCurrencyAmount);
@@ -66,21 +69,25 @@ export const CurrenciesConverter: FC = () => {
     );
 
     return (
-        <ConverterContainer data-testid="currencies-converter">
+        <ConverterContainer data-testid={testID} data-cy={testID}>
             <CenteredTitle>Amount</CenteredTitle>
             <Input
                 value={currencyAmount.toString()}
                 onChange={onChange}
                 type="number"
+                testID="converter-amount"
             />
             <Title>From:</Title>
             {baseCurrencyCode !== null && (
-                <CurrencyItem currencyCode={baseCurrencyCode} />
+                <CurrencyItem
+                    currencyCode={baseCurrencyCode}
+                    testID="base-currency"
+                />
             )}
             <Title>To:</Title>
-            <Select options={currenciesArray} />
+            <Select options={currenciesArray} testID="currency-selector" />
             {convertedCurrencyValue !== null && targetCurrency !== null && (
-                <CenteredTitle>
+                <CenteredTitle data-cy="converted-amount">
                     {currencyAmount} {baseCurrencyCode} ={' '}
                     {Number(convertedRoundedValue) * currencyAmount}{' '}
                     {targetCurrency}

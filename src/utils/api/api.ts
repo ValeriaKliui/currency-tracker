@@ -11,8 +11,7 @@ export const CurrencyAPI = {
     async getCurrencies() {
         return await cachedAxios
             .get<Currencies>(
-                'https://mocki.io/v1/3939759e-0fc5-42c2-98cf-a2ad27855180',
-                // `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_KEY_CURRENCYAPI}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
+                `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_KEY_CURRENCYAPI}&currencies=USD,CAD,AUD,EUR,ARS,JPY,CNY,BTC,LTC`,
             )
             .then((response) => {
                 return response.data;

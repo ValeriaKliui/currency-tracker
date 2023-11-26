@@ -88,6 +88,7 @@ export class SearchBlock extends Component<
                         placeholder="Сurrency search..."
                         value={this.state.inputValueBankCard}
                         onChange={this.handleChange}
+                        testID="search-input"
                     />
                     <Hints
                         options={selectOptions}
@@ -95,7 +96,10 @@ export class SearchBlock extends Component<
                     />
                 </SearchContainer>
                 {targetCurrencyCode !== null && (
-                    <CurrencyItem currencyCode={targetCurrencyCode} />
+                    <CurrencyItem
+                        currencyCode={targetCurrencyCode}
+                        testID="currency-searched"
+                    />
                 )}
             </Container>
         );

@@ -28,7 +28,7 @@ export const BurgerMenu: FC = () => {
                 <MenuStyled $isOpened={isMenuOpened}>
                     <MenuContainer>
                         <Theme>
-                            <ThemeToggler />
+                            <ThemeToggler testID="theme-toggler" />
                         </Theme>
                         <NavLinks onClick={toggleMenu} />
                     </MenuContainer>

@@ -1,4 +1,4 @@
-import { type FC,useCallback } from 'react';
+import { type FC, useCallback } from 'react';
 import { CurrenciesConverter } from '@components/CurrenciesConverter';
 import { CurrenciesList } from '@components/CurrenciesList';
 import { Modal } from '@components/Modal';
@@ -14,8 +14,8 @@ export const Home: FC = () => {
     return (
         <>
             <CurrenciesList />
-            <Modal onClose={onClose}>
-                <CurrenciesConverter />
+            <Modal onClose={onClose} testID="modal">
+                <CurrenciesConverter testID="currency-converter" />
             </Modal>
         </>
     );

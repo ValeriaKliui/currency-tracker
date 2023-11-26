@@ -22,9 +22,8 @@ export const Navbar: FC = () => {
                 <NavLinks />
             </MobileContainer>
             <MobileContainer>
-                <ThemeToggler />
+                <ThemeToggler testID="theme-toggler" />
             </MobileContainer>
-
             <BurgerMenu />
         </Container>
     );

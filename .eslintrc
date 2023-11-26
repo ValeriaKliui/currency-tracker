@@ -15,6 +15,7 @@
         "prettier",
         "plugin:react-hooks/recommended"
     ],
+    "ignorePatterns": ["cypress.config.ts"],
     "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest",

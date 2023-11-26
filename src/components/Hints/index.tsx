@@ -34,6 +34,7 @@ export const Hints: FC<HintsProps> = memo(({ options = [], onOptionClick }) => {
                     key={code}
                     currencyCode={code}
                     onClick={handleClick(code)}
+                    testID="currency-option"
                 />
             ))}
         </OptionsContainer>

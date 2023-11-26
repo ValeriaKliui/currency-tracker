@@ -81,13 +81,16 @@ export interface CurrencyItemProps {
     currencyCode?: CurrencyCodeType;
     scalable?: boolean;
     subText?: string;
+    testID: string;
 }
 export interface ModalProps {
     children: ReactNode;
     onClose: () => void;
+    testID: string;
 }
 export interface SelectProps {
     options: Currency[];
+    testID: string;
 }
 
 export interface TimelineBlockProps {
@@ -130,6 +133,7 @@ export interface InputProps {
     value: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     type?: string;
+    testID: string;
 }
 export interface SearchBlockProps {
     currencies: Currencies | null;
@@ -198,10 +202,17 @@ export interface PeriodProps {
     name: string;
     checked: boolean;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    testID: string;
 }
 export interface CardMarkerProps {
     bank: Bank;
     onClick: (e: MarkerEvent<MarkerInstance, MouseEvent>) => void;
     onClose: () => void;
     selectedBankID: string | null;
+}
+export interface CurrenciesConverterProps {
+    testID: string;
+}
+export interface ThemeTogglerProps {
+    testID: string;
 }
